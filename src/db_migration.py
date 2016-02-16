@@ -2,12 +2,15 @@ import requests
 import json
 import csv
 import os
+from common import config_reader
+from common import request
 #import logging
 #import config
 
 #log = logging.getLogger('baremetal')
 ADMIN_DIR = ''
 USER_DIR = ''
+CONF_FILE = "/home/ubuntu/L2-Gateway-Migration/conf/input_data.cfg"
 
 class MigrationScript(object):
 
@@ -17,11 +20,20 @@ class MigrationScript(object):
 #        self.openstack_obj = openstack_connection.OpenStackConnection(self)
 #        self.log = logging.getLogger('baremetal')
         self.cfile = os.getcwd()
-        USER_DIR = self.cfile + '/../../data/'
-        ADMIN_DIR = self.cfile + '/../../conf/admin'
+        USER_DIR = self.cfile + '/../data/'
+        #ADMIN_DIR = self.cfile + '/../conf/admin'
     
     def get_headers(self):
-        auth_token = get_user_token('admin','unset','demo')
+        
+        creds_dict = config_reader.get_config_vals(CONF_FILE)
+        cred_list = creds_dict['cred_list']
+        """To Do: Make a generic method"""
+
+        username = cred_list[0][1]
+        password = cred_list[1][1]
+        tenant_name = cred_list[2][1]
+        auth_token = request.get_user_token(username,password,tenant_name)
+
         token_id = auth_token['token']['id']
         headers = {
                 'User-Agent': 'python-neutronclient',
@@ -30,12 +42,20 @@ class MigrationScript(object):
                 'X-Auth-Token': token_id,
                 }
         print token_id
+        return headers
         
     def get_connection_list(self):
         """
         Getting the list of connections
         """
-        list_conn = requests.get('http://10.8.20.51:9696/v2.0/l2-gateway-connections.json', headers=headers)
+        #import pdb;pdb.set_trace()
+        creds_dict = config_reader.get_config_vals(CONF_FILE)
+        service_ip = creds_dict['service_ip']
+        #print service_ip
+        req_url = "http://%s:9696/v2.0/l2-gateway-connections.json"  % (service_ip)
+        #print req_url
+        headers=self.get_headers()
+        list_conn = requests.get(req_url, headers)
         connection_list = list_conn.text
         print connection_list
 
