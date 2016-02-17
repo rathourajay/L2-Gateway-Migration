@@ -3,6 +3,7 @@ import os
 
 #CONF_FILE = "/home/ubuntu/L2-Gateway-Migration/conf/input_data.cfg"
 
+
 def get_config_vals(conf_file):
     """TO Do: Use args and kwargs to accept dynamic num of parameters"""
 

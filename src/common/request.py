@@ -33,15 +33,15 @@ def get_user_token(user_name, password, tenant_name):
         #pdb.set_trace()
         """To Do: Make a generic method"""
 
-        username = cred_list[0][1]
-        password = cred_list[1][1]
-        tenant_name = cred_list[2][1]
+#        username = cred_list[0][1]
+#        password = cred_list[1][1]
+#        tenant_name = cred_list[2][1]
 
         
         creds = {
             'auth': {
                 'passwordCredentials': {
-                    'username': username,
+                    'username': user_name,
                     'password': password
                     },
                 'tenantName': tenant_name
