@@ -11,6 +11,8 @@ import csv
 import ConfigParser, os
 import config_reader
 
+log = logging.getLogger('l2_gateway')
+
 CONF_FILE="/home/ubuntu/L2-Gateway-Migration/conf/input_data.cfg"
 
 def get_user_token(user_name, password, tenant_name):
@@ -24,8 +26,8 @@ def get_user_token(user_name, password, tenant_name):
         #os_auth_url= "http://10.8.20.51:5000/v2.0"
 
         url = os_auth_url + '/tokens'
-        #log.info("Getting token for user: "
-        #         "% s from url: % s" % (user_name, os_auth_url))
+        log.info("Getting token for user: "
+                 "% s from url: % s" % (user_name, os_auth_url))
 
 
         cred_list = creds_dict['cred_list']
@@ -51,6 +53,8 @@ def get_user_token(user_name, password, tenant_name):
        # import pdb;pdb.set_trace()
         data = json.dumps(creds)
         resp = post_request(url, data=data)
+        log.info("Post request_response =="
+                 "% s " % (resp))
         return resp.json()['access']
 
 def generic_request(method, url, data=None,
@@ -64,7 +68,7 @@ def generic_request(method, url, data=None,
         headers["X-Auth-Token"] = token['id']
     resp = method(url, headers=headers, data=data, verify=nova_cacert,
                   stream=stream)
-
+    log.info("In function generic_request")
     if resp.status_code in [401]:
         resp_body = resp.json()
     if resp.status_code in [403]:
@@ -72,6 +76,7 @@ def generic_request(method, url, data=None,
 
     elif resp.status_code not in [200, 201, 203, 204]:
         print "Can't able to make connection"
+        log.info("Can't able to make connection")
     return resp
 
 

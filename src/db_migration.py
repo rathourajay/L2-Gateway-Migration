@@ -6,8 +6,7 @@ from common import config_reader
 from common import request
 from common import config
 from common import database_connection
-#import logging
-#import config
+import logging
 
 #log = logging.getLogger('baremetal')
 ADMIN_DIR = ''
@@ -19,11 +18,28 @@ class MigrationScript(object):
     def __init__(self):
         global USER_DIR
         global ADMIN_DIR
-#        self.openstack_obj = openstack_connection.OpenStackConnection(self)
-#        self.log = logging.getLogger('baremetal')
         self.cfile = os.getcwd()
         USER_DIR = self.cfile + '/../data/'
         #ADMIN_DIR = self.cfile + '/../conf/admin'
+        log_level = logging.INFO
+        if config.CONF.DEFAULT.debug:
+            log_level = logging.DEBUG
+        self.init_log(config.CONF.OPENSTACK_CREDS.log_file, log_level, 'l2_gateway')
+        self.log = logging.getLogger('l2_gateway')
+
+    def init_log(self, filename, level, logger):
+        directory = os.path.dirname(filename)
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        l = logging.getLogger(logger)
+        formatter = logging.Formatter(
+            '%(asctime)s %(levelname)s - %(message)s')
+        fileHandler = logging.FileHandler(filename, mode='a')
+        fileHandler.setFormatter(formatter)
+
+        l.setLevel(level)
+        l.addHandler(fileHandler)
+
     
     def get_headers(self):
         
@@ -51,6 +67,7 @@ class MigrationScript(object):
         Populating csv data file
         """
 #        import pdb;pdb.set_trace()
+        self.log.info("Populate csv file for connection list")
         data_file = DATA_FILE + 'data_file.csv'
         with open(data_file, 'wb') as fp:
             writer = csv.writer(fp, delimiter='\t')
@@ -65,17 +82,32 @@ class MigrationScript(object):
                     segmentation_id = connection_dict["l2_gateway_connections"][item]["segmentation_id"]
                     writer.writerow([connection_id, network_id, tenant_id, l2_gateway_id, segmentation_id])
 
+
     def read_data_file(self):
         """
         Read contents from data file
         """
+#        import pdb;pdb.set_trace()
         data_file = DATA_FILE + 'data_file.csv'
         with open(data_file, 'rb') as fp:
             reader = csv.reader(fp, delimiter='\t')
+            count = 0
+            param_dict = {}
+            conn_id_list = []
+            net_id_list = []
+            gw_id_list = []
             for row in reader:
-#                print row
-#                print(row['connection_id'], row['network_id'],row['l2_gateway_id'])
-                print (row[0])   
+                if count == 0:
+                    count = count + 1
+                else:
+                    conn_id_list.append(row[0])
+                    net_id_list.append(row[1])
+                    gw_id_list.append(row[3])
+            param_dict['connection_id'] = conn_id_list
+            param_dict['net_id']=net_id_list
+            param_dict['gw_id']=gw_id_list
+        return param_dict
+
 
     def update_l2gwagent_ini(self):
         import  re
@@ -100,6 +132,19 @@ class MigrationScript(object):
             file.writelines('\n')
 
 
+    def create_connection(self,param_dict,headers):
+#        import pdb;pdb.set_trace()
+        for i in range(len(param_dict['net_id'])):
+            network_id = param_dict['net_id'][i]
+            l2_gateway_id = param_dict['gw_id'][i]
+            payload = {"l2_gateway_connection": {"network_id": network_id, "l2_gateway_id": l2_gateway_id}}
+            """
+            creating connection
+            """
+            create_conn = requests.post('http://10.8.20.51:9696/v2.0/l2-gateway-connections.json', data=json.dumps(payload), headers=headers)
+            print create_conn.text
+            print "connection created"        
+
 
     def get_connection_list(self):
         """
@@ -117,99 +162,8 @@ class MigrationScript(object):
         connection_list = list_conn.text
         print connection_list
         self.populate_data_file(connection_list)
-#        connection_dict = json.loads(connection_list.encode('utf-8'))
-        self.read_data_file       
         db_obj = database_connection.db_connection()
         db_obj.read_connection_uuid()
-        self.update_l2gwagent_ini()
-
-    def populate_file(self):
-        pass
-
-
-def get_user_token(user_name, password, tenant_name):
-        """
-        Gets a keystone usertoken using the credentials provided by user
-        """
-        os_auth_url = 'http://10.8.20.51:5000/v2.0'
-        url = os_auth_url + '/tokens'
-       # log.info("Getting token for user: "
-        #         "% s from url: % s" % (user_name, os_auth_url))
-        creds = {
-            'auth': {
-                'passwordCredentials': {
-                    'username': user_name,
-                    'password': password
-                    },
-                'tenantName': tenant_name
-            }
-        }
-
-        data = json.dumps(creds)
-        resp = post_request(url, data=data)
-        return resp.json()['access']
-
-
-def generic_request(method, url, data=None,
-                    auth_token=None, nova_cacert=False, stream=False):
-    headers = {}
-    headers["Content-type"] = "application/json"
-   # import pdb;pdb.set_trace()
-    if auth_token:
-        token = auth_token['token']
-        headers["X-Auth-Token"] = token['id']
-    resp = method(url, headers=headers, data=data, verify=nova_cacert,
-                  stream=stream)
-
-    if resp.status_code in [401]:
-        resp_body = resp.json()
-    if resp.status_code in [403]:
-        resp_body = resp.json()
-
-    elif resp.status_code not in [200, 201, 203, 204]:
-        print "Can't able to make connection"
-    return resp
-
-
-def get_request(url, auth_token, nova_cacert=False, stream=False):
-    return generic_request(requests.get, url, auth_token=auth_token,
-                           nova_cacert=nova_cacert, stream=stream)
-
-
-def post_request(url, data, auth_token=None):
-    return generic_request(requests.post, url, data, auth_token)
-'''
-
-if __name__=='__main__':
-    try:
-        auth_token = get_user_token('admin','unset','demo')
-        token_id = auth_token['token']['id']
-        headers = {
-    		'User-Agent': 'python-neutronclient',
-    		'Content-Type': 'application/json',
-		'Accept': 'application/json',
-		'X-Auth-Token': token_id,
-                }
-        print token_id
-        payload = {"l2_gateway_connection": {"network_id": "d1165e8a-a5d9-4be3-822d-7481572dabbd", "l2_gateway_id": "c6328e84-d80b-43dd-bea2-cc98c4c6fa3d"}}
-	"""
-	creating connection
-	"""
-        create_conn = requests.post('http://10.8.20.51:9696/v2.0/l2-gateway-connections.json', data=json.dumps(payload), headers=headers)
-        print create_conn.text
-
-        """
-	Getting the list of connections
-	"""
-        list_conn = requests.get('http://10.8.20.51:9696/v2.0/l2-gateway-connections.json', headers=headers)
-        connection_list = list_conn.text
-        print connection_list
-        with open('data.csv', 'wb') as fp:
-            a = csv.writer(fp, delimiter=',')
-            data = [[connection_list]]
-            a.writerows(data)
-#fetch network_id and gw_id from data now.
-#iterate the data and create new connections.
-    except Exception as e:
-        print e
-'''
+        param_dict = self.read_data_file()
+        self.create_connection(param_dict,headers=headers)        
+#        self.update_l2gwagent_ini()

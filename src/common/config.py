@@ -9,10 +9,12 @@ default_group = cfg.OptGroup(name='DEFAULT',
                              title="Default Configuration Options")
 
 DefaultGroup = [
+    cfg.BoolOpt('debug',
+                default=False,
+                help="Print debugging output"),
     cfg.StrOpt('service_ip',
                default='service_ip',
-               help="service ip ie cmc ip"),
-]
+               help="service ip ie cmc ip")]
 
 
 
@@ -50,10 +52,14 @@ openstack_credential_opts = [
                help=('Openstack username')),
     cfg.StrOpt('password',
                default='admin',
-               help=('Openstack Password')),
+               help=('password OPENSTACK_CREDS')),
+    cfg.StrOpt('log_file',
+               default='log_file',
+               help=('Log_file path')),
     cfg.StrOpt('tenant_name',
                default='tenant',
-               help=('tenant name'))]
+               help=('tenant name'))
+]
 
 def register_opts():
     register_opt_group(

@@ -1,0 +1,24 @@
+2016-02-18 16:34:42,154 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-02-18 16:34:42,379 INFO - Post request_response ==<Response [200]> 
+2016-02-18 16:34:42,562 INFO - Populate csv file for connection list
+2016-02-18 17:01:54,202 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-02-18 17:01:54,418 INFO - In function generic_request
+2016-02-18 17:01:54,419 INFO - Post request_response ==<Response [200]> 
+2016-02-18 17:01:54,605 INFO - Populate csv file for connection list
+2016-02-18 17:24:46,703 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-02-18 17:25:22,511 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-02-18 17:25:22,738 INFO - In function generic_request
+2016-02-18 17:25:22,738 INFO - Post request_response ==<Response [200]> 
+2016-02-18 17:25:22,863 INFO - Populate csv file for connection list
+2016-02-18 17:25:23,038 INFO - Connecting to host with ip 10.8.20.51 
+2016-02-18 17:25:23,038 INFO - Reading connection UUID from CSV file to be deleted  %s 
+2016-02-18 17:32:27,783 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-02-18 17:32:28,023 INFO - In function generic_request
+2016-02-18 17:32:28,024 INFO - Post request_response ==<Response [200]> 
+2016-02-18 17:32:28,222 INFO - Populate csv file for connection list
+2016-02-18 17:32:28,406 INFO - Connecting to host with ip 10.8.20.51 
+2016-02-18 17:32:28,407 INFO - Reading connection UUID from CSV file to be deleted
+2016-02-18 17:32:28,407 INFO - Connection UUID to be deleted from database  bbc51505-a6d3-4191-9dbd-c94c1b529d65 
+2016-02-18 17:32:28,407 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'bbc51505-a6d3-4191-9dbd-c94c1b529d65'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-02-18 17:32:28,444 INFO - Connection UUID to be deleted from database  da038a3c-12c6-45af-a269-27c6e6701a67 
+2016-02-18 17:32:28,445 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'da038a3c-12c6-45af-a269-27c6e6701a67'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
