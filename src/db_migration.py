@@ -2,6 +2,7 @@ import requests
 import json
 import csv
 import os
+from common import exceptions
 from common import config_reader
 from common import request
 from common import config
@@ -46,7 +47,7 @@ class MigrationScript(object):
         creds_dict = config_reader.get_config_vals(CONF_FILE)
         cred_list = creds_dict['cred_list']
         """To Do: Make a generic method"""
-
+        self.log.info("In Function get_headers")
         username = cred_list[0][1]
         password = cred_list[1][1]
         tenant_name = cred_list[2][1]
@@ -59,7 +60,7 @@ class MigrationScript(object):
                 'Accept': 'application/json',
                 'X-Auth-Token': token_id,
                 }
-        print token_id
+        self.log.info("get_headers %s" % (token_id))
         return headers
 
     def populate_data_file(self,connection_list):
@@ -81,6 +82,7 @@ class MigrationScript(object):
                     l2_gateway_id = connection_dict["l2_gateway_connections"][item]["l2_gateway_id"]
                     segmentation_id = connection_dict["l2_gateway_connections"][item]["segmentation_id"]
                     writer.writerow([connection_id, network_id, tenant_id, l2_gateway_id, segmentation_id])
+        self.log.info("CSV file generated for connection list")
 
 
     def read_data_file(self):
@@ -106,6 +108,7 @@ class MigrationScript(object):
             param_dict['connection_id'] = conn_id_list
             param_dict['net_id']=net_id_list
             param_dict['gw_id']=gw_id_list
+        self.log.info("Content extracted freom data file %s" % (param_dict))
         return param_dict
 
 
@@ -116,6 +119,7 @@ class MigrationScript(object):
             TODO give correct path of l2gwini file,list ips should be read from conf file, validation check on ip
             """
             list_ips = ['ovsdb1:16.95.16.1:6632,ovsdb2:16.95.16.2:6632','ovsdb1:16.95.16.1.22:8989']
+            self.log.info("Updating INI file corresponding to IPS =  %s" % (list_ips))
             data = file.readlines()
             cnt = 0
             for item in data:
@@ -130,6 +134,7 @@ class MigrationScript(object):
         with open('l2gw-agent1.ini', 'w') as file:
             file.writelines( data )
             file.writelines('\n')
+        self.log.info("##INI file updated## ")
 
 
     def create_connection(self,param_dict,headers):
@@ -142,15 +147,15 @@ class MigrationScript(object):
             creating connection
             """
             create_conn = requests.post('http://10.8.20.51:9696/v2.0/l2-gateway-connections.json', data=json.dumps(payload), headers=headers)
-            print create_conn.text
-            print "connection created"        
+            self.log.info("Creating connection with command %s" %(create_conn.text))
+            self.log.info("connection created")
 
 
     def get_connection_list(self):
         """
         Getting the list of connections
         """
-#        import pdb;pdb.set_trace()
+        self.log.info("Fetching Connection list")
         creds_dict = config_reader.get_config_vals(CONF_FILE)
         service_ip = creds_dict['service_ip']
         #print service_ip
@@ -160,10 +165,16 @@ class MigrationScript(object):
         list_conn = requests.get(req_url, headers=headers)
         #import pdb;pdb.set_trace()
         connection_list = list_conn.text
-        print connection_list
+        self.log.info("Connection list %s" % (connection_list))
         self.populate_data_file(connection_list)
+        self.log.info("##Datafile populated##")
         db_obj = database_connection.db_connection()
+        self.log.info("##Connected to database##")
         db_obj.read_connection_uuid()
+        self.log.info("##Deleting connection data from database##")
         param_dict = self.read_data_file()
+        self.log.info("##Creating Connection on destination##")
         self.create_connection(param_dict,headers=headers)        
+        self.log.info("##Connection created on destination##")
 #        self.update_l2gwagent_ini()
+        

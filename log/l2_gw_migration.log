@@ -22,3 +22,75 @@
 2016-02-18 17:32:28,407 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'bbc51505-a6d3-4191-9dbd-c94c1b529d65'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
 2016-02-18 17:32:28,444 INFO - Connection UUID to be deleted from database  da038a3c-12c6-45af-a269-27c6e6701a67 
 2016-02-18 17:32:28,445 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'da038a3c-12c6-45af-a269-27c6e6701a67'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-02-19 12:08:07,615 INFO - Fetching Connection list
+2016-02-19 12:08:07,618 INFO - In Function get_headers
+2016-02-19 12:08:07,619 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-02-19 12:08:07,853 INFO - In function generic_request
+2016-02-19 12:08:07,854 INFO - Post request_response ==<Response [200]> 
+2016-02-19 12:08:07,854 INFO - get_headers 4af77a1c760345819193a8bbe3fd72d8
+2016-02-19 12:08:08,054 INFO - Connection list {"l2_gateway_connections": [{"network_id": "085451c8-e8a5-448b-872b-16dfaa237134", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "5d27792c-dab5-40ea-8a96-b1a6cb4976ca", "id": "234d50d3-c59b-4db7-9a33-3cc4960f2529", "segmentation_id": ""}]}
+2016-02-19 12:08:08,054 INFO - Populate csv file for connection list
+2016-02-19 12:08:08,056 INFO - CSV file generated for connection list
+2016-02-19 12:08:08,056 INFO - ##Datafile populated##
+2016-02-19 12:08:08,057 INFO - ##Connected to database##
+2016-02-19 12:08:08,242 INFO - Connecting to host with ip 10.8.20.51 
+2016-02-19 12:08:08,242 INFO - Reading connection UUID from CSV file to be deleted
+2016-02-19 12:08:08,243 INFO - Connection UUID to be deleted from database  234d50d3-c59b-4db7-9a33-3cc4960f2529 
+2016-02-19 12:08:08,243 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '234d50d3-c59b-4db7-9a33-3cc4960f2529'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-02-19 12:08:08,282 INFO - ##Deleting connection data from database##
+2016-02-19 12:08:08,283 INFO - Content extracted freom data file {'gw_id': ['5d27792c-dab5-40ea-8a96-b1a6cb4976ca'], 'connection_id': ['234d50d3-c59b-4db7-9a33-3cc4960f2529'], 'net_id': ['085451c8-e8a5-448b-872b-16dfaa237134']}
+2016-02-19 12:08:08,283 INFO - ##Creating Connection on destination##
+2016-02-19 12:08:09,720 INFO - Creating connection with command {"l2_gateway_connection": {"network_id": "085451c8-e8a5-448b-872b-16dfaa237134", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "5d27792c-dab5-40ea-8a96-b1a6cb4976ca", "id": "d3d0512a-d516-4e86-8c33-533b21a41fe1", "segmentation_id": ""}}
+2016-02-19 12:08:09,721 INFO - connection created
+2016-02-19 12:08:09,721 INFO - ##Connection created on destination##
+2016-02-19 12:08:09,721 INFO - ##Datafile populated##
+2016-02-19 12:09:40,204 INFO - Fetching Connection list
+2016-02-19 12:09:40,205 INFO - In Function get_headers
+2016-02-19 12:09:40,206 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-02-19 12:09:40,450 INFO - In function generic_request
+2016-02-19 12:09:40,451 INFO - Post request_response ==<Response [200]> 
+2016-02-19 12:09:40,451 INFO - get_headers 20588b497df942509e0be19aa7fe2756
+2016-02-19 12:09:40,633 INFO - Connection list {"l2_gateway_connections": [{"network_id": "085451c8-e8a5-448b-872b-16dfaa237134", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "5d27792c-dab5-40ea-8a96-b1a6cb4976ca", "id": "d3d0512a-d516-4e86-8c33-533b21a41fe1", "segmentation_id": ""}]}
+2016-02-19 12:09:40,634 INFO - Populate csv file for connection list
+2016-02-19 12:09:40,634 INFO - CSV file generated for connection list
+2016-02-19 12:09:40,635 INFO - ##Datafile populated##
+2016-02-19 12:09:40,636 INFO - ##Connected to database##
+2016-02-19 12:09:40,813 INFO - Connecting to host with ip 10.8.20.51 
+2016-02-19 12:09:40,813 INFO - Reading connection UUID from CSV file to be deleted
+2016-02-19 12:09:40,813 INFO - Connection UUID to be deleted from database  d3d0512a-d516-4e86-8c33-533b21a41fe1 
+2016-02-19 12:09:40,813 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'd3d0512a-d516-4e86-8c33-533b21a41fe1'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-02-19 12:09:40,852 INFO - ##Deleting connection data from database##
+2016-02-19 12:09:40,853 INFO - Content extracted freom data file {'gw_id': ['5d27792c-dab5-40ea-8a96-b1a6cb4976ca'], 'connection_id': ['d3d0512a-d516-4e86-8c33-533b21a41fe1'], 'net_id': ['085451c8-e8a5-448b-872b-16dfaa237134']}
+2016-02-19 12:09:40,853 INFO - ##Creating Connection on destination##
+2016-02-19 12:09:42,278 INFO - Creating connection with command {"l2_gateway_connection": {"network_id": "085451c8-e8a5-448b-872b-16dfaa237134", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "5d27792c-dab5-40ea-8a96-b1a6cb4976ca", "id": "843effbd-9206-4ef2-8758-2f853cf5533d", "segmentation_id": ""}}
+2016-02-19 12:09:42,278 INFO - connection created
+2016-02-19 12:09:42,278 INFO - ##Connection created on destination##
+2016-02-19 12:21:11,654 INFO - Fetching Connection list
+2016-02-19 12:25:33,483 INFO - Fetching Connection list
+2016-02-19 12:28:17,988 INFO - Fetching Connection list
+2016-02-19 12:42:23,460 INFO - Fetching Connection list
+2016-02-19 12:48:03,397 INFO - Fetching Connection list
+2016-02-19 12:50:00,725 INFO - Fetching Connection list
+2016-02-19 12:53:15,922 INFO - Fetching Connection list
+2016-02-19 12:57:06,428 INFO - Fetching Connection list
+2016-02-19 12:58:33,090 INFO - Fetching Connection list
+2016-02-19 13:07:47,223 INFO - Fetching Connection list
+2016-02-19 13:14:44,761 INFO - Fetching Connection list
+2016-02-19 13:20:02,981 INFO - Fetching Connection list
+2016-02-19 13:21:04,503 INFO - Fetching Connection list
+2016-02-19 13:22:49,400 INFO - Fetching Connection list
+2016-02-19 14:47:10,659 INFO - Fetching Connection list
+2016-02-19 14:47:10,661 INFO - In Function get_headers
+2016-02-19 14:47:10,662 INFO - Getting token for user: admin from url: http://a.8.20.51:5000/v2.0
+2016-02-19 14:48:41,374 INFO - Fetching Connection list
+2016-02-19 14:51:29,842 INFO - Fetching Connection list
+2016-02-19 14:52:08,669 INFO - Fetching Connection list
+2016-02-19 14:55:22,434 INFO - Fetching Connection list
+2016-02-19 15:14:08,032 INFO - Fetching Connection list
+2016-02-19 15:15:53,946 INFO - Fetching Connection list
+2016-02-19 15:18:39,760 INFO - Fetching Connection list
+2016-02-19 15:18:49,727 INFO - Fetching Connection list
+2016-02-19 15:19:20,089 INFO - Fetching Connection list
+2016-02-19 15:20:04,544 INFO - Fetching Connection list
+2016-02-19 15:20:48,160 INFO - Fetching Connection list
+2016-02-19 15:23:38,145 INFO - Fetching Connection list
