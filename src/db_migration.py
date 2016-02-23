@@ -8,6 +8,8 @@ from common import request
 from common import config
 from common import database_connection
 import logging
+import webob.exc
+from common.exceptions import UnhandeledException
 
 #log = logging.getLogger('baremetal')
 ADMIN_DIR = ''
@@ -90,24 +92,32 @@ class MigrationScript(object):
         Read contents from data file
         """
 #        import pdb;pdb.set_trace()
-        data_file = DATA_FILE + 'data_file.csv'
-        with open(data_file, 'rb') as fp:
-            reader = csv.reader(fp, delimiter='\t')
-            count = 0
-            param_dict = {}
-            conn_id_list = []
-            net_id_list = []
-            gw_id_list = []
-            for row in reader:
-                if count == 0:
-                    count = count + 1
-                else:
-                    conn_id_list.append(row[0])
-                    net_id_list.append(row[1])
-                    gw_id_list.append(row[3])
-            param_dict['connection_id'] = conn_id_list
-            param_dict['net_id']=net_id_list
-            param_dict['gw_id']=gw_id_list
+        try:
+            data_file = DATA_FILE + 'data_file.csv'
+            with open(data_file, 'rb') as fp:
+                reader = csv.reader(fp, delimiter='\t')
+                count = 0
+                param_dict = {}
+                conn_id_list = []
+                net_id_list = []
+                gw_id_list = []
+                for row in reader:
+                    if count == 0:
+                        count = count + 1
+                    else:
+                        conn_id_list.append(row[0])
+                        net_id_list.append(row[1])
+                        gw_id_list.append(row[3])
+                """
+                TO DO: Apply validation over param_dict
+                """ 
+                param_dict['connection_id'] = conn_id_list
+                param_dict['net_id']=net_id_list
+                param_dict['gw_id']=gw_id_list
+        
+        except IOError:
+            print "Error in reading csv file:", data_file
+ 
         self.log.info("Content extracted freom data file %s" % (param_dict))
         return param_dict
 
@@ -147,6 +157,7 @@ class MigrationScript(object):
             creating connection
             """
             create_conn = requests.post('http://10.8.20.51:9696/v2.0/l2-gateway-connections.json', data=json.dumps(payload), headers=headers)
+
             self.log.info("Creating connection with command %s" %(create_conn.text))
             self.log.info("connection created")
 
@@ -162,19 +173,26 @@ class MigrationScript(object):
         req_url = "http://%s:9696/v2.0/l2-gateway-connections.json"  % (service_ip)
         #print req_url
         headers=self.get_headers()
-        list_conn = requests.get(req_url, headers=headers)
+        try:
+            list_conn = requests.get(req_url, headers=headers)
         #import pdb;pdb.set_trace()
-        connection_list = list_conn.text
-        self.log.info("Connection list %s" % (connection_list))
-        self.populate_data_file(connection_list)
-        self.log.info("##Datafile populated##")
-        db_obj = database_connection.db_connection()
-        self.log.info("##Connected to database##")
-        db_obj.read_connection_uuid()
-        self.log.info("##Deleting connection data from database##")
-        param_dict = self.read_data_file()
-        self.log.info("##Creating Connection on destination##")
-        self.create_connection(param_dict,headers=headers)        
-        self.log.info("##Connection created on destination##")
+            connection_list = list_conn.text
+            self.log.info("Connection list %s" % (connection_list))
+            self.populate_data_file(connection_list)
+            self.log.info("##Datafile populated##")
+            db_obj = database_connection.db_connection()
+            self.log.info("##Connected to database##")
+            db_obj.read_connection_uuid()
+            self.log.info("##Deleting connection data from database##")
+            param_dict = self.read_data_file()
+            self.log.info("##Creating Connection on destination##")
+            self.create_connection(param_dict,headers=headers)        
+            self.log.info("##Connection created on destination##")
 #        self.update_l2gwagent_ini()
+        except (requests.exceptions.HTTPError,requests.exceptions.ReadTimeout, requests.exceptions.ConnectTimeout) as e:
+            print "An HTTPError:", e.message
+        except webob.exc.HTTPError() as e:
+            raise webob.exc.HTTPError(e)
+        except Exception as e:
+            raise UnhandeledException(e)
         

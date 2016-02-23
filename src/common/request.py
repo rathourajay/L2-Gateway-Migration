@@ -23,7 +23,6 @@ def get_user_token(user_name, password, tenant_name):
         creds_dict=config_reader.get_config_vals(CONF_FILE)
         service_ip = creds_dict['service_ip']
         os_auth_url = "http://%s:5000/v2.0"  % (service_ip)
-        #os_auth_url= "http://10.8.20.51:5000/v2.0"
 
         url = os_auth_url + '/tokens'
         log.info("Getting token for user: "
@@ -31,14 +30,6 @@ def get_user_token(user_name, password, tenant_name):
 
 
         cred_list = creds_dict['cred_list']
-        #import pdb
-        #pdb.set_trace()
-        """To Do: Make a generic method"""
-
-#        username = cred_list[0][1]
-#        password = cred_list[1][1]
-#        tenant_name = cred_list[2][1]
-
         
         creds = {
             'auth': {
@@ -50,7 +41,6 @@ def get_user_token(user_name, password, tenant_name):
             }
         }
 
-       # import pdb;pdb.set_trace()
         data = json.dumps(creds)
         resp = post_request(url, data=data)
         log.info("Post request_response =="
@@ -61,8 +51,6 @@ def generic_request(method, url, data=None,
                     auth_token=None, nova_cacert=False, stream=False):
     headers = {}
     headers["Content-type"] = "application/json"
-    
-   # import pdb;pdb.set_trace()
     if auth_token:
         token = auth_token['token']
         headers["X-Auth-Token"] = token['id']
