@@ -7,13 +7,14 @@ import re
 def get_config_vals(conf_file):
 
     """
+    TO Do: Use args and kwargs to accept dynamic num of parameters,
     Apply validation if config file is empty
     """
    
     config = ConfigParser.ConfigParser()
     config.read(conf_file)
     try:
-        #sys.stdout.debug("Reading credentials from conf file..")
+        sys.stdout.write("Reading credentials from conf file..")
         creds_list=config.items('OPENSTACK_CREDS')
         controller_ip= config.get('default','controller_ip')
         socket.inet_aton(controller_ip)

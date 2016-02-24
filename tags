@@ -18,21 +18,21 @@ InvalidIpAddress	src/common/exceptions.py	/^class InvalidIpAddress(L2GwMigration
 L2GwMigrationException	src/common/exceptions.py	/^class L2GwMigrationException(Exception):$/;"	c
 MigrationScript	src/db_migration.py	/^class MigrationScript(object):$/;"	c
 PATH	src/common/database_connection.py	/^PATH ='\/home\/ubuntu\/L2-Gateway-Migration\/data\/'$/;"	v
-PATH	src/common/restart_agent.py	/^PATH ='\/home\/ubuntu\/L2-Gateway-Migration\/data\/'$/;"	v
 SwitchNotFound	src/common/exceptions.py	/^class SwitchNotFound(L2GwMigrationException):$/;"	c
 USER_DIR	src/db_migration.py	/^USER_DIR = ''$/;"	v
 UnhandeledException	src/common/exceptions.py	/^class UnhandeledException(L2GwMigrationException):$/;"	c
 __init__	src/common/config_reader_shweta.py	/^    def __init__(self, conf_file):$/;"	m	class:ConfigReader
 __init__	src/common/database_connection.py	/^    def __init__(self):$/;"	m	class:db_connection
 __init__	src/common/exceptions.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:L2GwMigrationException
-__init__	src/common/restart_agent.py	/^    def __init__(self):$/;"	m	class:db_connection
+__init__	src/common/vtep_add_switch.py	/^    def __init__(self):$/;"	m	class:vtep_command_manager
 __init__	src/db_migration.py	/^    def __init__(self):$/;"	m	class:MigrationScript
 __str__	src/common/exceptions.py	/^    def __str__(self):$/;"	m	class:L2GwMigrationException	file:
+connect_execute_cmd	src/common/vtep_add_switch.py	/^    def connect_execute_cmd(self)$/;"	m	class:vtep_command_manager
 connect_host	src/common/database_connection.py	/^    def connect_host(self):$/;"	m	class:db_connection
-connect_host	src/common/restart_agent.py	/^    def connect_host(self,controller_ip):$/;"	m	class:db_connection
-create_connection	src/db_migration.py	/^    def create_connection(self,param_dict,headers):$/;"	m	class:MigrationScript
+connect_host	src/common/vtep_add_switch.py	/^    def connect_host(self,switch_ip,switch_username,switch_password):$/;"	m	class:vtep_command_manager
+create_connection	src/db_migration.py	/^    def create_connection(self,param_dict,req_url,headers):$/;"	m	class:MigrationScript
+csv_for_switch_details	src/common/vtep_add_switch.py	/^    def csv_for_switch_details(self):$/;"	m	class:vtep_command_manager
 db_connection	src/common/database_connection.py	/^class db_connection():$/;"	c
-db_connection	src/common/restart_agent.py	/^class db_connection():$/;"	c
 default	src/common/config.py	/^                default=False,$/;"	v
 default	src/common/config.py	/^               default='admin',$/;"	v
 default	src/common/config.py	/^               default='db_name',$/;"	v
@@ -45,14 +45,15 @@ default	src/common/config.py	/^               default='root',$/;"	v
 default	src/common/config.py	/^               default='service_ip',$/;"	v
 default	src/common/config.py	/^               default='tenant',$/;"	v
 default_group	src/common/config.py	/^default_group = cfg.OptGroup(name='DEFAULT',$/;"	v
+execute_migration	src/db_migration.py	/^    def execute_migration(self):$/;"	m	class:MigrationScript
 execute_query	src/common/database_connection.py	/^    def execute_query(self,client,uuid_con):$/;"	m	class:db_connection
-execute_query	src/common/restart_agent.py	/^    def execute_query(self,client):$/;"	m	class:db_connection
+execute_vtep_cmd	src/common/vtep_add_switch.py	/^    def execute_vtep_cmd(self,client):$/;"	m	class:vtep_command_manager
 generic_request	src/common/request.py	/^def generic_request(method, url, data=None,$/;"	f
 get_config	src/common/config.py	/^def get_config():$/;"	f
 get_config_vals	src/common/config_reader.py	/^def get_config_vals(conf_file):$/;"	f
 get_config_vals	src/common/config_reader_shweta.py	/^    def get_config_vals(self, *args):$/;"	m	class:ConfigReader
-get_connection_list	src/db_migration.py	/^    def get_connection_list(self):$/;"	m	class:MigrationScript
-get_headers	src/db_migration.py	/^    def get_headers(self):$/;"	m	class:MigrationScript
+get_connections_list	src/db_migration.py	/^    def get_connections_list(req_url,headers):$/;"	m	class:MigrationScript
+get_headers	src/db_migration.py	/^    def get_headers(self):       $/;"	m	class:MigrationScript
 get_request	src/common/request.py	/^def get_request(url, auth_token, nova_cacert=False, stream=False):$/;"	f
 get_user_token	src/common/request.py	/^def get_user_token(user_name, password, tenant_name):$/;"	f
 help	src/common/config.py	/^                help="Print debugging output"),$/;"	v
@@ -70,7 +71,7 @@ help	src/common/config.py	/^               help=('tenant name'))$/;"	v
 init_log	src/db_migration.py	/^    def init_log(self, filename, level, logger):$/;"	m	class:MigrationScript
 log	src/common/database_connection.py	/^log = logging.getLogger('l2_gateway')$/;"	v
 log	src/common/request.py	/^log = logging.getLogger('l2_gateway')$/;"	v
-log	src/common/restart_agent.py	/^log = logging.getLogger('l2_gateway')$/;"	v
+log	src/common/vtep_add_switch.py	/^log = logging.getLogger('l2_gateway')$/;"	v
 message	src/common/exceptions.py	/^    message = "An unknown exception occurred"$/;"	v	class:L2GwMigrationException
 message	src/common/exceptions.py	/^    message = "DB Error"$/;"	v	class:DBError
 message	src/common/exceptions.py	/^    message = 'Invalid ip address'$/;"	v	class:InvalidIpAddress
@@ -93,4 +94,5 @@ register_opts	src/common/config.py	/^def register_opts():$/;"	f
 title	src/common/config.py	/^    title='mysql credentials')$/;"	v
 title	src/common/config.py	/^    title='openstack credentials')$/;"	v
 update_l2gwagent_ini	src/db_migration.py	/^    def update_l2gwagent_ini(self):$/;"	m	class:MigrationScript
-x	src/start.py	/^        x = db_migration.MigrationScript()$/;"	v
+vtep_command_manager	src/common/vtep_add_switch.py	/^class vtep_command_manager():$/;"	c
+x	start.py	/^        x = db_migration.MigrationScript()$/;"	v

@@ -4,9 +4,9 @@ import paramiko
 import json
 import config
 import logging
+import os
 
 log = logging.getLogger('l2_gateway')
-PATH ='/home/ubuntu/L2-Gateway-Migration/data/'
 class vtep_command_manager():
 
     def __init__(self):
@@ -14,8 +14,7 @@ class vtep_command_manager():
         self.cmc_ip = config.CONF.DATABASE_CRED.host_uname
         self.cc1_ip = config.CONF.DATABASE_CRED.host_pwd
         self.cc2_ip = config.CONF.DATABASE_CRED.db_user_id
-        self.db_pwd = config.CONF.DATABASE_CRED.db_pwd
-        self.db_name = config.CONF.DATABASE_CRED.db_name
+        CSV_PATH = os.getcwd() 
 
     def connect_host(self,switch_ip,switch_username,switch_password):
         client = paramiko.SSHClient()
@@ -38,9 +37,31 @@ class vtep_command_manager():
         for line in stdout:
             print line.strip('\n')
 
-    def connect_execute_cmd(self)
-        #Read data from file 
-        #connect to particular switch (iterate the list) eg: connect_ret=connect_host('10.8.20.1','switch1','switch_pwd')
-        # Execute the vtep cmd eg: execute_vtep_cmd(connect_ret)
 
-    
+    def csv_for_switch_details(self):
+        self.log.info("Populate csv file for switch detail input")
+        data_file = CSV_PATH + '/../../data/'
+        switch_data = data_file + 'switch_dat.csv'
+        sys.stdout.write("Please provide switch details to %s" %(switch_data))
+        with open(switch_data, 'wb') as fp:
+            writer = csv.writer(fp, delimiter='\t')
+            writer.writerow(["switch_name", "switch_ip", "switch_username", "switch_password"])
+
+   def read_ececute_switch_data(self)
+        data_file = CSV_PATH + '/../../data/'
+        switch_data = data_file + 'switch_dat.csv'
+        log.info("Reading switch details")
+        try:
+            with open(data_file, 'r') as fd:
+                reader =  csv.reader(fd, delimiter='\t')
+                count = 0
+                for row in reader:
+                    if count == 0:
+                        count = count + 1
+                    else:
+                       switch_ptr = connect_host(row[1],row[2],row[3]) 
+                       execute_vtep_cmd(switch_ptr)
+        except exceptions.InputOutput as message:
+            raise exceptions.InputOutput('unable to read file')
+            sys.stdout.write('ERROR in reading file.....\n')
+

@@ -27,7 +27,6 @@ class L2GwMigrationException(Exception):
             self._error_string = (self._error_string +
                                   "\nDetails: %s" % '\n'.join(args))
     def __str__(self):
-        #print self._error_string
         return self._error_string
 
 

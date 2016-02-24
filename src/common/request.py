@@ -10,24 +10,23 @@ import config
 import csv 
 import ConfigParser, os
 import config_reader
-
+import sys
 log = logging.getLogger('l2_gateway')
 
-CONF_FILE="/home/ubuntu/L2-Gateway-Migration/conf/input_data.cfg"
 
-def get_user_token(user_name, password, tenant_name):
+def get_user_token(user_name, password, tenant_name,CONF_FILE):
         """
         Gets a keystone usertoken using the credentials provided by user
         """
 
         creds_dict=config_reader.get_config_vals(CONF_FILE)
-        service_ip = creds_dict['service_ip']
-        os_auth_url = "http://%s:5000/v2.0"  % (service_ip)
+        controller_ip = creds_dict['controller_ip']
+        os_auth_url = "http://%s:5000/v2.0"  % (controller_ip)
 
         url = os_auth_url + '/tokens'
         log.info("Getting token for user: "
                  "% s from url: % s" % (user_name, os_auth_url))
-
+        #sys.stdout.write("Generating auth token..")
 
         cred_list = creds_dict['cred_list']
         
