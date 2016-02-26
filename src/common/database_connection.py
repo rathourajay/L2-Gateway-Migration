@@ -4,7 +4,7 @@ import paramiko
 import json
 import config
 import logging
-import exceptions
+import migration_exceptions
 import sys
 
 log = logging.getLogger('l2_gateway')
@@ -30,7 +30,7 @@ class db_connection():
                                "Reason: %s" % (self.host_ip, ex))
             sys.stdout.write(_("Could not connect to mysql host: %s. "
                                "Reason: %s\n") % (self.host_ip, ex))
-            raise exceptions.DBError(ex)
+            raise migration_exceptions.DBError(ex)
         return client
 
     def read_connection_uuid(self):
@@ -47,9 +47,10 @@ class db_connection():
             for item in arr[1:]:
                 log.info("Connection UUID to be deleted from database  %s " %(item))
                 self.execute_query(con_ptr,item)
-        except exceptions.InputOutput as message:
-            raise exceptions.InputOutput('unable to read file')
+        except migration_exceptions.InputOutput as message:
             sys.stdout.write('ERROR in reading file.....\n')
+            self.log.exception('ERROR in reading file.....\n')
+            raise migration_exceptions.InputOutput('unable to read file')
 
     def execute_query(self,client,uuid_con):
         #import pdb;pdb.set_trace()
@@ -65,4 +66,4 @@ class db_connection():
                                "Reason: %s" % (self.host_ip, ex))
             sys.stdout.write(_("Could not connect to mysql host: %s. "
                                "Reason: %s\n") % (self.host_ip, ex))
-            raise exceptions.DBError(ex)
+            raise migration_exceptions.DBError(ex)

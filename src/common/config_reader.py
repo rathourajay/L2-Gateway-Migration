@@ -8,6 +8,7 @@ def get_config_vals(conf_file):
 
     """
     Apply validation if config file is empty
+    This file is not being used,integrated with db_migration.py
     """
    
     config = ConfigParser.ConfigParser()

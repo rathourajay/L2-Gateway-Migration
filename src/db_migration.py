@@ -6,35 +6,31 @@ Created on Feb 2016
 Description: Migration Script
 
 """
-
+import socket
 import requests
 import json
 import csv
 import os
 import sys
-from common import exceptions
-from common import config_reader
-from common import request
+from common import migration_exceptions
+from common import token_generator
 from common import config
 from common import database_connection
 import logging
 import webob.exc
-from common.exceptions import UnhandeledException
+from common.migration_exceptions import UnhandeledException
 import re
 
-ADMIN_DIR = ''
-USER_DIR = ''
-CONF_FILE = "/home/ubuntu/L2-Gateway-Migration/conf/input_data.conf"
-DATA_FILE = "/home/ubuntu/L2-Gateway-Migration/data/"
 
 class MigrationScript(object):
 
     def __init__(self):
-        global USER_DIR
-        global ADMIN_DIR
-        self.cfile = os.getcwd()
-        USER_DIR = self.cfile + '/../data/'
-        #ADMIN_DIR = self.cfile + '/../conf/admin'
+        
+        self.DATA_FILE = ''.join([''.join([os.getcwd(),'/data/']), 'data_file.csv'])
+        self.controller_ip = config.CONF.default.controller_ip
+        self.username = config.CONF.OPENSTACK_CREDS.username
+        self.password =  config.CONF.OPENSTACK_CREDS.password
+        self.tenant_name =  config.CONF.OPENSTACK_CREDS.tenant_name
         log_level = logging.INFO
         if config.CONF.default.debug:
             log_level = logging.DEBUG
@@ -61,14 +57,8 @@ class MigrationScript(object):
         Fetch headers to create token
         """ 
         
-        creds_dict = config_reader.get_config_vals(CONF_FILE)
-        cred_list = creds_dict['cred_list']
-        """To Do: Make a generic method"""
         self.log.info("In Function get_headers")
-        username = cred_list[0][1]
-        password = cred_list[1][1]
-        tenant_name = cred_list[2][1]
-        auth_token = request.get_user_token(username,password,tenant_name,CONF_FILE)
+        auth_token = token_generator.get_user_token(self.username,self.password,self.tenant_name,self.controller_ip)
 
         token_id = auth_token['token']['id']
         headers = {
@@ -87,8 +77,7 @@ class MigrationScript(object):
         """
         try:
             self.log.debug("Populating csv file for connection list")
-            data_file = DATA_FILE + 'data_file.csv'
-            with open(data_file, 'wb') as fp:
+            with open(self.DATA_FILE, 'wb') as fp:
                 writer = csv.writer(fp, delimiter='\t')
                 connection_dict = json.loads(connection_list.encode('utf-8'))
                 writer.writerow(["connection_id", "network_id", "tenant_id", "l2_gateway_id", "segmentation_id"])
@@ -101,8 +90,12 @@ class MigrationScript(object):
                         segmentation_id = connection_dict["l2_gateway_connections"][item]["segmentation_id"]
                         writer.writerow([connection_id, network_id, tenant_id, l2_gateway_id, segmentation_id])
             self.log.info("CSV file generated for connection list")
-        except IOError:
+        except IOError as ex:
             print "Error in writing csv file:", data_file
+            self.log.exception("Error in writing csv file: %s. "
+                               "Reason: %s" % (data_file, ex))
+            sys.stdout.write(_("Error in writing csv file: %s. "
+                               "Reason: %s\n") % (data_file, ex))
 
 
     def read_data_file(self):
@@ -110,8 +103,7 @@ class MigrationScript(object):
         Read contents from data file
         """
         try:
-            data_file = DATA_FILE + 'data_file.csv'
-            with open(data_file, 'rb') as fp:
+            with open(self.DATA_FILE, 'rb') as fp:
                 reader = csv.reader(fp, delimiter='\t')
                 count = 0
                 param_dict = {}
@@ -134,8 +126,12 @@ class MigrationScript(object):
         
         except IOError:
             print "Error in reading csv file:", data_file
+            self.log.exception("Error in reading csv file: %s. "
+                               "Reason: %s" % (data_file, ex))
+            sys.stdout.write(_("Error in reading csv file: %s. "
+                               "Reason: %s\n") % (data_file, ex))
  
-        self.log.info("Content extracted freom data file %s" % (param_dict))
+        self.log.info("Content extracted from data file %s" % (param_dict))
         return param_dict
 
 
@@ -188,6 +184,12 @@ class MigrationScript(object):
         return connection_list
 
 
+    def validate_vlan_bindings(self,req_url,headers):
+        import pdb;pdb.set_trace()
+        gw_list = requests.get(req_url, headers=headers)
+        l2_gw_list = gw_list.text
+
+
 
     def execute_migration(self):
         
@@ -196,15 +198,20 @@ class MigrationScript(object):
         """
         self.log.info("Executing Migration")
         self.log.info("Fetching Connection list")
-        creds_dict = config_reader.get_config_vals(CONF_FILE)
-        controller_ip = creds_dict['controller_ip']
-        req_url = "http://%s:9696/v2.0/l2-gateway-connections.json"  % (controller_ip)
-        headers = self.get_headers()
         
         try:
+            socket.inet_aton(self.controller_ip)
+            ip_pat = re.findall('\d+\.\d+\.\d+\.\d+$',self.controller_ip)
+            if not ip_pat:
+                raise migration_exceptions.InvalidIpAddress('IP validation failed')
+            req_url = "http://%s:9696/v2.0/l2-gateway-connections.json"  % (self.controller_ip)
+            headers = self.get_headers()
+
             sys.stdout.write("1. Fetching Connection List\n")
             connection_list = self.get_connections_list(req_url,headers)
             self.log.info("Connection list %s" % (connection_list))
+            gw_lst_req_url =  "http://%s:9696/v2.0/l2-gateways.json"  % (self.controller_ip) 
+            self.validate_vlan_bindings(gw_lst_req_url,headers)       
             
             sys.stdout.write("2. Populating data file\n")
             self.populate_data_file(connection_list)
@@ -223,11 +230,39 @@ class MigrationScript(object):
             self.log.info("##Connection created on destination##")
             sys.stdout.write("5. Connection created successfully\n")
             #self.update_l2gwagent_ini()
+            
+            #gw_lst_req_url =  "http://%s:9696/v2.0/l2-gateways.json"  % (self.controller_ip) 
+            #self.validate_vlan_bindings(gw_lst_req_url,headers)       
         
+        except migration_exceptions.InvalidIpAddress as e:
+            self.log.exception("Error in IP address"
+                               "Reason: %s" % (e))
+            sys.stderr.write(e._error_string+'\n')
+            sys.exit()
+
+        except socket.error as e:
+            sys.stderr.write("IPV4 address validation failed" + '\n')
+            self.log.exception("Error in IPV4 address"
+                               "Reason: %s" % (e))
+            sys.exit()
+
         except (requests.exceptions.HTTPError) as e:
             print "An HTTPError:", e.message
+            self.log.exception("An HTTPError:"
+                               "Reason: %s" % (e))
+
         except webob.exc.HTTPError() as e:
+            self.log.exception("webob.exc.HTTPError()"
+                               "Reason: %s" % (e))
             raise webob.exc.HTTPError(e)
+
         except Exception as e:
+            self.log.exception("UnhandeledException :::"
+                               "Reason: %s" % (e))
             raise UnhandeledException(e)
-        
+
+        except IOError as e:
+            self.log.exception("Invalid config file format"
+                               "Reason: %s" % (e))
+            sys.stderr.write("Invalid config file format" + '\n')
+            sys.exit()
