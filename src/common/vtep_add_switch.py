@@ -21,8 +21,8 @@ class vtep_command_manager():
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         client.connect(switch_ip, username=switch_username, password=switch_password)
         log.info("Connecting to Switch with ip %s " % (switch_ip))
-        import pdb;pdb.set_trace()
-        ps = client.exec_command('sudo ./vtep-ctl list-ps')
+#        import pdb;pdb.set_trace()
+#        ps = client.exec_command('sudo ./vtep-ctl list-ps')
         
 
         return client
@@ -75,8 +75,31 @@ class vtep_command_manager():
             raise exceptions.InputOutput('unable to read file')
             sys.stdout.write('ERROR in reading file.....\n')
         '''
-
+    
+    def get_ovsdb_bindings(self):
+        '''
+        This method retruns vlan_bindings wrt port name
+        '''
+        client = self.connect_host('10.8.20.110','root','ubuntu')
+        command_vtep = "cd /home/ubuntu;./vtep-ctl list Physical_Port"
+        stdin, stdout, stderr = client.exec_command(command_vtep)
+        name_list = []
+        binding_list = []
+        for item in stdout.readlines():
+            if 'name' in item:
+                name_list.append(item)
+            if 'binding' in item:
+                binding_list.append(item)
+        
+        list_dicts = []
+        for name,bindings in zip(name_list,binding_list):
+            dict_name = {}
+            dict_name['name'] = name
+            dict_name['bindings'] = bindings
+            list_dicts.append(dict_name)
+        return list_dicts
+"""
 if __name__=='__main__':
     adi = vtep_command_manager()
     adi.read_execute_switch_data() 
-
+"""

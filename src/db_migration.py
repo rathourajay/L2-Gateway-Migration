@@ -20,7 +20,7 @@ import logging
 import webob.exc
 from common.migration_exceptions import UnhandeledException
 import re
-
+from common.vtep_add_switch import vtep_command_manager
 
 class MigrationScript(object):
 
@@ -36,7 +36,7 @@ class MigrationScript(object):
             log_level = logging.DEBUG
         self.init_log(config.CONF.OPENSTACK_CREDS.log_file, log_level, 'l2_gateway')
         self.log = logging.getLogger('l2_gateway')
-
+        self.bind_obj = vtep_command_manager()
 
     def init_log(self, filename, level, logger):
         
@@ -185,10 +185,31 @@ class MigrationScript(object):
 
 
     def validate_vlan_bindings(self,req_url,headers):
-        import pdb;pdb.set_trace()
+        """
+        TO DO: raise user define exception in place of else.
+        """
         gw_list = requests.get(req_url, headers=headers)
         l2_gw_list = gw_list.text
+        l2_gw_dict = json.loads(l2_gw_list)
+        import pdb;pdb.set_trace()
+        port_list = []
+        mapped_port_list = []
 
+        port_dict_bindings = self.bind_obj.get_ovsdb_bindings()
+        for item in   l2_gw_dict['l2_gateways']:
+            for i in item['devices']:
+                seg_id = i['interfaces'][0]['segmentation_id']
+                port_name = i['interfaces'][0]['name']
+                if port_name not in port_list:
+                    port_list.append(port_name)
+                for data in port_dict_bindings:
+                    if str(seg_id) in data['bindings'] and port_name in data['name']:
+                        print port_name, str(seg_id),"mapped with vlan"
+                        mapped_port_list.append(port_name)
+        unmapped_port_list = [port for port in port_list if port not in mapped_port_list]
+        print unmapped_port_list 
+        if  unmapped_port_list:
+            raise migration_exceptions.NoMappingFound('vlan bindings not created')
 
 
     def execute_migration(self):
@@ -206,23 +227,23 @@ class MigrationScript(object):
                 raise migration_exceptions.InvalidIpAddress('IP validation failed')
             req_url = "http://%s:9696/v2.0/l2-gateway-connections.json"  % (self.controller_ip)
             headers = self.get_headers()
-
+            
             sys.stdout.write("1. Fetching Connection List\n")
             connection_list = self.get_connections_list(req_url,headers)
             self.log.info("Connection list %s" % (connection_list))
             gw_lst_req_url =  "http://%s:9696/v2.0/l2-gateways.json"  % (self.controller_ip) 
-            self.validate_vlan_bindings(gw_lst_req_url,headers)       
+            #self.validate_vlan_bindings(gw_lst_req_url,headers)       
             
             sys.stdout.write("2. Populating data file\n")
             self.populate_data_file(connection_list)
             self.log.info("##Datafile populated##")
-
+            import pdb;pdb.set_trace()
             sys.stdout.write("3. Deleting Entry from MySql\n")
             db_obj = database_connection.db_connection()
             self.log.info("##Connected to database##")
             db_obj.read_connection_uuid()
             self.log.info("##Deleting connection data from database##")
-            
+            import pdb;pdb.set_trace()
             self.log.info("##Creating Connection on destination##")
             sys.stdout.write("4. Creating Connection\n")
             param_dict = self.read_data_file()
@@ -230,10 +251,10 @@ class MigrationScript(object):
             self.log.info("##Connection created on destination##")
             sys.stdout.write("5. Connection created successfully\n")
             #self.update_l2gwagent_ini()
-            
-            #gw_lst_req_url =  "http://%s:9696/v2.0/l2-gateways.json"  % (self.controller_ip) 
-            #self.validate_vlan_bindings(gw_lst_req_url,headers)       
-        
+            """
+            gw_lst_req_url =  "http://%s:9696/v2.0/l2-gateways.json"  % (self.controller_ip) 
+            self.validate_vlan_bindings(gw_lst_req_url,headers)       
+            """        
         except migration_exceptions.InvalidIpAddress as e:
             self.log.exception("Error in IP address"
                                "Reason: %s" % (e))
@@ -255,14 +276,20 @@ class MigrationScript(object):
             self.log.exception("webob.exc.HTTPError()"
                                "Reason: %s" % (e))
             raise webob.exc.HTTPError(e)
+        
+        except migration_exceptions.NoMappingFound as e:
+            self.log.exception("Complete Mapping not created"
+                               "Reason: %s" % (e))
+            sys.stderr.write(e._error_string+'\n')
 
         except Exception as e:
             self.log.exception("UnhandeledException :::"
                                "Reason: %s" % (e))
             raise UnhandeledException(e)
-
+        
         except IOError as e:
             self.log.exception("Invalid config file format"
                                "Reason: %s" % (e))
             sys.stderr.write("Invalid config file format" + '\n')
             sys.exit()
+

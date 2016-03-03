@@ -53,3 +53,6 @@ class InvalidControlFile(L2GwMigrationException):
 class InputOutput(L2GwMigrationException):
     message = 'Unable to complete Input/Output operation on file '
 
+class NoMappingFound(L2GwMigrationException):
+    message = 'Unable to create binding for all ports'
+
