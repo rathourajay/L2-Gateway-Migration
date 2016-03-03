@@ -29,7 +29,7 @@ class vtep_command_manager():
 
     def execute_vtep_cmd(self,client):
         #query = 'sudo mysql -e "delete from l2gatewayconnections where id = \'%s\'" -u %s -p%s %s' % (uuid_con,self.db_user_id,self.db_pwd,self.db_name) 
-        import pdb;pdb.set_trace()
+        #import pdb;pdb.set_trace()
         command_vtep = "cd /home/ubuntu;./vtep-ctl list Physical_Port"
 #        command_vtep = "cd /home/ubuntu;./vtep-ctl set-manager \'tcp:%s:6632\'" % (self.cmc_ip) 
         #command_vtep = "sudo ./vtep-ctl set-manager \'tcp:%s:6632\'" % (self.cmc_ip) 

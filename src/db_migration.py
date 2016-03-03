@@ -110,6 +110,7 @@ class MigrationScript(object):
                 conn_id_list = []
                 net_id_list = []
                 gw_id_list = []
+                seg_id_list = []
                 for row in reader:
                     if count == 0:
                         count = count + 1
@@ -117,12 +118,14 @@ class MigrationScript(object):
                         conn_id_list.append(row[0])
                         net_id_list.append(row[1])
                         gw_id_list.append(row[3])
+                        seg_id_list.append(row[4])
                 """
                 TO DO: Apply validation over param_dict
                 """ 
                 param_dict['connection_id'] = conn_id_list
                 param_dict['net_id']=net_id_list
                 param_dict['gw_id']=gw_id_list
+                param_dict['seg_id']=seg_id_list
         
         except IOError:
             print "Error in reading csv file:", data_file
@@ -163,12 +166,19 @@ class MigrationScript(object):
         for i in range(len(param_dict['net_id'])):
             network_id = param_dict['net_id'][i]
             l2_gateway_id = param_dict['gw_id'][i]
-            payload = {"l2_gateway_connection": {"network_id": network_id, "l2_gateway_id": l2_gateway_id}}
-            """
-            creating connection
-            """
-            create_conn = requests.post(req_url, data=json.dumps(payload), headers=headers)
-            
+            seg_id = param_dict['seg_id'][i]   
+            if not seg_id :
+                payload = {"l2_gateway_connection": {"network_id": network_id, "l2_gateway_id": l2_gateway_id}}
+                """
+                creating connection
+                """
+                create_conn = requests.post(req_url, data=json.dumps(payload), headers=headers)
+            else:
+                payload = {"l2_gateway_connection": {"network_id": network_id, "segmentation_id": seg_id ,"l2_gateway_id": l2_gateway_id}}
+                """
+                creating connection
+                """
+                create_conn = requests.post(req_url, data=json.dumps(payload), headers=headers)
             self.log.info("Creating connection with command %s" %(create_conn.text))
             self.log.info("connection created")
 
@@ -191,7 +201,6 @@ class MigrationScript(object):
         gw_list = requests.get(req_url, headers=headers)
         l2_gw_list = gw_list.text
         l2_gw_dict = json.loads(l2_gw_list)
-        import pdb;pdb.set_trace()
         port_list = []
         mapped_port_list = []
 
@@ -237,13 +246,11 @@ class MigrationScript(object):
             sys.stdout.write("2. Populating data file\n")
             self.populate_data_file(connection_list)
             self.log.info("##Datafile populated##")
-            import pdb;pdb.set_trace()
             sys.stdout.write("3. Deleting Entry from MySql\n")
             db_obj = database_connection.db_connection()
             self.log.info("##Connected to database##")
             db_obj.read_connection_uuid()
             self.log.info("##Deleting connection data from database##")
-            import pdb;pdb.set_trace()
             self.log.info("##Creating Connection on destination##")
             sys.stdout.write("4. Creating Connection\n")
             param_dict = self.read_data_file()
