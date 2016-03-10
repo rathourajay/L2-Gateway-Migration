@@ -1,4 +1,5 @@
 from oslo_config import cfg
+import os
 
 def register_opt_group(conf, opt_group, options):
     conf.register_group(opt_group)
@@ -70,7 +71,9 @@ def register_opts():
     
 
 def get_config():
-    cfg.CONF(default_config_files=['/home/ubuntu/L2-Gateway-Migration/conf/input_data.conf'])
+    conf_file = os.getcwd() + '/conf/input_data.conf'
+    cfg.CONF(default_config_files=[conf_file])
+    #cfg.CONF(default_config_files=['/home/ubuntu/L2-Gateway-Migration/conf/input_data.conf'])
     register_opts()
     return cfg.CONF
 

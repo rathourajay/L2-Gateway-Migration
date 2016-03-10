@@ -6,9 +6,8 @@ import config
 import logging
 import migration_exceptions
 import sys
-
+import os
 log = logging.getLogger('l2_gateway')
-PATH ='/home/ubuntu/L2-Gateway-Migration/data/'
 class db_connection():
 
     def __init__(self):
@@ -31,10 +30,12 @@ class db_connection():
             sys.stdout.write(_("Could not connect to mysql host: %s. "
                                "Reason: %s\n") % (self.host_ip, ex))
             raise migration_exceptions.DBError(ex)
+        except Exception as e:
+             self.log.exception('ERROR in connecting to MYSQL\n')
         return client
 
     def read_connection_uuid(self):
-        data_file = PATH + 'data_file.csv' 
+        data_file = os.getcwd() + '/data/data_file.csv' 
         con_ptr = self.connect_host()
         log.info("Reading connection UUID from CSV file to be deleted")
         arr = []
@@ -67,3 +68,5 @@ class db_connection():
             sys.stdout.write(_("Could not connect to mysql host: %s. "
                                "Reason: %s\n") % (self.host_ip, ex))
             raise migration_exceptions.DBError(ex)
+        except Exception as e:
+             self.log.exception('Error in executing \n')

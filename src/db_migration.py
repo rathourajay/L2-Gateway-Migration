@@ -32,10 +32,11 @@ class MigrationScript(object):
         self.username = config.CONF.OPENSTACK_CREDS.username
         self.password =  config.CONF.OPENSTACK_CREDS.password
         self.tenant_name =  config.CONF.OPENSTACK_CREDS.tenant_name
+        self.logfile = os.getcwd() + config.CONF.OPENSTACK_CREDS.log_file
         log_level = logging.INFO
         if config.CONF.default.debug:
             log_level = logging.DEBUG
-        self.init_log(config.CONF.OPENSTACK_CREDS.log_file, log_level, 'l2_gateway')
+        self.init_log(self.logfile, log_level, 'l2_gateway')
         self.log = logging.getLogger('l2_gateway')
         self.bind_obj = vtep_command_manager()
 
@@ -81,7 +82,6 @@ class MigrationScript(object):
             with open(self.DATA_FILE, 'wb') as fp:
                 writer = csv.writer(fp, delimiter='\t')
                 connection_dict = json.loads(connection_list.encode('utf-8'))
-                import pdb;pdb.set_trace()
                 writer.writerow(["connection_id", "network_id", "tenant_id", "l2_gateway_id", "segmentation_id"])
                 for conn_lists in connection_dict.itervalues():
                     for item in range(len(conn_lists)):
@@ -207,12 +207,14 @@ class MigrationScript(object):
     def create_failed_connection(self,param_dict,req_url,headers):
 	to_del_param_list = []
         to_del_param_dict = {}
+        
         for i in range(len(param_dict['net_id'])):
             network_id = param_dict['net_id'][i]
             tenant_id = param_dict['tennt_id'][i]
             l2_gateway_id = param_dict['gw_id'][i]
             seg_id = param_dict['seg_id'][i]   
             connectn_id = param_dict['connection_id'][i]  
+            import pdb;pdb.set_trace()
             for i in range(3):
                 if not seg_id :
                     payload = {"l2_gateway_connection": {"network_id": network_id, "l2_gateway_id": l2_gateway_id}}
@@ -230,13 +232,16 @@ class MigrationScript(object):
                     create_conn = requests.post(req_url, data=json.dumps(payload), headers=headers)
                     if create_conn.ok:
 		        break
+           
 	    if not(create_conn.ok):
+                to_del_param_dict = dict()
 		to_del_param_dict['network_id'] = network_id
 		to_del_param_dict['connectn_id'] = connectn_id
 		to_del_param_dict['tenant_id'] = tenant_id
 		to_del_param_dict['l2_gateway_id'] = l2_gateway_id
 		to_del_param_dict['seg_id'] = seg_id
 		to_del_param_list.append(to_del_param_dict)
+	
         if to_del_param_list:	
             self.delete_csv_entries(to_del_param_list)
 	else:
@@ -247,13 +252,15 @@ class MigrationScript(object):
 
     def create_connection(self,param_dict,req_url,headers):
         retry_flag = False
+	to_del_param_list = []
+        to_del_param_dict = {}
         for i in range(len(param_dict['net_id'])):
             network_id = param_dict['net_id'][i]
             tenant_id = param_dict['tennt_id'][i]
             l2_gateway_id = param_dict['gw_id'][i]
             seg_id = param_dict['seg_id'][i]   
             connectn_id = param_dict['connection_id'][i] 
-
+            import pdb;pdb.set_trace()
             if not seg_id :
                 payload = {"l2_gateway_connection": {"network_id": network_id, "l2_gateway_id": l2_gateway_id}}
                 """
@@ -266,12 +273,20 @@ class MigrationScript(object):
                 creating connection
                 """
                 create_conn = requests.post(req_url, data=json.dumps(payload), headers=headers)
-            
+            import pdb;pdb.set_trace()            
             if not(create_conn.ok):
+                to_del_param_dict = dict()
                 retry_flag = True
-                self.create_failure_file(connectn_id, network_id , tenant_id, seg_id, l2_gateway_id )
+		to_del_param_dict['network_id'] = network_id
+		to_del_param_dict['connectn_id'] = connectn_id
+		to_del_param_dict['tenant_id'] = tenant_id
+		to_del_param_dict['l2_gateway_id'] = l2_gateway_id
+		to_del_param_dict['seg_id'] = seg_id
+		to_del_param_list.append(to_del_param_dict)
+                #self.create_failure_file(connectn_id, network_id , tenant_id, seg_id, l2_gateway_id )
         
         if retry_flag == True:
+            self.delete_csv_entries(to_del_param_list)
 	    param_flddict = self.read_data_file(self.DATA_EXC_FILE)
             self.create_failed_connection(param_flddict,req_url,headers=headers)
 
@@ -430,26 +445,32 @@ class MigrationScript(object):
     
                 sys.stdout.write("1. Fetching Connection List\n")
                 connection_list = self.get_connections_list(req_url,headers)
-                self.log.info("Connection list %s" % (connection_list))
-                gw_lst_req_url =  "http://%s:9696/v2.0/l2-gateways.json"  % (self.controller_ip)
+                import pdb;pdb.set_trace()
+                if not connection_list:
+                    sys.stdout.write("No connection available on source #### No migration will happen####\n")
+                    self.log.info("No Connection available on source #### No migration will happen####")
+                    sys.exit()
+                else:    
+                    self.log.info("Connection list %s" % (connection_list))
+                    gw_lst_req_url =  "http://%s:9696/v2.0/l2-gateways.json"  % (self.controller_ip)
                 #self.validate_vlan_bindings(gw_lst_req_url,headers)
     
-                sys.stdout.write("2. Populating data file\n")
-                self.populate_data_file(connection_list)
-                self.log.info("##Datafile populated##")
-                sys.stdout.write("3. Deleting Entry from MySql\n")
-                db_obj = database_connection.db_connection()
-                self.log.info("##Connected to database##")
-                db_obj.read_connection_uuid()
-                self.log.info("##Deleting connection data from database##")
-                self.log.info("##Creating Connection on destination##")
-                sys.stdout.write("4. Creating Connection\n")
-                param_dict = self.read_data_file(self.DATA_FILE)
-                import pdb;pdb.set_trace()
-                self.create_connection(param_dict,req_url,headers=headers)
+                    sys.stdout.write("2. Populating data file\n")
+                    self.populate_data_file(connection_list)
+                    self.log.info("##Datafile populated##")
+                    sys.stdout.write("3. Deleting Entry from MySql\n")
+                    db_obj = database_connection.db_connection()
+                    self.log.info("##Connected to database##")
+                    db_obj.read_connection_uuid()
+                    self.log.info("##Deleting connection data from database##")
+                    self.log.info("##Creating Connection on destination##")
+                    sys.stdout.write("4. Creating Connection\n")
+                    param_dict = self.read_data_file(self.DATA_FILE)
+                    import pdb;pdb.set_trace()
+                    self.create_connection(param_dict,req_url,headers=headers)
     
-                self.log.info("##Connection created on destination##")
-                sys.stdout.write("5. Connection created successfully\n")
+                    self.log.info("##Connection created on destination##")
+                    sys.stdout.write("5. Connection created successfully\n")
                 #self.update_l2gwagent_ini()
                 """
                 gw_lst_req_url =  "http://%s:9696/v2.0/l2-gateways.json"  % (self.controller_ip)
@@ -497,7 +518,9 @@ class MigrationScript(object):
                 
         else:
             param_flddict = self.read_data_file(self.DATA_EXC_FILE)
-            self.create_connection(param_flddict,req_url,headers=headers)    
+            req_url = "http://%s:9696/v2.0/l2-gateway-connections.json"  % (self.controller_ip)
+            headers = self.get_headers()
+            self.create_failed_connection(param_flddict,req_url,headers=headers)    
             
 
                                                                 
