@@ -1,0 +1,20 @@
+2016-03-14 15:15:46,425 INFO - Executing Migration
+2016-03-14 15:15:46,425 INFO - Fetching Connection list
+2016-03-14 15:15:46,426 INFO - In Function get_headers
+2016-03-14 15:15:46,426 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-14 15:15:46,733 INFO - In function generic_request
+2016-03-14 15:15:46,734 INFO - Post request_response ==<Response [200]> 
+2016-03-14 15:15:46,734 INFO - Token Retrieved with value: de4ced43ad7b40df82b145817fddba7d
+2016-03-14 15:15:46,936 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "4723f45d-7445-45ce-897f-cb911886ebcf", "id": "e8901391-be77-45a5-b055-ff98216284df", "segmentation_id": ""}, {"network_id": "c4e8e791-fa2a-4466-a0b5-fe3df09beecb", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "cd6baa36-c907-4459-af76-794991a696db", "id": "f4369c8c-aaae-4e05-930c-d97a2bc1fa29", "segmentation_id": "1101"}]}
+2016-03-14 15:15:46,937 INFO - CSV file generated for connection list
+2016-03-14 15:15:46,937 INFO - ##Datafile populated##
+2016-03-14 15:15:46,938 INFO - ##Connected to database##
+2016-03-14 15:15:47,127 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-14 15:15:47,127 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-14 15:15:47,128 INFO - Connection UUID to be deleted from database  e8901391-be77-45a5-b055-ff98216284df 
+2016-03-14 15:15:47,128 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'e8901391-be77-45a5-b055-ff98216284df'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-14 15:15:47,163 INFO - Connection UUID to be deleted from database  f4369c8c-aaae-4e05-930c-d97a2bc1fa29 
+2016-03-14 15:15:47,164 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'f4369c8c-aaae-4e05-930c-d97a2bc1fa29'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-14 15:15:47,268 INFO - ##Deleting connection data from database##
+2016-03-14 15:15:47,268 INFO - ##Creating Connection on destination##
+2016-03-14 15:15:47,269 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['4723f45d-7445-45ce-897f-cb911886ebcf', 'cd6baa36-c907-4459-af76-794991a696db'], 'connection_id': ['e8901391-be77-45a5-b055-ff98216284df', 'f4369c8c-aaae-4e05-930c-d97a2bc1fa29'], 'seg_id': ['', '1101'], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', 'c4e8e791-fa2a-4466-a0b5-fe3df09beecb']}

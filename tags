@@ -5,7 +5,6 @@
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
 CONF	src/common/config.py	/^CONF = get_config()$/;"	v
-ConfigReader	src/common/config_reader_shweta.py	/^class ConfigReader:$/;"	c
 DBError	src/common/migration_exceptions.py	/^class DBError(L2GwMigrationException):$/;"	c
 DefaultGroup	src/common/config.py	/^DefaultGroup = [$/;"	v
 InputOutput	src/common/migration_exceptions.py	/^class InputOutput(L2GwMigrationException):$/;"	c
@@ -13,13 +12,13 @@ InvalidControlFile	src/common/migration_exceptions.py	/^class InvalidControlFile
 InvalidIpAddress	src/common/migration_exceptions.py	/^class InvalidIpAddress(L2GwMigrationException):$/;"	c
 L2GwMigrationException	src/common/migration_exceptions.py	/^class L2GwMigrationException(Exception):$/;"	c
 MigrationScript	src/db_migration.py	/^class MigrationScript(object):$/;"	c
+Neutron_Credentials	src/common/neutron_creds.py	/^class Neutron_Credentials:$/;"	c
 NoMappingFound	src/common/migration_exceptions.py	/^class NoMappingFound(L2GwMigrationException):$/;"	c
-PATH	src/common/database_connection.py	/^PATH ='\/home\/ubuntu\/L2-Gateway-Migration\/data\/'$/;"	v
 SwitchNotFound	src/common/migration_exceptions.py	/^class SwitchNotFound(L2GwMigrationException):$/;"	c
 UnhandeledException	src/common/migration_exceptions.py	/^class UnhandeledException(L2GwMigrationException):$/;"	c
-__init__	src/common/config_reader_shweta.py	/^    def __init__(self, conf_file):$/;"	m	class:ConfigReader
 __init__	src/common/database_connection.py	/^    def __init__(self):$/;"	m	class:db_connection
 __init__	src/common/migration_exceptions.py	/^    def __init__(self, *args, **kwargs):$/;"	m	class:L2GwMigrationException
+__init__	src/common/neutron_creds.py	/^    def __init__(self):$/;"	m	class:Neutron_Credentials
 __init__	src/common/vtep_add_switch.py	/^    def __init__(self):$/;"	m	class:vtep_command_manager
 __init__	src/db_migration.py	/^    def __init__(self):$/;"	m	class:MigrationScript
 __str__	src/common/migration_exceptions.py	/^    def __str__(self):$/;"	m	class:L2GwMigrationException	file:
@@ -42,13 +41,14 @@ default	src/common/config.py	/^               default='password',$/;"	v
 default	src/common/config.py	/^               default='root',$/;"	v
 default	src/common/config.py	/^               default='tenant',$/;"	v
 default_group	src/common/config.py	/^default_group = cfg.OptGroup(name='default',$/;"	v
+delete_csv_entries	src/db_migration.py	/^    def delete_csv_entries(self,to_del_param):$/;"	m	class:MigrationScript
 execute_migration	src/db_migration.py	/^    def execute_migration(self):$/;"	m	class:MigrationScript
 execute_query	src/common/database_connection.py	/^    def execute_query(self,client,uuid_con):$/;"	m	class:db_connection
 execute_vtep_cmd	src/common/vtep_add_switch.py	/^    def execute_vtep_cmd(self,client):$/;"	m	class:vtep_command_manager
+fetch_credentials	src/common/neutron_creds.py	/^    def fetch_credentials(self):$/;"	m	class:Neutron_Credentials
 generic_request	src/common/token_generator.py	/^def generic_request(method, url, data=None,$/;"	f
 get_config	src/common/config.py	/^def get_config():$/;"	f
 get_config_vals	src/common/config_reader.py	/^def get_config_vals(conf_file):$/;"	f
-get_config_vals	src/common/config_reader_shweta.py	/^    def get_config_vals(self, *args):$/;"	m	class:ConfigReader
 get_connections_list	src/db_migration.py	/^    def get_connections_list(self,req_url,headers):$/;"	m	class:MigrationScript
 get_headers	src/db_migration.py	/^    def get_headers(self):      $/;"	m	class:MigrationScript
 get_ovsdb_bindings	src/common/vtep_add_switch.py	/^    def get_ovsdb_bindings(self):$/;"	m	class:vtep_command_manager
@@ -91,9 +91,11 @@ read_data_file	src/db_migration.py	/^    def read_data_file(self, conn_file):$/;
 read_execute_switch_data	src/common/vtep_add_switch.py	/^    def read_execute_switch_data(self):$/;"	m	class:vtep_command_manager
 register_opt_group	src/common/config.py	/^def register_opt_group(conf, opt_group, options):$/;"	f
 register_opts	src/common/config.py	/^def register_opts():$/;"	f
+retry_create_connection	src/db_migration.py	/^    def retry_create_connection(self,param_dict,req_url,headers,create_conn):$/;"	m	class:MigrationScript
 ssh	src/common/test_ssh.py	/^ssh = paramiko.SSHClient()$/;"	v
 title	src/common/config.py	/^    title='mysql credentials')$/;"	v
 title	src/common/config.py	/^    title='openstack credentials')$/;"	v
+to_del_param_list	src/db_migration.py	/^	to_del_param_list = []$/;"	v	class:MigrationScript
 update_l2gwagent_ini	src/db_migration.py	/^    def update_l2gwagent_ini(self):$/;"	m	class:MigrationScript
 validate_vlan_bindings	src/db_migration.py	/^    def validate_vlan_bindings(self,req_url,headers):$/;"	m	class:MigrationScript
 vtep_command_manager	src/common/vtep_add_switch.py	/^class vtep_command_manager():$/;"	c

@@ -17,6 +17,7 @@ class db_connection():
         self.db_user_id = config.CONF.DATABASE_CRED.db_user_id
         self.db_pwd = config.CONF.DATABASE_CRED.db_pwd
         self.db_name = config.CONF.DATABASE_CRED.db_name
+#        import pdb;pdb.set_trace()
 
     def connect_host(self):
         try:
