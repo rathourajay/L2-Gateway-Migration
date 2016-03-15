@@ -1,8 +1,12 @@
-'''
-Created on Dec 10, 2015
+"""
+Created on March 2016
 
-@author: Aricent
-'''
+@author:
+
+Description: Exception file for L2 Migration
+
+"""
+
 import requests
 import json
 import logging

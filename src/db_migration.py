@@ -220,7 +220,7 @@ class MigrationScript(object):
             connectn_id = param_dict['connection_id'][i]  
             #import pdb;pdb.set_trace()
             for i in range(3):
-                sys.stdout.write(("Retry count %s...\n") % (i+1))
+                sys.stdout.write(("Retry attempt %s...\n") % (i+1))
                 if not seg_id :
                     payload = {"l2_gateway_connection": {"network_id": network_id, "l2_gateway_id": l2_gateway_id}}
                     """
@@ -330,6 +330,15 @@ class MigrationScript(object):
         self.log.debug("Fetched connection List: %s" % (connection_list))
         return connection_list
 
+    def get_seg_id(self,l2_gw_id):
+        param_dict = self.read_data_file(self.DATA_FILE)
+        for i in range(len(param_dict['seg_id'])):
+            if param_dict['seg_id'][i]!= '':
+                print param_dict['seg_id'][i]  
+                gw_id =  param_dict['gw_id'][i]
+		if l2_gw_id ==	gw_id:
+                    return param_dict['seg_id'][i] 
+
 
     def validate_vlan_bindings(self,req_url,headers):
         """
@@ -340,20 +349,27 @@ class MigrationScript(object):
         l2_gw_dict = json.loads(l2_gw_list)
         port_list = []
         mapped_port_list = []
-
-        port_dict_bindings = self.bind_obj.get_ovsdb_bindings()
+        port_dict_bindings,switch_details = self.bind_obj.get_ovsdb_bindings()
+	import pdb;pdb.set_trace()
         for item in   l2_gw_dict['l2_gateways']:
+	    l2_gw_id = item['id']
             for i in item['devices']:
+		switch_name = str(i['device_name'])
                 seg_id = i['interfaces'][0]['segmentation_id']
+		if not seg_id:
+		    seg_id = self.get_seg_id(l2_gw_id)
                 port_name = i['interfaces'][0]['name']
+		#port_id = 
                 if port_name not in port_list:
                     port_list.append(port_name)
                 for data in port_dict_bindings:
                     if str(seg_id) in data['bindings'] and port_name in data['name']:
-                        print port_name, str(seg_id),"mapped with vlan"
+		        
+                      #  print port_name, str(seg_id),"mapped with vlan"
                         mapped_port_list.append(port_name)
         unmapped_port_list = [port for port in port_list if port not in mapped_port_list]
-        print unmapped_port_list 
+        print "unmapped ports are:",unmapped_port_list 
+	print "mapped ports are:",mapped_port_list
         if  unmapped_port_list:
             raise migration_exceptions.NoMappingFound('vlan bindings not created')
 
@@ -372,7 +388,7 @@ class MigrationScript(object):
                     raise migration_exceptions.InvalidIpAddress('IP validation failed')
                 req_url = "http://%s:9696/v2.0/l2-gateway-connections.json"  % (self.controller_ip)
                 headers = self.get_headers()
-    
+                
                 sys.stdout.write("Step 1. Fetching Connection List\n")
                 connection_list = self.get_connections_list(req_url,headers)
                 #import pdb;pdb.set_trace()
@@ -388,6 +404,7 @@ class MigrationScript(object):
                     sys.stdout.write("Step 2. Populating data file\n")
                     self.populate_data_file(connection_list)
                     self.log.info("##Datafile populated##")
+	            	    
                     #To autoconfigure neutron db creds: 
                     #self.neutron_obj.fetch_credentials()
                     sys.stdout.write("Step 3. Deleting Entry from MySql\n")
@@ -406,13 +423,12 @@ class MigrationScript(object):
                     else:
                         sys.stdout.write("Step 5. Connection created succesfully \n")
                         sys.stdout.write("    Migration Successfull!!!!!! \n")
-                #self.update_l2gwagent_ini()
-                """
-                gw_lst_req_url =  "http://%s:9696/v2.0/l2-gateways.json"  % (self.controller_ip)
-                self.validate_vlan_bindings(gw_lst_req_url,headers)
+                    #self.update_l2gwagent_ini()
+                    
+                    gw_lst_req_url =  "http://%s:9696/v2.0/l2-gateways.json"  % (self.controller_ip)
+                    self.validate_vlan_bindings(gw_lst_req_url,headers)
                 
-                """
-                
+                               
             except migration_exceptions.InvalidIpAddress as e:
                 self.log.exception("Error in IP address"
                                    "Reason: %s" % (e))

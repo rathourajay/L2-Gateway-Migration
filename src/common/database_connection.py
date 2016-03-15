@@ -1,3 +1,11 @@
+"""
+Created on Feb 2016
+
+@author: gur40998
+
+Description: Datbase operations for L2 Migration
+
+"""
 import codecs
 import csv
 import paramiko

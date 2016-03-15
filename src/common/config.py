@@ -1,3 +1,11 @@
+"""
+Created on Feb 2016
+
+@author: gur40998
+
+Description: Config file for L2 Migration
+
+"""
 from oslo_config import cfg
 import os
 

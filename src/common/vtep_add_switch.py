@@ -58,7 +58,7 @@ class vtep_command_manager():
         data_file = self.CSV_PATH + '/../../data/'
         switch_data = data_file + 'switch_dat.csv'
         log.info("Reading switch details")
-        switch_ptr = self.connect_host('10.8.20.110','root','ubuntu')
+        switch_ptr = self.connect_host('10.8.20.112','root','ubuntu')
         self.execute_vtep_cmd(switch_ptr)
         '''
         try:
@@ -80,24 +80,47 @@ class vtep_command_manager():
         '''
         This method retruns vlan_bindings wrt port name
         '''
-        client = self.connect_host('10.8.20.110','root','ubuntu')
+        client = self.connect_host('10.8.20.112','root','ubuntu')
         command_vtep = "cd /home/ubuntu;./vtep-ctl list Physical_Port"
+	command_vtep_switches = "cd /home/ubuntu;./vtep-ctl list Physical_Switch"
         stdin, stdout, stderr = client.exec_command(command_vtep)
         name_list = []
+	port_id_list = []
         binding_list = []
         for item in stdout.readlines():
+	    if '_uuid' in item:
+	        port_id_list.append(item)
             if 'name' in item:
                 name_list.append(item)
             if 'binding' in item:
                 binding_list.append(item)
         
         list_dicts = []
-        for name,bindings in zip(name_list,binding_list):
+        for name,bindings,port_id in zip(name_list,binding_list,port_id_list):
             dict_name = {}
             dict_name['name'] = name
             dict_name['bindings'] = bindings
+	    dict_name['port_id'] = port_id
             list_dicts.append(dict_name)
-        return list_dicts
+
+        stdin, stdout, stderr = client.exec_command(command_vtep_switches)
+	port_list = []
+	sw_name_list = []
+	switch_details = {}
+        
+	for i in stdout.readlines():
+            switch_details = dict()
+            if 'name' in i:
+                sw_name_list.append(i)
+	    if 'ports' in i:
+	        port_list.append(i)
+        sw_detail_list  = []
+	for name,port in zip(sw_name_list,port_list):
+            sw_dict = {}
+            sw_dict['sw_name'] = name
+            sw_dict['ports'] = port
+            sw_detail_list.append(sw_dict)
+        return list_dicts,sw_detail_list
 """
 if __name__=='__main__':
     adi = vtep_command_manager()
