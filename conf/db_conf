@@ -1,6 +1,0 @@
-[DEFAULT]
-# Show debugging output in log (sets DEBUG log level output)
-# debug = False
-
-[SOURCE_IP]
-source_ip = 10.8.20.51

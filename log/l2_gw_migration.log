@@ -816,3 +816,945 @@ NameError: global name 'switch_details' is not defined
 2016-03-15 17:29:24,011 INFO - ##Creating Connection on destination##
 2016-03-15 17:29:24,012 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['02a545fc-4d7e-455a-9ac2-c9fc8dac9baf'], 'seg_id': [''], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858']}
 2016-03-15 17:29:26,951 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 14:20:42,964 INFO - Executing Migration
+2016-03-16 14:20:42,964 INFO - Fetching Connection list
+2016-03-16 14:20:42,965 INFO - In Function get_headers
+2016-03-16 14:20:42,965 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 14:20:55,398 INFO - Executing Migration
+2016-03-16 14:20:55,398 INFO - Fetching Connection list
+2016-03-16 14:20:55,399 INFO - In Function get_headers
+2016-03-16 14:20:55,399 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 14:20:55,625 INFO - In function generic_request
+2016-03-16 14:20:55,625 INFO - Post request_response ==<Response [200]> 
+2016-03-16 14:20:55,626 INFO - Token Retrieved with value: f4f41b17783f409cbc3af2f2f0067438
+2016-03-16 14:20:55,834 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "b79a7435-ac64-4cf1-ac1f-e4c9c77c23c0", "segmentation_id": ""}]}
+2016-03-16 14:20:55,835 INFO - CSV file generated for connection list
+2016-03-16 14:20:55,835 INFO - ##Datafile populated##
+2016-03-16 14:20:55,836 INFO - ##Connected to database##
+2016-03-16 14:20:56,017 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 14:20:56,017 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 14:20:56,018 INFO - Connection UUID to be deleted from database  b79a7435-ac64-4cf1-ac1f-e4c9c77c23c0 
+2016-03-16 14:20:56,018 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'b79a7435-ac64-4cf1-ac1f-e4c9c77c23c0'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 14:20:56,054 INFO - ##Deleting connection data from database##
+2016-03-16 14:20:56,054 INFO - ##Creating Connection on destination##
+2016-03-16 14:20:56,054 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['b79a7435-ac64-4cf1-ac1f-e4c9c77c23c0'], 'seg_id': [''], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 14:20:58,729 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 14:21:53,033 INFO - Executing Migration
+2016-03-16 14:21:53,033 INFO - Fetching Connection list
+2016-03-16 14:21:53,033 INFO - In Function get_headers
+2016-03-16 14:21:53,033 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 14:21:53,286 INFO - In function generic_request
+2016-03-16 14:21:53,286 INFO - Post request_response ==<Response [200]> 
+2016-03-16 14:21:53,300 INFO - Token Retrieved with value: dc6dd3c3f4c249ed9e744542bf36b794
+2016-03-16 14:21:53,504 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "add15004-c0be-474c-89c4-48e0cf1724e6", "segmentation_id": ""}]}
+2016-03-16 14:21:53,506 INFO - CSV file generated for connection list
+2016-03-16 14:21:53,506 INFO - ##Datafile populated##
+2016-03-16 14:21:53,507 INFO - ##Connected to database##
+2016-03-16 14:21:53,692 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 14:21:53,693 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 14:21:53,693 INFO - Connection UUID to be deleted from database  add15004-c0be-474c-89c4-48e0cf1724e6 
+2016-03-16 14:21:53,693 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'add15004-c0be-474c-89c4-48e0cf1724e6'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 14:21:53,722 INFO - ##Deleting connection data from database##
+2016-03-16 14:21:53,722 INFO - ##Creating Connection on destination##
+2016-03-16 14:21:53,723 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['add15004-c0be-474c-89c4-48e0cf1724e6'], 'seg_id': [''], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 14:21:56,620 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 14:45:31,820 INFO - Executing Migration
+2016-03-16 14:45:31,820 INFO - Fetching Connection list
+2016-03-16 14:45:31,821 INFO - In Function get_headers
+2016-03-16 14:45:31,822 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 14:45:32,063 INFO - In function generic_request
+2016-03-16 14:45:32,063 INFO - Post request_response ==<Response [200]> 
+2016-03-16 14:45:32,064 INFO - Token Retrieved with value: db4e11c314b7470897f12d905606b8b9
+2016-03-16 14:45:32,256 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "5f72a4d0-52cd-4cd7-ba70-936f1d202ec7", "segmentation_id": ""}]}
+2016-03-16 14:45:32,257 INFO - CSV file generated for connection list
+2016-03-16 14:45:32,257 INFO - ##Datafile populated##
+2016-03-16 14:45:32,258 INFO - ##Connected to database##
+2016-03-16 14:45:32,450 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 14:45:32,450 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 14:45:32,450 INFO - Connection UUID to be deleted from database  5f72a4d0-52cd-4cd7-ba70-936f1d202ec7 
+2016-03-16 14:45:32,450 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '5f72a4d0-52cd-4cd7-ba70-936f1d202ec7'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 14:45:32,519 INFO - ##Deleting connection data from database##
+2016-03-16 14:45:32,519 INFO - ##Creating Connection on destination##
+2016-03-16 14:45:32,520 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['5f72a4d0-52cd-4cd7-ba70-936f1d202ec7'], 'seg_id': [''], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 14:45:35,312 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 15:00:27,779 INFO - Executing Migration
+2016-03-16 15:00:27,779 INFO - Fetching Connection list
+2016-03-16 15:00:27,780 INFO - In Function get_headers
+2016-03-16 15:00:27,780 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 15:00:28,293 INFO - In function generic_request
+2016-03-16 15:00:28,294 INFO - Post request_response ==<Response [200]> 
+2016-03-16 15:00:28,294 INFO - Token Retrieved with value: 280009c29f544c6ebfeaa542af3c2653
+2016-03-16 15:00:28,499 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "241cdc7a-9985-4e19-806b-6e7798edecc5", "segmentation_id": ""}]}
+2016-03-16 15:00:28,501 INFO - CSV file generated for connection list
+2016-03-16 15:00:28,501 INFO - ##Datafile populated##
+2016-03-16 15:00:28,502 INFO - ##Connected to database##
+2016-03-16 15:00:28,687 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 15:00:28,688 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 15:00:28,688 INFO - Connection UUID to be deleted from database  241cdc7a-9985-4e19-806b-6e7798edecc5 
+2016-03-16 15:00:28,688 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '241cdc7a-9985-4e19-806b-6e7798edecc5'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 15:00:28,761 INFO - ##Deleting connection data from database##
+2016-03-16 15:00:28,761 INFO - ##Creating Connection on destination##
+2016-03-16 15:00:28,761 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['241cdc7a-9985-4e19-806b-6e7798edecc5'], 'seg_id': [''], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 15:00:31,912 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 15:57:49,065 INFO - Executing Migration
+2016-03-16 15:57:49,066 INFO - Fetching Connection list
+2016-03-16 15:57:49,066 INFO - In Function get_headers
+2016-03-16 15:57:49,067 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 15:57:49,307 INFO - In function generic_request
+2016-03-16 15:57:49,307 INFO - Post request_response ==<Response [200]> 
+2016-03-16 15:57:49,308 INFO - Token Retrieved with value: 83b44da664e848038350d63eff6c3a57
+2016-03-16 15:57:49,692 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "5299f8f8-2f34-4e1b-8b98-f98a3ed7b47c", "segmentation_id": ""}]}
+2016-03-16 15:57:49,693 INFO - CSV file generated for connection list
+2016-03-16 15:57:49,694 INFO - ##Datafile populated##
+2016-03-16 15:57:49,694 INFO - ##Connected to database##
+2016-03-16 15:57:49,879 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 15:57:49,879 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 15:57:49,880 INFO - Connection UUID to be deleted from database  5299f8f8-2f34-4e1b-8b98-f98a3ed7b47c 
+2016-03-16 15:57:49,880 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '5299f8f8-2f34-4e1b-8b98-f98a3ed7b47c'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 15:57:49,915 INFO - ##Deleting connection data from database##
+2016-03-16 15:57:49,915 INFO - ##Creating Connection on destination##
+2016-03-16 15:57:49,916 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['5299f8f8-2f34-4e1b-8b98-f98a3ed7b47c'], 'seg_id': [''], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 15:57:52,934 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:28:47,732 INFO - Executing Migration
+2016-03-16 16:28:47,732 INFO - Fetching Connection list
+2016-03-16 16:28:47,733 INFO - In Function get_headers
+2016-03-16 16:28:47,733 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:28:47,986 INFO - In function generic_request
+2016-03-16 16:28:47,986 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:28:47,987 INFO - Token Retrieved with value: 1fe5c26b61d248c18cf1c1da566935d9
+2016-03-16 16:28:48,184 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "015914a1-4c21-44fd-b45d-9b61aad28ee5", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "7815ddbf-a578-4440-9e31-7ecfb690a6e4", "segmentation_id": ""}]}
+2016-03-16 16:28:48,185 INFO - CSV file generated for connection list
+2016-03-16 16:28:48,185 INFO - ##Datafile populated##
+2016-03-16 16:28:48,186 INFO - ##Connected to database##
+2016-03-16 16:28:48,369 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:28:48,369 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:28:48,370 INFO - Connection UUID to be deleted from database  015914a1-4c21-44fd-b45d-9b61aad28ee5 
+2016-03-16 16:28:48,370 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '015914a1-4c21-44fd-b45d-9b61aad28ee5'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:28:48,468 INFO - Connection UUID to be deleted from database  7815ddbf-a578-4440-9e31-7ecfb690a6e4 
+2016-03-16 16:28:48,468 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '7815ddbf-a578-4440-9e31-7ecfb690a6e4'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:28:48,568 INFO - ##Deleting connection data from database##
+2016-03-16 16:28:48,569 INFO - ##Creating Connection on destination##
+2016-03-16 16:28:48,569 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['015914a1-4c21-44fd-b45d-9b61aad28ee5', '7815ddbf-a578-4440-9e31-7ecfb690a6e4'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:28:52,847 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:28:53,136 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['015914a1-4c21-44fd-b45d-9b61aad28ee5', '7815ddbf-a578-4440-9e31-7ecfb690a6e4'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:30:48,288 INFO - Executing Migration
+2016-03-16 16:30:48,288 INFO - Fetching Connection list
+2016-03-16 16:30:48,289 INFO - In Function get_headers
+2016-03-16 16:30:48,289 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:30:48,526 INFO - In function generic_request
+2016-03-16 16:30:48,526 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:30:48,527 INFO - Token Retrieved with value: fb719ff45888451f85123071d9ab83fb
+2016-03-16 16:30:48,671 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "36deede0-4fc0-486e-9023-ebb5a983eb4b", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "aa3c38a4-5d49-46bc-88c9-c324e3cd51be", "segmentation_id": ""}]}
+2016-03-16 16:30:48,673 INFO - CSV file generated for connection list
+2016-03-16 16:30:48,673 INFO - ##Datafile populated##
+2016-03-16 16:30:48,674 INFO - ##Connected to database##
+2016-03-16 16:30:48,853 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:30:48,854 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:30:48,854 INFO - Connection UUID to be deleted from database  36deede0-4fc0-486e-9023-ebb5a983eb4b 
+2016-03-16 16:30:48,854 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '36deede0-4fc0-486e-9023-ebb5a983eb4b'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:30:48,891 INFO - Connection UUID to be deleted from database  aa3c38a4-5d49-46bc-88c9-c324e3cd51be 
+2016-03-16 16:30:48,892 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'aa3c38a4-5d49-46bc-88c9-c324e3cd51be'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:30:48,989 INFO - ##Deleting connection data from database##
+2016-03-16 16:30:48,990 INFO - ##Creating Connection on destination##
+2016-03-16 16:30:48,990 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['36deede0-4fc0-486e-9023-ebb5a983eb4b', 'aa3c38a4-5d49-46bc-88c9-c324e3cd51be'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:30:53,802 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:30:54,080 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['36deede0-4fc0-486e-9023-ebb5a983eb4b', 'aa3c38a4-5d49-46bc-88c9-c324e3cd51be'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:31:56,736 INFO - Executing Migration
+2016-03-16 16:31:56,736 INFO - Fetching Connection list
+2016-03-16 16:31:56,737 INFO - In Function get_headers
+2016-03-16 16:31:56,737 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:31:56,969 INFO - In function generic_request
+2016-03-16 16:31:56,969 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:31:56,970 INFO - Token Retrieved with value: c24dc63ec78043bba9ece28c6203a528
+2016-03-16 16:31:57,219 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "29679202-64c0-46ac-bb02-86302cb9112d", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "63e10158-8e1d-4f25-9e69-0c834f538b5d", "segmentation_id": "1100"}]}
+2016-03-16 16:31:57,220 INFO - CSV file generated for connection list
+2016-03-16 16:31:57,220 INFO - ##Datafile populated##
+2016-03-16 16:31:57,221 INFO - ##Connected to database##
+2016-03-16 16:31:57,405 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:31:57,406 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:31:57,406 INFO - Connection UUID to be deleted from database  29679202-64c0-46ac-bb02-86302cb9112d 
+2016-03-16 16:31:57,406 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '29679202-64c0-46ac-bb02-86302cb9112d'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:31:57,442 INFO - Connection UUID to be deleted from database  63e10158-8e1d-4f25-9e69-0c834f538b5d 
+2016-03-16 16:31:57,442 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '63e10158-8e1d-4f25-9e69-0c834f538b5d'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:31:57,544 INFO - ##Deleting connection data from database##
+2016-03-16 16:31:57,544 INFO - ##Creating Connection on destination##
+2016-03-16 16:31:57,545 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['29679202-64c0-46ac-bb02-86302cb9112d', '63e10158-8e1d-4f25-9e69-0c834f538b5d'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:32:02,289 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:32:02,565 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['29679202-64c0-46ac-bb02-86302cb9112d', '63e10158-8e1d-4f25-9e69-0c834f538b5d'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:32:02,566 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:32:29,760 INFO - Executing Migration
+2016-03-16 16:32:29,761 INFO - Fetching Connection list
+2016-03-16 16:32:29,761 INFO - In Function get_headers
+2016-03-16 16:32:29,761 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:32:30,005 INFO - In function generic_request
+2016-03-16 16:32:30,006 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:32:30,006 INFO - Token Retrieved with value: 06eccf842e43461ba9870c9001bedcc4
+2016-03-16 16:32:30,187 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "1cc86f98-67dc-41b8-82ec-da2431610de7", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "62c450dc-f257-4d32-baa4-e87eb5b0bc8e", "segmentation_id": "1100"}]}
+2016-03-16 16:32:30,188 INFO - CSV file generated for connection list
+2016-03-16 16:32:30,188 INFO - ##Datafile populated##
+2016-03-16 16:32:30,189 INFO - ##Connected to database##
+2016-03-16 16:32:30,374 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:32:30,374 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:32:30,375 INFO - Connection UUID to be deleted from database  1cc86f98-67dc-41b8-82ec-da2431610de7 
+2016-03-16 16:32:30,375 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '1cc86f98-67dc-41b8-82ec-da2431610de7'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:32:30,413 INFO - Connection UUID to be deleted from database  62c450dc-f257-4d32-baa4-e87eb5b0bc8e 
+2016-03-16 16:32:30,414 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '62c450dc-f257-4d32-baa4-e87eb5b0bc8e'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:32:30,510 INFO - ##Deleting connection data from database##
+2016-03-16 16:32:30,510 INFO - ##Creating Connection on destination##
+2016-03-16 16:32:30,510 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['1cc86f98-67dc-41b8-82ec-da2431610de7', '62c450dc-f257-4d32-baa4-e87eb5b0bc8e'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:32:35,296 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:32:35,607 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['1cc86f98-67dc-41b8-82ec-da2431610de7', '62c450dc-f257-4d32-baa4-e87eb5b0bc8e'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:32:35,608 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:35:43,886 INFO - Executing Migration
+2016-03-16 16:35:43,887 INFO - Fetching Connection list
+2016-03-16 16:35:43,887 INFO - In Function get_headers
+2016-03-16 16:35:43,888 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:35:44,129 INFO - In function generic_request
+2016-03-16 16:35:44,130 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:35:44,131 INFO - Token Retrieved with value: 359e1c75275e498c8a93938498a344b8
+2016-03-16 16:35:44,325 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "6179f4f1-102f-4419-9654-0ff0b0fd8b4b", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "f2ebc948-4d19-40a1-87e4-e63eb9df3318", "segmentation_id": "1100"}]}
+2016-03-16 16:35:44,326 INFO - CSV file generated for connection list
+2016-03-16 16:35:44,327 INFO - ##Datafile populated##
+2016-03-16 16:35:44,327 INFO - ##Connected to database##
+2016-03-16 16:35:44,512 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:35:44,513 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:35:44,513 INFO - Connection UUID to be deleted from database  6179f4f1-102f-4419-9654-0ff0b0fd8b4b 
+2016-03-16 16:35:44,514 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '6179f4f1-102f-4419-9654-0ff0b0fd8b4b'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:35:44,546 INFO - Connection UUID to be deleted from database  f2ebc948-4d19-40a1-87e4-e63eb9df3318 
+2016-03-16 16:35:44,546 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'f2ebc948-4d19-40a1-87e4-e63eb9df3318'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:35:44,648 INFO - ##Deleting connection data from database##
+2016-03-16 16:35:44,649 INFO - ##Creating Connection on destination##
+2016-03-16 16:35:44,649 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['6179f4f1-102f-4419-9654-0ff0b0fd8b4b', 'f2ebc948-4d19-40a1-87e4-e63eb9df3318'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:35:48,995 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:35:49,268 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['6179f4f1-102f-4419-9654-0ff0b0fd8b4b', 'f2ebc948-4d19-40a1-87e4-e63eb9df3318'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:35:49,269 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:36:18,475 INFO - Executing Migration
+2016-03-16 16:36:18,475 INFO - Fetching Connection list
+2016-03-16 16:36:18,476 INFO - In Function get_headers
+2016-03-16 16:36:18,476 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:36:18,704 INFO - In function generic_request
+2016-03-16 16:36:18,704 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:36:18,705 INFO - Token Retrieved with value: 73307ac9a893402ca6efea94451908bd
+2016-03-16 16:36:18,916 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "6a838c97-8517-4c38-95e8-8f33b9926292", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "edad9cc6-ccba-45c6-9286-6f98c4191708", "segmentation_id": "1100"}]}
+2016-03-16 16:36:18,918 INFO - CSV file generated for connection list
+2016-03-16 16:36:18,918 INFO - ##Datafile populated##
+2016-03-16 16:36:18,918 INFO - ##Connected to database##
+2016-03-16 16:36:19,103 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:36:19,104 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:36:19,104 INFO - Connection UUID to be deleted from database  6a838c97-8517-4c38-95e8-8f33b9926292 
+2016-03-16 16:36:19,104 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '6a838c97-8517-4c38-95e8-8f33b9926292'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:36:19,136 INFO - Connection UUID to be deleted from database  edad9cc6-ccba-45c6-9286-6f98c4191708 
+2016-03-16 16:36:19,137 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'edad9cc6-ccba-45c6-9286-6f98c4191708'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:36:19,230 INFO - ##Deleting connection data from database##
+2016-03-16 16:36:19,230 INFO - ##Creating Connection on destination##
+2016-03-16 16:36:19,231 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['6a838c97-8517-4c38-95e8-8f33b9926292', 'edad9cc6-ccba-45c6-9286-6f98c4191708'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:36:23,559 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:36:23,875 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['6a838c97-8517-4c38-95e8-8f33b9926292', 'edad9cc6-ccba-45c6-9286-6f98c4191708'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:36:23,876 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:39:32,617 INFO - Executing Migration
+2016-03-16 16:39:32,617 INFO - Fetching Connection list
+2016-03-16 16:39:32,618 INFO - In Function get_headers
+2016-03-16 16:39:32,618 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:39:32,840 INFO - In function generic_request
+2016-03-16 16:39:32,841 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:39:32,841 INFO - Token Retrieved with value: 2cda706d6dcf4e9c8a0f69839a53731c
+2016-03-16 16:39:33,024 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "67c889a5-e3a4-469a-b670-912d9184f0c1", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "90c0ed56-bc7c-4e6c-9178-2ecfb7d8bddd", "segmentation_id": ""}]}
+2016-03-16 16:39:33,053 INFO - CSV file generated for connection list
+2016-03-16 16:39:33,054 INFO - ##Datafile populated##
+2016-03-16 16:39:33,054 INFO - ##Connected to database##
+2016-03-16 16:39:33,777 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:39:33,777 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:39:33,778 INFO - Connection UUID to be deleted from database  67c889a5-e3a4-469a-b670-912d9184f0c1 
+2016-03-16 16:39:33,778 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '67c889a5-e3a4-469a-b670-912d9184f0c1'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:39:33,812 INFO - Connection UUID to be deleted from database  90c0ed56-bc7c-4e6c-9178-2ecfb7d8bddd 
+2016-03-16 16:39:33,813 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '90c0ed56-bc7c-4e6c-9178-2ecfb7d8bddd'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:39:33,912 INFO - ##Deleting connection data from database##
+2016-03-16 16:39:33,912 INFO - ##Creating Connection on destination##
+2016-03-16 16:39:33,913 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['67c889a5-e3a4-469a-b670-912d9184f0c1', '90c0ed56-bc7c-4e6c-9178-2ecfb7d8bddd'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:39:38,423 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:39:38,696 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['67c889a5-e3a4-469a-b670-912d9184f0c1', '90c0ed56-bc7c-4e6c-9178-2ecfb7d8bddd'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:39:38,697 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:40:04,409 INFO - Executing Migration
+2016-03-16 16:40:04,409 INFO - Fetching Connection list
+2016-03-16 16:40:04,409 INFO - In Function get_headers
+2016-03-16 16:40:04,409 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:40:04,688 INFO - In function generic_request
+2016-03-16 16:40:04,688 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:40:04,689 INFO - Token Retrieved with value: 9dcd1429c68d40bea24bc32c02b62a38
+2016-03-16 16:40:04,888 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "816515a9-beb6-43e3-b217-de255cd2bd1c", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "83a6a021-b70e-4b67-a975-9b5e134b37b3", "segmentation_id": "1100"}]}
+2016-03-16 16:40:04,888 INFO - CSV file generated for connection list
+2016-03-16 16:40:04,888 INFO - ##Datafile populated##
+2016-03-16 16:40:04,889 INFO - ##Connected to database##
+2016-03-16 16:40:05,070 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:40:05,070 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:40:05,088 INFO - Connection UUID to be deleted from database  816515a9-beb6-43e3-b217-de255cd2bd1c 
+2016-03-16 16:40:05,088 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '816515a9-beb6-43e3-b217-de255cd2bd1c'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:40:05,120 INFO - Connection UUID to be deleted from database  83a6a021-b70e-4b67-a975-9b5e134b37b3 
+2016-03-16 16:40:05,120 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '83a6a021-b70e-4b67-a975-9b5e134b37b3'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:40:05,192 INFO - ##Deleting connection data from database##
+2016-03-16 16:40:05,192 INFO - ##Creating Connection on destination##
+2016-03-16 16:40:05,193 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['816515a9-beb6-43e3-b217-de255cd2bd1c', '83a6a021-b70e-4b67-a975-9b5e134b37b3'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:40:09,539 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:40:09,812 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['816515a9-beb6-43e3-b217-de255cd2bd1c', '83a6a021-b70e-4b67-a975-9b5e134b37b3'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:40:09,813 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:40:25,100 INFO - Executing Migration
+2016-03-16 16:40:25,100 INFO - Fetching Connection list
+2016-03-16 16:40:25,101 INFO - In Function get_headers
+2016-03-16 16:40:25,101 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:40:25,318 INFO - In function generic_request
+2016-03-16 16:40:25,318 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:40:25,319 INFO - Token Retrieved with value: c3deb3251b5d4f138dae038bd8f57edc
+2016-03-16 16:40:25,470 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "30d9d9ae-20cf-43ca-9525-f074c477b5d1", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "cc2b41ea-c44d-4c99-828c-b7961d4d4ab7", "segmentation_id": ""}]}
+2016-03-16 16:40:25,471 INFO - CSV file generated for connection list
+2016-03-16 16:40:25,471 INFO - ##Datafile populated##
+2016-03-16 16:40:25,472 INFO - ##Connected to database##
+2016-03-16 16:40:25,645 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:40:25,645 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:40:25,645 INFO - Connection UUID to be deleted from database  30d9d9ae-20cf-43ca-9525-f074c477b5d1 
+2016-03-16 16:40:25,646 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '30d9d9ae-20cf-43ca-9525-f074c477b5d1'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:40:25,772 INFO - Connection UUID to be deleted from database  cc2b41ea-c44d-4c99-828c-b7961d4d4ab7 
+2016-03-16 16:40:25,773 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'cc2b41ea-c44d-4c99-828c-b7961d4d4ab7'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:40:25,852 INFO - ##Deleting connection data from database##
+2016-03-16 16:40:25,852 INFO - ##Creating Connection on destination##
+2016-03-16 16:40:25,853 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['30d9d9ae-20cf-43ca-9525-f074c477b5d1', 'cc2b41ea-c44d-4c99-828c-b7961d4d4ab7'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:40:30,367 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:40:30,660 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['30d9d9ae-20cf-43ca-9525-f074c477b5d1', 'cc2b41ea-c44d-4c99-828c-b7961d4d4ab7'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:40:30,661 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:40:42,935 INFO - Executing Migration
+2016-03-16 16:40:42,935 INFO - Fetching Connection list
+2016-03-16 16:40:42,936 INFO - In Function get_headers
+2016-03-16 16:40:42,936 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:40:43,174 INFO - In function generic_request
+2016-03-16 16:40:43,174 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:40:43,175 INFO - Token Retrieved with value: 322fce6bcb244d3abdce2a35f5419bc3
+2016-03-16 16:40:43,361 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "0cd6bf83-5932-4066-aace-9acc2f43647c", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "90e71d4d-4ba7-47c9-8756-c8b4dcfbf64e", "segmentation_id": ""}]}
+2016-03-16 16:40:43,363 INFO - CSV file generated for connection list
+2016-03-16 16:40:43,363 INFO - ##Datafile populated##
+2016-03-16 16:40:43,364 INFO - ##Connected to database##
+2016-03-16 16:40:43,550 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:40:43,550 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:40:43,551 INFO - Connection UUID to be deleted from database  0cd6bf83-5932-4066-aace-9acc2f43647c 
+2016-03-16 16:40:43,551 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '0cd6bf83-5932-4066-aace-9acc2f43647c'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:40:43,584 INFO - Connection UUID to be deleted from database  90e71d4d-4ba7-47c9-8756-c8b4dcfbf64e 
+2016-03-16 16:40:43,585 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '90e71d4d-4ba7-47c9-8756-c8b4dcfbf64e'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:40:43,660 INFO - ##Deleting connection data from database##
+2016-03-16 16:40:43,661 INFO - ##Creating Connection on destination##
+2016-03-16 16:40:43,661 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['0cd6bf83-5932-4066-aace-9acc2f43647c', '90e71d4d-4ba7-47c9-8756-c8b4dcfbf64e'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:40:48,425 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:40:48,700 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['0cd6bf83-5932-4066-aace-9acc2f43647c', '90e71d4d-4ba7-47c9-8756-c8b4dcfbf64e'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:40:48,701 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:41:24,236 INFO - Executing Migration
+2016-03-16 16:41:24,237 INFO - Fetching Connection list
+2016-03-16 16:41:24,237 INFO - In Function get_headers
+2016-03-16 16:41:24,237 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:41:24,492 INFO - In function generic_request
+2016-03-16 16:41:24,492 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:41:24,493 INFO - Token Retrieved with value: 21de0ce5505d4900b155fe33758611e4
+2016-03-16 16:41:24,692 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "2f2768fa-743c-4406-9b23-d553ccd33939", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "9fc6e307-3791-47c2-bf67-4727ca3356a0", "segmentation_id": "1100"}]}
+2016-03-16 16:41:24,693 INFO - CSV file generated for connection list
+2016-03-16 16:41:24,693 INFO - ##Datafile populated##
+2016-03-16 16:41:24,694 INFO - ##Connected to database##
+2016-03-16 16:41:24,876 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:41:24,877 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:41:24,877 INFO - Connection UUID to be deleted from database  2f2768fa-743c-4406-9b23-d553ccd33939 
+2016-03-16 16:41:24,877 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '2f2768fa-743c-4406-9b23-d553ccd33939'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:41:24,920 INFO - Connection UUID to be deleted from database  9fc6e307-3791-47c2-bf67-4727ca3356a0 
+2016-03-16 16:41:24,920 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '9fc6e307-3791-47c2-bf67-4727ca3356a0'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:41:25,024 INFO - ##Deleting connection data from database##
+2016-03-16 16:41:25,025 INFO - ##Creating Connection on destination##
+2016-03-16 16:41:25,025 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['2f2768fa-743c-4406-9b23-d553ccd33939', '9fc6e307-3791-47c2-bf67-4727ca3356a0'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:41:29,628 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:41:29,899 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['2f2768fa-743c-4406-9b23-d553ccd33939', '9fc6e307-3791-47c2-bf67-4727ca3356a0'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:41:29,900 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:42:18,789 INFO - Executing Migration
+2016-03-16 16:42:18,789 INFO - Fetching Connection list
+2016-03-16 16:42:18,789 INFO - In Function get_headers
+2016-03-16 16:42:18,789 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:42:19,003 INFO - In function generic_request
+2016-03-16 16:42:19,004 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:42:19,004 INFO - Token Retrieved with value: 196c5b1e385e459ab62fa868502fa9e0
+2016-03-16 16:42:19,192 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "7263ce9c-60a0-4a5c-a67d-262eb2a32089", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "ecc7233d-8687-4204-9574-8b9c1f0a59e4", "segmentation_id": ""}]}
+2016-03-16 16:42:19,193 INFO - CSV file generated for connection list
+2016-03-16 16:42:19,193 INFO - ##Datafile populated##
+2016-03-16 16:42:19,194 INFO - ##Connected to database##
+2016-03-16 16:42:19,376 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:42:19,377 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:42:19,377 INFO - Connection UUID to be deleted from database  7263ce9c-60a0-4a5c-a67d-262eb2a32089 
+2016-03-16 16:42:19,377 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '7263ce9c-60a0-4a5c-a67d-262eb2a32089'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:42:19,411 INFO - Connection UUID to be deleted from database  ecc7233d-8687-4204-9574-8b9c1f0a59e4 
+2016-03-16 16:42:19,412 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'ecc7233d-8687-4204-9574-8b9c1f0a59e4'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:42:19,509 INFO - ##Deleting connection data from database##
+2016-03-16 16:42:19,509 INFO - ##Creating Connection on destination##
+2016-03-16 16:42:19,510 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['7263ce9c-60a0-4a5c-a67d-262eb2a32089', 'ecc7233d-8687-4204-9574-8b9c1f0a59e4'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:42:23,710 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:42:24,027 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['7263ce9c-60a0-4a5c-a67d-262eb2a32089', 'ecc7233d-8687-4204-9574-8b9c1f0a59e4'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:42:24,028 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:43:18,286 INFO - Executing Migration
+2016-03-16 16:43:18,286 INFO - Fetching Connection list
+2016-03-16 16:43:18,287 INFO - In Function get_headers
+2016-03-16 16:43:18,287 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:43:18,402 INFO - In function generic_request
+2016-03-16 16:43:18,402 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:43:18,403 INFO - Token Retrieved with value: 197cb744e22a4802849165fd0ed89ab0
+2016-03-16 16:43:18,508 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "07a704cc-ed35-4100-b307-bdd78fac3e89", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "ad7568fe-5eb6-4979-b124-7a876ed928e1", "segmentation_id": "1100"}]}
+2016-03-16 16:43:18,509 INFO - CSV file generated for connection list
+2016-03-16 16:43:18,509 INFO - ##Datafile populated##
+2016-03-16 16:43:18,510 INFO - ##Connected to database##
+2016-03-16 16:43:18,691 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:43:18,691 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:43:18,692 INFO - Connection UUID to be deleted from database  07a704cc-ed35-4100-b307-bdd78fac3e89 
+2016-03-16 16:43:18,692 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '07a704cc-ed35-4100-b307-bdd78fac3e89'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:43:18,724 INFO - Connection UUID to be deleted from database  ad7568fe-5eb6-4979-b124-7a876ed928e1 
+2016-03-16 16:43:18,725 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'ad7568fe-5eb6-4979-b124-7a876ed928e1'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:43:18,822 INFO - ##Deleting connection data from database##
+2016-03-16 16:43:18,823 INFO - ##Creating Connection on destination##
+2016-03-16 16:43:18,823 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['07a704cc-ed35-4100-b307-bdd78fac3e89', 'ad7568fe-5eb6-4979-b124-7a876ed928e1'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:43:23,111 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:43:23,578 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['07a704cc-ed35-4100-b307-bdd78fac3e89', 'ad7568fe-5eb6-4979-b124-7a876ed928e1'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:43:23,579 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:43:47,701 INFO - Executing Migration
+2016-03-16 16:43:47,702 INFO - Fetching Connection list
+2016-03-16 16:43:47,702 INFO - In Function get_headers
+2016-03-16 16:43:47,702 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:43:47,948 INFO - In function generic_request
+2016-03-16 16:43:47,948 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:43:47,949 INFO - Token Retrieved with value: f9dbbdbabe2c4fcd976cfb7ba0e75f7a
+2016-03-16 16:43:48,140 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "23878078-ceb6-48a6-995b-3b0beac7c12e", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "ed303284-6afb-40ed-94e1-d7372000f40d", "segmentation_id": "1100"}]}
+2016-03-16 16:43:48,141 INFO - CSV file generated for connection list
+2016-03-16 16:43:48,141 INFO - ##Datafile populated##
+2016-03-16 16:43:48,142 INFO - ##Connected to database##
+2016-03-16 16:43:48,325 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:43:48,326 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:43:48,326 INFO - Connection UUID to be deleted from database  23878078-ceb6-48a6-995b-3b0beac7c12e 
+2016-03-16 16:43:48,327 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '23878078-ceb6-48a6-995b-3b0beac7c12e'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:43:48,386 INFO - Connection UUID to be deleted from database  ed303284-6afb-40ed-94e1-d7372000f40d 
+2016-03-16 16:43:48,386 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'ed303284-6afb-40ed-94e1-d7372000f40d'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:43:48,483 INFO - ##Deleting connection data from database##
+2016-03-16 16:43:48,483 INFO - ##Creating Connection on destination##
+2016-03-16 16:43:48,484 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['23878078-ceb6-48a6-995b-3b0beac7c12e', 'ed303284-6afb-40ed-94e1-d7372000f40d'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:43:52,976 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:43:53,264 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['23878078-ceb6-48a6-995b-3b0beac7c12e', 'ed303284-6afb-40ed-94e1-d7372000f40d'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:43:53,265 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:44:45,935 INFO - Executing Migration
+2016-03-16 16:44:45,936 INFO - Fetching Connection list
+2016-03-16 16:44:45,936 INFO - In Function get_headers
+2016-03-16 16:44:45,936 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:44:46,152 INFO - In function generic_request
+2016-03-16 16:44:46,152 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:44:46,153 INFO - Token Retrieved with value: 0f928178212143dd98c958e97b2375ba
+2016-03-16 16:44:46,363 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "313fd14d-5e4d-4adc-9d64-f41b9621149e", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "b8b12fbd-b240-46e5-9418-47c6ecd2c5bb", "segmentation_id": "1100"}]}
+2016-03-16 16:44:46,377 INFO - CSV file generated for connection list
+2016-03-16 16:44:46,377 INFO - ##Datafile populated##
+2016-03-16 16:44:46,378 INFO - ##Connected to database##
+2016-03-16 16:44:46,561 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:44:46,561 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:44:46,561 INFO - Connection UUID to be deleted from database  313fd14d-5e4d-4adc-9d64-f41b9621149e 
+2016-03-16 16:44:46,562 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '313fd14d-5e4d-4adc-9d64-f41b9621149e'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:44:46,587 INFO - Connection UUID to be deleted from database  b8b12fbd-b240-46e5-9418-47c6ecd2c5bb 
+2016-03-16 16:44:46,588 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'b8b12fbd-b240-46e5-9418-47c6ecd2c5bb'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:44:46,647 INFO - ##Deleting connection data from database##
+2016-03-16 16:44:46,647 INFO - ##Creating Connection on destination##
+2016-03-16 16:44:46,648 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['313fd14d-5e4d-4adc-9d64-f41b9621149e', 'b8b12fbd-b240-46e5-9418-47c6ecd2c5bb'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:44:51,145 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:44:51,450 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['313fd14d-5e4d-4adc-9d64-f41b9621149e', 'b8b12fbd-b240-46e5-9418-47c6ecd2c5bb'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:44:51,451 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:45:12,549 INFO - Executing Migration
+2016-03-16 16:45:12,549 INFO - Fetching Connection list
+2016-03-16 16:45:12,550 INFO - In Function get_headers
+2016-03-16 16:45:12,550 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:45:12,785 INFO - In function generic_request
+2016-03-16 16:45:12,786 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:45:12,787 INFO - Token Retrieved with value: b6563bd40e334698a1312083a0887d52
+2016-03-16 16:45:12,992 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "83c88364-3abe-43a1-ab60-cb0bd12266f2", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "cb13d5cd-8b1a-41ed-afa8-df1daa79a7d7", "segmentation_id": ""}]}
+2016-03-16 16:45:12,993 INFO - CSV file generated for connection list
+2016-03-16 16:45:12,994 INFO - ##Datafile populated##
+2016-03-16 16:45:12,995 INFO - ##Connected to database##
+2016-03-16 16:45:13,181 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:45:13,181 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:45:13,181 INFO - Connection UUID to be deleted from database  83c88364-3abe-43a1-ab60-cb0bd12266f2 
+2016-03-16 16:45:13,182 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '83c88364-3abe-43a1-ab60-cb0bd12266f2'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:45:13,214 INFO - Connection UUID to be deleted from database  cb13d5cd-8b1a-41ed-afa8-df1daa79a7d7 
+2016-03-16 16:45:13,214 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'cb13d5cd-8b1a-41ed-afa8-df1daa79a7d7'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:45:13,316 INFO - ##Deleting connection data from database##
+2016-03-16 16:45:13,316 INFO - ##Creating Connection on destination##
+2016-03-16 16:45:13,317 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['83c88364-3abe-43a1-ab60-cb0bd12266f2', 'cb13d5cd-8b1a-41ed-afa8-df1daa79a7d7'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:45:17,475 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:45:17,670 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['83c88364-3abe-43a1-ab60-cb0bd12266f2', 'cb13d5cd-8b1a-41ed-afa8-df1daa79a7d7'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:45:17,671 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:45:20,831 INFO - Executing Migration
+2016-03-16 16:45:20,831 INFO - Fetching Connection list
+2016-03-16 16:45:20,831 INFO - In Function get_headers
+2016-03-16 16:45:20,832 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:45:21,050 INFO - In function generic_request
+2016-03-16 16:45:21,050 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:45:21,051 INFO - Token Retrieved with value: b5381d1feb964064a5fae2dcb53b612e
+2016-03-16 16:45:21,288 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "471fe6cf-c082-46c6-96fd-49b7cc0a58dd", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "51ae62e7-02a2-4261-a732-7efd7740d520", "segmentation_id": "1100"}]}
+2016-03-16 16:45:21,289 INFO - CSV file generated for connection list
+2016-03-16 16:45:21,289 INFO - ##Datafile populated##
+2016-03-16 16:45:21,291 INFO - ##Connected to database##
+2016-03-16 16:45:21,482 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:45:21,482 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:45:21,483 INFO - Connection UUID to be deleted from database  471fe6cf-c082-46c6-96fd-49b7cc0a58dd 
+2016-03-16 16:45:21,483 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '471fe6cf-c082-46c6-96fd-49b7cc0a58dd'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:45:21,517 INFO - Connection UUID to be deleted from database  51ae62e7-02a2-4261-a732-7efd7740d520 
+2016-03-16 16:45:21,518 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '51ae62e7-02a2-4261-a732-7efd7740d520'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:45:21,633 INFO - ##Deleting connection data from database##
+2016-03-16 16:45:21,634 INFO - ##Creating Connection on destination##
+2016-03-16 16:45:21,634 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['471fe6cf-c082-46c6-96fd-49b7cc0a58dd', '51ae62e7-02a2-4261-a732-7efd7740d520'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:45:26,666 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:45:26,942 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['471fe6cf-c082-46c6-96fd-49b7cc0a58dd', '51ae62e7-02a2-4261-a732-7efd7740d520'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:45:26,942 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:47:13,077 INFO - Executing Migration
+2016-03-16 16:47:13,077 INFO - Fetching Connection list
+2016-03-16 16:47:13,078 INFO - In Function get_headers
+2016-03-16 16:47:13,078 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:47:13,304 INFO - In function generic_request
+2016-03-16 16:47:13,305 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:47:13,305 INFO - Token Retrieved with value: 99b8ed83c0ad4bcb876d613d4595878e
+2016-03-16 16:47:13,487 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "e596bf94-01e9-4b42-aea2-01d4d5fc927c", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "facb15a3-7512-400c-ba70-2c9d910fae42", "segmentation_id": "1100"}]}
+2016-03-16 16:47:13,488 INFO - CSV file generated for connection list
+2016-03-16 16:47:13,489 INFO - ##Datafile populated##
+2016-03-16 16:47:13,489 INFO - ##Connected to database##
+2016-03-16 16:47:13,873 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:47:13,874 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:47:13,874 INFO - Connection UUID to be deleted from database  e596bf94-01e9-4b42-aea2-01d4d5fc927c 
+2016-03-16 16:47:13,874 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'e596bf94-01e9-4b42-aea2-01d4d5fc927c'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:47:13,907 INFO - Connection UUID to be deleted from database  facb15a3-7512-400c-ba70-2c9d910fae42 
+2016-03-16 16:47:13,908 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'facb15a3-7512-400c-ba70-2c9d910fae42'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:47:14,009 INFO - ##Deleting connection data from database##
+2016-03-16 16:47:14,010 INFO - ##Creating Connection on destination##
+2016-03-16 16:47:14,010 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['e596bf94-01e9-4b42-aea2-01d4d5fc927c', 'facb15a3-7512-400c-ba70-2c9d910fae42'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:47:18,540 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:47:18,844 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['e596bf94-01e9-4b42-aea2-01d4d5fc927c', 'facb15a3-7512-400c-ba70-2c9d910fae42'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:47:18,845 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:49:13,854 INFO - Executing Migration
+2016-03-16 16:49:13,854 INFO - Fetching Connection list
+2016-03-16 16:49:13,855 INFO - In Function get_headers
+2016-03-16 16:49:13,855 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:49:14,085 INFO - In function generic_request
+2016-03-16 16:49:14,085 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:49:14,086 INFO - Token Retrieved with value: 4b0a06c5c14a4cceb4fda493ec554921
+2016-03-16 16:49:14,297 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "285bdee6-6b13-49e6-9f80-ac603ad0a8f7", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "d5eaebbd-1c23-4fa6-81bf-74f4d2bc5821", "segmentation_id": ""}]}
+2016-03-16 16:49:14,298 INFO - CSV file generated for connection list
+2016-03-16 16:49:14,298 INFO - ##Datafile populated##
+2016-03-16 16:49:14,299 INFO - ##Connected to database##
+2016-03-16 16:49:14,485 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:49:14,485 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:49:14,486 INFO - Connection UUID to be deleted from database  285bdee6-6b13-49e6-9f80-ac603ad0a8f7 
+2016-03-16 16:49:14,486 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '285bdee6-6b13-49e6-9f80-ac603ad0a8f7'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:49:14,519 INFO - Connection UUID to be deleted from database  d5eaebbd-1c23-4fa6-81bf-74f4d2bc5821 
+2016-03-16 16:49:14,519 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'd5eaebbd-1c23-4fa6-81bf-74f4d2bc5821'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:49:14,619 INFO - ##Deleting connection data from database##
+2016-03-16 16:49:14,619 INFO - ##Creating Connection on destination##
+2016-03-16 16:49:14,619 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['285bdee6-6b13-49e6-9f80-ac603ad0a8f7', 'd5eaebbd-1c23-4fa6-81bf-74f4d2bc5821'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:49:18,838 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:49:19,137 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['285bdee6-6b13-49e6-9f80-ac603ad0a8f7', 'd5eaebbd-1c23-4fa6-81bf-74f4d2bc5821'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:49:19,138 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:50:38,566 INFO - Executing Migration
+2016-03-16 16:50:38,566 INFO - Fetching Connection list
+2016-03-16 16:50:38,566 INFO - In Function get_headers
+2016-03-16 16:50:38,566 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:50:38,791 INFO - In function generic_request
+2016-03-16 16:50:38,791 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:50:38,791 INFO - Token Retrieved with value: f51a36c4f9f6479da308fa4fe4a7feee
+2016-03-16 16:50:38,989 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "2c52a6f2-db2c-41be-95c8-69c38bebd061", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "920af248-cf0e-4cd2-9a37-25c7e3edfb72", "segmentation_id": "1100"}]}
+2016-03-16 16:50:38,990 INFO - CSV file generated for connection list
+2016-03-16 16:50:38,990 INFO - ##Datafile populated##
+2016-03-16 16:50:38,990 INFO - ##Connected to database##
+2016-03-16 16:50:39,151 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:50:39,151 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:50:39,151 INFO - Connection UUID to be deleted from database  2c52a6f2-db2c-41be-95c8-69c38bebd061 
+2016-03-16 16:50:39,151 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '2c52a6f2-db2c-41be-95c8-69c38bebd061'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:50:39,184 INFO - Connection UUID to be deleted from database  920af248-cf0e-4cd2-9a37-25c7e3edfb72 
+2016-03-16 16:50:39,184 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '920af248-cf0e-4cd2-9a37-25c7e3edfb72'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:50:39,268 INFO - ##Deleting connection data from database##
+2016-03-16 16:50:39,268 INFO - ##Creating Connection on destination##
+2016-03-16 16:50:39,268 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['2c52a6f2-db2c-41be-95c8-69c38bebd061', '920af248-cf0e-4cd2-9a37-25c7e3edfb72'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:50:43,413 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:50:43,689 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['2c52a6f2-db2c-41be-95c8-69c38bebd061', '920af248-cf0e-4cd2-9a37-25c7e3edfb72'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:51:01,333 INFO - Executing Migration
+2016-03-16 16:51:01,334 INFO - Fetching Connection list
+2016-03-16 16:51:01,334 INFO - In Function get_headers
+2016-03-16 16:51:01,334 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:51:01,537 INFO - In function generic_request
+2016-03-16 16:51:01,538 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:51:01,538 INFO - Token Retrieved with value: b470c6cca2494fe1a26f850d00cf6103
+2016-03-16 16:51:01,744 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "2c947bb3-4967-43f9-bb2c-b6ad97d45f92", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "9487788b-9190-4cef-99b5-9b0c21004bb8", "segmentation_id": ""}]}
+2016-03-16 16:51:01,745 INFO - CSV file generated for connection list
+2016-03-16 16:51:01,746 INFO - ##Datafile populated##
+2016-03-16 16:51:01,746 INFO - ##Connected to database##
+2016-03-16 16:51:01,929 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:51:01,929 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:51:01,929 INFO - Connection UUID to be deleted from database  2c947bb3-4967-43f9-bb2c-b6ad97d45f92 
+2016-03-16 16:51:01,930 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '2c947bb3-4967-43f9-bb2c-b6ad97d45f92'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:51:01,965 INFO - Connection UUID to be deleted from database  9487788b-9190-4cef-99b5-9b0c21004bb8 
+2016-03-16 16:51:01,965 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '9487788b-9190-4cef-99b5-9b0c21004bb8'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:51:02,039 INFO - ##Deleting connection data from database##
+2016-03-16 16:51:02,040 INFO - ##Creating Connection on destination##
+2016-03-16 16:51:02,040 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['2c947bb3-4967-43f9-bb2c-b6ad97d45f92', '9487788b-9190-4cef-99b5-9b0c21004bb8'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:51:06,601 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:51:07,015 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['2c947bb3-4967-43f9-bb2c-b6ad97d45f92', '9487788b-9190-4cef-99b5-9b0c21004bb8'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:51:20,706 INFO - Executing Migration
+2016-03-16 16:51:20,706 INFO - Fetching Connection list
+2016-03-16 16:51:20,707 INFO - In Function get_headers
+2016-03-16 16:51:20,707 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:51:20,930 INFO - In function generic_request
+2016-03-16 16:51:20,931 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:51:20,931 INFO - Token Retrieved with value: 1f09e08cb22941c8893152514d8ae81f
+2016-03-16 16:51:21,120 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "9feb981a-ac75-48d1-a2cf-45368604711f", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "ce1e11b3-a0fb-40bb-ba15-c736faba998e", "segmentation_id": "1100"}]}
+2016-03-16 16:51:21,121 INFO - CSV file generated for connection list
+2016-03-16 16:51:21,121 INFO - ##Datafile populated##
+2016-03-16 16:51:21,121 INFO - ##Connected to database##
+2016-03-16 16:51:21,241 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:51:21,241 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:51:21,241 INFO - Connection UUID to be deleted from database  9feb981a-ac75-48d1-a2cf-45368604711f 
+2016-03-16 16:51:21,241 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '9feb981a-ac75-48d1-a2cf-45368604711f'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:51:21,265 INFO - Connection UUID to be deleted from database  ce1e11b3-a0fb-40bb-ba15-c736faba998e 
+2016-03-16 16:51:21,265 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'ce1e11b3-a0fb-40bb-ba15-c736faba998e'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:51:21,337 INFO - ##Deleting connection data from database##
+2016-03-16 16:51:21,337 INFO - ##Creating Connection on destination##
+2016-03-16 16:51:21,338 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['9feb981a-ac75-48d1-a2cf-45368604711f', 'ce1e11b3-a0fb-40bb-ba15-c736faba998e'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:51:25,710 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:51:25,984 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['9feb981a-ac75-48d1-a2cf-45368604711f', 'ce1e11b3-a0fb-40bb-ba15-c736faba998e'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:51:25,985 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 436, in execute_migration
+    self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 16:51:34,443 INFO - Executing Migration
+2016-03-16 16:51:34,443 INFO - Fetching Connection list
+2016-03-16 16:51:34,443 INFO - In Function get_headers
+2016-03-16 16:51:34,444 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:51:34,608 INFO - In function generic_request
+2016-03-16 16:51:34,608 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:51:34,608 INFO - Token Retrieved with value: de2f4b42864a425b9b126124d99bb659
+2016-03-16 16:51:34,786 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "4330f938-112f-4ecc-b55f-457778d1aaa8", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "e0623d5f-a3ee-48d6-9dfd-ad19c234f51b", "segmentation_id": ""}]}
+2016-03-16 16:51:34,786 INFO - CSV file generated for connection list
+2016-03-16 16:51:34,787 INFO - ##Datafile populated##
+2016-03-16 16:51:34,787 INFO - ##Connected to database##
+2016-03-16 16:51:34,920 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:51:34,920 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:51:34,921 INFO - Connection UUID to be deleted from database  4330f938-112f-4ecc-b55f-457778d1aaa8 
+2016-03-16 16:51:34,921 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '4330f938-112f-4ecc-b55f-457778d1aaa8'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:51:34,953 INFO - Connection UUID to be deleted from database  e0623d5f-a3ee-48d6-9dfd-ad19c234f51b 
+2016-03-16 16:51:34,954 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'e0623d5f-a3ee-48d6-9dfd-ad19c234f51b'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:51:35,054 INFO - ##Deleting connection data from database##
+2016-03-16 16:51:35,055 INFO - ##Creating Connection on destination##
+2016-03-16 16:51:35,055 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['4330f938-112f-4ecc-b55f-457778d1aaa8', 'e0623d5f-a3ee-48d6-9dfd-ad19c234f51b'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:51:39,787 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:51:40,060 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['4330f938-112f-4ecc-b55f-457778d1aaa8', 'e0623d5f-a3ee-48d6-9dfd-ad19c234f51b'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:52:55,587 INFO - Executing Migration
+2016-03-16 16:52:55,587 INFO - Fetching Connection list
+2016-03-16 16:52:55,587 INFO - In Function get_headers
+2016-03-16 16:52:55,587 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:52:55,809 INFO - In function generic_request
+2016-03-16 16:52:55,810 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:52:55,811 INFO - Token Retrieved with value: 828128d758a747c186812d0aa10d3991
+2016-03-16 16:52:56,004 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "42433547-766c-41ce-8269-87241bf86f87", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "aa0bbef6-1922-4adc-9e12-1c0d9ca405fb", "segmentation_id": ""}]}
+2016-03-16 16:52:56,005 INFO - CSV file generated for connection list
+2016-03-16 16:52:56,005 INFO - ##Datafile populated##
+2016-03-16 16:52:56,006 INFO - ##Connected to database##
+2016-03-16 16:52:56,189 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:52:56,189 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:52:56,190 INFO - Connection UUID to be deleted from database  42433547-766c-41ce-8269-87241bf86f87 
+2016-03-16 16:52:56,190 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '42433547-766c-41ce-8269-87241bf86f87'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:52:56,223 INFO - Connection UUID to be deleted from database  aa0bbef6-1922-4adc-9e12-1c0d9ca405fb 
+2016-03-16 16:52:56,223 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'aa0bbef6-1922-4adc-9e12-1c0d9ca405fb'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:52:56,295 INFO - ##Deleting connection data from database##
+2016-03-16 16:52:56,295 INFO - ##Creating Connection on destination##
+2016-03-16 16:52:56,295 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['42433547-766c-41ce-8269-87241bf86f87', 'aa0bbef6-1922-4adc-9e12-1c0d9ca405fb'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:53:00,475 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:53:00,658 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['42433547-766c-41ce-8269-87241bf86f87', 'aa0bbef6-1922-4adc-9e12-1c0d9ca405fb'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:56:12,200 INFO - Executing Migration
+2016-03-16 16:56:12,200 INFO - Fetching Connection list
+2016-03-16 16:56:12,201 INFO - In Function get_headers
+2016-03-16 16:56:12,201 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:56:12,448 INFO - In function generic_request
+2016-03-16 16:56:12,449 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:56:12,450 INFO - Token Retrieved with value: a1b910cd219e4461b57b4423169ce829
+2016-03-16 16:56:12,660 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "4315c412-3b9f-4bfd-b68f-ea0bd93d4f88", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "65a27b31-0d9e-477f-9b04-3499c0f43306", "segmentation_id": "1100"}]}
+2016-03-16 16:56:12,661 INFO - CSV file generated for connection list
+2016-03-16 16:56:12,662 INFO - ##Datafile populated##
+2016-03-16 16:56:12,662 INFO - ##Connected to database##
+2016-03-16 16:56:12,848 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:56:12,848 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:56:12,849 INFO - Connection UUID to be deleted from database  4315c412-3b9f-4bfd-b68f-ea0bd93d4f88 
+2016-03-16 16:56:12,849 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '4315c412-3b9f-4bfd-b68f-ea0bd93d4f88'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:56:12,887 INFO - Connection UUID to be deleted from database  65a27b31-0d9e-477f-9b04-3499c0f43306 
+2016-03-16 16:56:12,888 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '65a27b31-0d9e-477f-9b04-3499c0f43306'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:56:12,991 INFO - ##Deleting connection data from database##
+2016-03-16 16:56:12,991 INFO - ##Creating Connection on destination##
+2016-03-16 16:56:12,992 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['4315c412-3b9f-4bfd-b68f-ea0bd93d4f88', '65a27b31-0d9e-477f-9b04-3499c0f43306'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:56:17,638 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:56:17,956 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['4315c412-3b9f-4bfd-b68f-ea0bd93d4f88', '65a27b31-0d9e-477f-9b04-3499c0f43306'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:57:26,437 INFO - Executing Migration
+2016-03-16 16:57:26,437 INFO - Fetching Connection list
+2016-03-16 16:57:26,438 INFO - In Function get_headers
+2016-03-16 16:57:26,438 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:57:26,603 INFO - In function generic_request
+2016-03-16 16:57:26,603 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:57:26,604 INFO - Token Retrieved with value: aba7ca1789a542bea1ea78ad6b853259
+2016-03-16 16:57:26,800 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "55d5abdc-8601-452b-8beb-12154b2728bd", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "887a0bcd-df52-40be-8e4d-e58e69ef6abe", "segmentation_id": ""}]}
+2016-03-16 16:57:26,801 INFO - CSV file generated for connection list
+2016-03-16 16:57:26,802 INFO - ##Datafile populated##
+2016-03-16 16:57:26,802 INFO - ##Connected to database##
+2016-03-16 16:57:26,991 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:57:26,991 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:57:26,992 INFO - Connection UUID to be deleted from database  55d5abdc-8601-452b-8beb-12154b2728bd 
+2016-03-16 16:57:26,992 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '55d5abdc-8601-452b-8beb-12154b2728bd'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:57:27,030 INFO - Connection UUID to be deleted from database  887a0bcd-df52-40be-8e4d-e58e69ef6abe 
+2016-03-16 16:57:27,031 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '887a0bcd-df52-40be-8e4d-e58e69ef6abe'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:57:27,100 INFO - ##Deleting connection data from database##
+2016-03-16 16:57:27,101 INFO - ##Creating Connection on destination##
+2016-03-16 16:57:27,101 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['55d5abdc-8601-452b-8beb-12154b2728bd', '887a0bcd-df52-40be-8e4d-e58e69ef6abe'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:57:31,384 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:57:31,660 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['55d5abdc-8601-452b-8beb-12154b2728bd', '887a0bcd-df52-40be-8e4d-e58e69ef6abe'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 16:58:19,045 INFO - Executing Migration
+2016-03-16 16:58:19,045 INFO - Fetching Connection list
+2016-03-16 16:58:19,046 INFO - In Function get_headers
+2016-03-16 16:58:19,046 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 16:58:19,276 INFO - In function generic_request
+2016-03-16 16:58:19,277 INFO - Post request_response ==<Response [200]> 
+2016-03-16 16:58:19,277 INFO - Token Retrieved with value: 557d188434f541ad895b749157ab2b6e
+2016-03-16 16:58:19,437 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "655b9b3d-e6ff-4a22-bfb7-25e4b679d69d", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "cd48ebd1-704d-4d3f-a033-1c7833a10837", "segmentation_id": "1100"}]}
+2016-03-16 16:58:19,438 INFO - CSV file generated for connection list
+2016-03-16 16:58:19,439 INFO - ##Datafile populated##
+2016-03-16 16:58:19,439 INFO - ##Connected to database##
+2016-03-16 16:58:19,623 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 16:58:19,624 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 16:58:19,624 INFO - Connection UUID to be deleted from database  655b9b3d-e6ff-4a22-bfb7-25e4b679d69d 
+2016-03-16 16:58:19,624 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '655b9b3d-e6ff-4a22-bfb7-25e4b679d69d'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:58:19,658 INFO - Connection UUID to be deleted from database  cd48ebd1-704d-4d3f-a033-1c7833a10837 
+2016-03-16 16:58:19,659 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'cd48ebd1-704d-4d3f-a033-1c7833a10837'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 16:58:19,758 INFO - ##Deleting connection data from database##
+2016-03-16 16:58:19,759 INFO - ##Creating Connection on destination##
+2016-03-16 16:58:19,759 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['655b9b3d-e6ff-4a22-bfb7-25e4b679d69d', 'cd48ebd1-704d-4d3f-a033-1c7833a10837'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 16:58:24,307 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 16:58:24,581 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['655b9b3d-e6ff-4a22-bfb7-25e4b679d69d', 'cd48ebd1-704d-4d3f-a033-1c7833a10837'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 17:00:44,993 INFO - Executing Migration
+2016-03-16 17:00:44,993 INFO - Fetching Connection list
+2016-03-16 17:00:44,994 INFO - In Function get_headers
+2016-03-16 17:00:44,994 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 17:00:45,237 INFO - In function generic_request
+2016-03-16 17:00:45,237 INFO - Post request_response ==<Response [200]> 
+2016-03-16 17:00:45,238 INFO - Token Retrieved with value: 9a8b207e4bdc4d54af7dc00014865ec1
+2016-03-16 17:00:45,434 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "46734b62-3564-4808-a597-e81433091cb3", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "6c4083cd-e1bf-487f-8a7e-b6596c42ce4c", "segmentation_id": ""}]}
+2016-03-16 17:00:45,435 INFO - CSV file generated for connection list
+2016-03-16 17:00:45,436 INFO - ##Datafile populated##
+2016-03-16 17:00:45,436 INFO - ##Connected to database##
+2016-03-16 17:00:45,618 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 17:00:45,618 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 17:00:45,619 INFO - Connection UUID to be deleted from database  46734b62-3564-4808-a597-e81433091cb3 
+2016-03-16 17:00:45,619 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '46734b62-3564-4808-a597-e81433091cb3'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 17:00:45,676 INFO - Connection UUID to be deleted from database  6c4083cd-e1bf-487f-8a7e-b6596c42ce4c 
+2016-03-16 17:00:45,676 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '6c4083cd-e1bf-487f-8a7e-b6596c42ce4c'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 17:00:45,774 INFO - ##Deleting connection data from database##
+2016-03-16 17:00:45,775 INFO - ##Creating Connection on destination##
+2016-03-16 17:00:45,775 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['46734b62-3564-4808-a597-e81433091cb3', '6c4083cd-e1bf-487f-8a7e-b6596c42ce4c'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 17:00:50,052 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 17:00:50,253 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['46734b62-3564-4808-a597-e81433091cb3', '6c4083cd-e1bf-487f-8a7e-b6596c42ce4c'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 17:00:50,253 ERROR - Complete Mapping not createdReason: Unable to create binding for all ports
+Details: vlan bindings not created
+Traceback (most recent call last):
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 435, in execute_migration
+    unmapped_ports = self.validate_vlan_bindings(gw_lst_req_url,headers)
+  File "/home/ubuntu/L2-Gateway-bugfixing/L2_Gateway_Migration/src/db_migration.py", line 380, in validate_vlan_bindings
+    raise migration_exceptions.NoMappingFound('vlan bindings not created')
+NoMappingFound: Unable to create binding for all ports
+Details: vlan bindings not created
+2016-03-16 17:05:26,037 INFO - Executing Migration
+2016-03-16 17:05:26,037 INFO - Fetching Connection list
+2016-03-16 17:05:26,038 INFO - In Function get_headers
+2016-03-16 17:05:26,038 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 17:05:26,294 INFO - In function generic_request
+2016-03-16 17:05:26,295 INFO - Post request_response ==<Response [200]> 
+2016-03-16 17:05:26,295 INFO - Token Retrieved with value: 6d5327019dc44fbcbd95cf6ce8eb3be3
+2016-03-16 17:05:26,494 INFO - Connection list {"l2_gateway_connections": [{"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "500068c0-f712-454f-8cf8-599639516249", "segmentation_id": ""}, {"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "fdc9e911-73ac-48e5-afa3-10c1960bff2d", "segmentation_id": "1100"}]}
+2016-03-16 17:05:26,495 INFO - CSV file generated for connection list
+2016-03-16 17:05:26,496 INFO - ##Datafile populated##
+2016-03-16 17:05:26,496 INFO - ##Connected to database##
+2016-03-16 17:05:26,729 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 17:05:26,729 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 17:05:26,730 INFO - Connection UUID to be deleted from database  500068c0-f712-454f-8cf8-599639516249 
+2016-03-16 17:05:26,730 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '500068c0-f712-454f-8cf8-599639516249'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 17:05:26,766 INFO - Connection UUID to be deleted from database  fdc9e911-73ac-48e5-afa3-10c1960bff2d 
+2016-03-16 17:05:26,766 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = 'fdc9e911-73ac-48e5-afa3-10c1960bff2d'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 17:05:26,841 INFO - ##Deleting connection data from database##
+2016-03-16 17:05:26,841 INFO - ##Creating Connection on destination##
+2016-03-16 17:05:26,841 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['500068c0-f712-454f-8cf8-599639516249', 'fdc9e911-73ac-48e5-afa3-10c1960bff2d'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 17:05:31,198 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 17:05:31,498 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['3a32080a-09e6-476a-8c15-a50497adfc24', '92d29ff4-ed47-4716-b144-a81e130a09a8'], 'connection_id': ['500068c0-f712-454f-8cf8-599639516249', 'fdc9e911-73ac-48e5-afa3-10c1960bff2d'], 'seg_id': ['', '1100'], 'net_id': ['6335365f-3ee2-44fa-8625-2a853760b858', '970b5f5c-b2d4-4c6d-8693-5f5b385e08e4']}
+2016-03-16 17:08:05,884 INFO - Executing Migration
+2016-03-16 17:08:05,884 INFO - Fetching Connection list
+2016-03-16 17:08:05,885 INFO - In Function get_headers
+2016-03-16 17:08:05,885 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 17:08:06,093 INFO - In function generic_request
+2016-03-16 17:08:06,093 INFO - Post request_response ==<Response [200]> 
+2016-03-16 17:08:06,094 INFO - Token Retrieved with value: e2115928d73e4c3a95d0bd904a08ea7a
+2016-03-16 17:08:06,280 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "2a65e032-be4a-4b1d-963d-de4039e15296", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "7782f0bb-d962-4a0c-b2bd-ee7eb5426558", "segmentation_id": ""}]}
+2016-03-16 17:08:06,281 INFO - CSV file generated for connection list
+2016-03-16 17:08:06,281 INFO - ##Datafile populated##
+2016-03-16 17:08:06,282 INFO - ##Connected to database##
+2016-03-16 17:08:06,497 INFO - Connecting to host with ip 10.8.20.51 
+2016-03-16 17:08:06,497 INFO - Reading connection UUID from CSV file to be deleted
+2016-03-16 17:08:06,498 INFO - Connection UUID to be deleted from database  2a65e032-be4a-4b1d-963d-de4039e15296 
+2016-03-16 17:08:06,498 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '2a65e032-be4a-4b1d-963d-de4039e15296'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 17:08:06,533 INFO - Connection UUID to be deleted from database  7782f0bb-d962-4a0c-b2bd-ee7eb5426558 
+2016-03-16 17:08:06,534 INFO - Query for deleting the data from l2gatewayconnections table  sudo mysql -e "delete from l2gatewayconnections where id = '7782f0bb-d962-4a0c-b2bd-ee7eb5426558'" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron 
+2016-03-16 17:08:06,626 INFO - ##Deleting connection data from database##
+2016-03-16 17:08:06,626 INFO - ##Creating Connection on destination##
+2016-03-16 17:08:06,626 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['2a65e032-be4a-4b1d-963d-de4039e15296', '7782f0bb-d962-4a0c-b2bd-ee7eb5426558'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 17:08:11,592 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 17:08:11,908 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['2a65e032-be4a-4b1d-963d-de4039e15296', '7782f0bb-d962-4a0c-b2bd-ee7eb5426558'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}
+2016-03-16 17:12:10,853 INFO - Executing Migration
+2016-03-16 17:12:10,854 INFO - Fetching Connection list
+2016-03-16 17:12:10,854 INFO - In Function get_headers
+2016-03-16 17:12:10,854 INFO - Getting token for user: admin from url: http://10.8.20.51:5000/v2.0
+2016-03-16 17:12:11,096 INFO - In function generic_request
+2016-03-16 17:12:11,096 INFO - Post request_response ==<Response [200]> 
+2016-03-16 17:12:11,097 INFO - Token Retrieved with value: a5a59a34cc894ae281f8bd81de0f8f06
+2016-03-16 17:12:11,317 INFO - Connection list {"l2_gateway_connections": [{"network_id": "970b5f5c-b2d4-4c6d-8693-5f5b385e08e4", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "92d29ff4-ed47-4716-b144-a81e130a09a8", "id": "379436c8-0cce-4d81-950f-e4d4f39c4f8c", "segmentation_id": "1100"}, {"network_id": "6335365f-3ee2-44fa-8625-2a853760b858", "tenant_id": "a54d1a3b8ef048fda8af8167d5e5318b", "l2_gateway_id": "3a32080a-09e6-476a-8c15-a50497adfc24", "id": "7d6ce3a2-9597-4dcb-9271-7c85afe02f3c", "segmentation_id": ""}]}
+2016-03-16 17:12:11,318 INFO - CSV file generated for connection list
+2016-03-16 17:12:11,319 INFO - ##Datafile populated##
+2016-03-16 17:12:11,587 INFO - Connecting to Switch with ip 10.8.20.112 
+2016-03-16 17:12:11,887 INFO - Content extracted from data file {'tennt_id': ['a54d1a3b8ef048fda8af8167d5e5318b', 'a54d1a3b8ef048fda8af8167d5e5318b'], 'gw_id': ['92d29ff4-ed47-4716-b144-a81e130a09a8', '3a32080a-09e6-476a-8c15-a50497adfc24'], 'connection_id': ['379436c8-0cce-4d81-950f-e4d4f39c4f8c', '7d6ce3a2-9597-4dcb-9271-7c85afe02f3c'], 'seg_id': ['1100', ''], 'net_id': ['970b5f5c-b2d4-4c6d-8693-5f5b385e08e4', '6335365f-3ee2-44fa-8625-2a853760b858']}

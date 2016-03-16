@@ -20,11 +20,7 @@ default_group = cfg.OptGroup(name='default',
 DefaultGroup = [
     cfg.BoolOpt('debug',
                 default=False,
-                help="Print debugging output"),
-    cfg.StrOpt('controller_ip',
-               default='controller_ip',
-               help="controller_ip cmc ip")]
-
+                help="Print debugging output")]
 
 
 
@@ -53,15 +49,15 @@ mysql_credential_opts = [
 
 
 opt_openstack__credential_group = cfg.OptGroup(
-    name='OPENSTACK_CREDS',
-    title='openstack credentials')
+    name='KEYSTONE_CREDS',
+    title='keystone credentials')
 openstack_credential_opts = [
     cfg.StrOpt('username',
                default='admin',
                help=('Openstack username')),
     cfg.StrOpt('password',
                default='admin',
-               help=('password OPENSTACK_CREDS')),
+               help=('password KEYSTONE_CREDS')),
     cfg.StrOpt('log_file',
                default='log_file',
                help=('Log_file path')),

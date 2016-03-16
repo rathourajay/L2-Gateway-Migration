@@ -13,16 +13,15 @@ import logging
 import config
 import csv 
 import ConfigParser, os
-import config_reader
 import sys
 log = logging.getLogger('l2_gateway')
 
 
-def get_user_token(user_name, password, tenant_name,controller_ip):
+def get_user_token(user_name, password, tenant_name,host_ip):
         """
         Gets a keystone usertoken using the credentials provided by user
         """
-        os_auth_url = "http://%s:5000/v2.0"  % (controller_ip)
+        os_auth_url = "http://%s:5000/v2.0"  % (host_ip)
 
         url = os_auth_url + '/tokens'
         log.info("Getting token for user: "

@@ -14,7 +14,7 @@ class vtep_command_manager():
         self.cmc_ip = '10.8.20.51'
         self.cc1_ip = '10.8.20.52'
         self.cc2_ip = '10.8.20.53'
-        self.CSV_PATH = os.getcwd() 
+        self.switch_data = os.getcwd()+ '/../../data/' + 'switch_data.csv'
 
     def connect_host(self,switch_ip,switch_username,switch_password):
         client = paramiko.SSHClient()
@@ -47,16 +47,16 @@ class vtep_command_manager():
 
     def csv_for_switch_details(self):
         self.log.info("Populate csv file for switch detail input")
-        data_file = self.CSV_PATH + '/../../data/'
-        switch_data = data_file + 'switch_dat.csv'
-        sys.stdout.write("Please provide switch details to %s" %(switch_data))
-        with open(switch_data, 'wb') as fp:
+        #data_file = self.CSV_PATH + '/../../data/'
+        #switch_data = data_file + 'switch_dat.csv'
+        sys.stdout.write("Please provide switch details to %s" %(self.switch_data))
+        with open(self.switch_data, 'wb') as fp:
             writer = csv.writer(fp, delimiter='\t')
             writer.writerow(["switch_name", "switch_ip", "switch_username", "switch_password"])
 
     def read_execute_switch_data(self):
-        data_file = self.CSV_PATH + '/../../data/'
-        switch_data = data_file + 'switch_dat.csv'
+        #data_file = self.CSV_PATH + '/../../data/'
+        #switch_data = data_file + 'switch_dat.csv'
         log.info("Reading switch details")
         switch_ptr = self.connect_host('10.8.20.112','root','ubuntu')
         self.execute_vtep_cmd(switch_ptr)
@@ -73,7 +73,7 @@ class vtep_command_manager():
                        execute_vtep_cmd(switch_ptr)
         except exceptions.InputOutput as message:
             raise exceptions.InputOutput('unable to read file')
-            sys.stdout.write('ERROR in reading file.....\n')
+            sys.stderr.write('ERROR in reading file.....\n')
         '''
     
     def get_ovsdb_bindings(self):

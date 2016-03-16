@@ -36,8 +36,8 @@ class db_connection():
         except MySQLdb.Error as ex:
             self.log.exception("Could not connect to mysql host: %s. "
                                "Reason: %s" % (self.host_ip, ex))
-            sys.stdout.write(_("Could not connect to mysql host: %s. "
-                               "Reason: %s\n") % (self.host_ip, ex))
+            sys.stderr.write("Could not connect to mysql host: %s. "
+                               "Reason: %s\n" % (self.host_ip, ex))
             raise migration_exceptions.DBError(ex)
         except Exception as e:
              self.log.exception('ERROR in connecting to MYSQL\n')
@@ -56,13 +56,13 @@ class db_connection():
             
             for item in arr[1:]:
                 log.info("Connection UUID to be deleted from database  %s " %(item))
-                self.execute_query(con_ptr,item)
+                self.delete_connection(con_ptr,item)
         except migration_exceptions.InputOutput as message:
-            sys.stdout.write('ERROR in reading file.....\n')
+            sys.stderr.write('ERROR in reading file.....\n')
             self.log.exception('ERROR in reading file.....\n')
             raise migration_exceptions.InputOutput('unable to read file')
 
-    def execute_query(self,client,uuid_con):
+    def delete_connection(self,client,uuid_con):
         #import pdb;pdb.set_trace()
         #query = 'sudo mysql -e "select * from l2gatewayconnections" -u neutron -p7342274ae48f99a6262b3653496a02ccb9398d07 ovs_neutron'
         query = 'sudo mysql -e "delete from l2gatewayconnections where id = \'%s\'" -u %s -p%s %s' % (uuid_con,self.db_user_id,self.db_pwd,self.db_name)
@@ -74,8 +74,8 @@ class db_connection():
         except MySQLdb.Error as ex:
             self.log.exception("Could not connect to mysql and query fails to execute: %s. "
                                "Reason: %s" % (self.host_ip, ex))
-            sys.stdout.write(_("Could not connect to mysql host: %s. "
-                               "Reason: %s\n") % (self.host_ip, ex))
+            sys.stderr.write("Could not connect to mysql host: %s. "
+                               "Reason: %s\n" % (self.host_ip, ex))
             raise migration_exceptions.DBError(ex)
         except Exception as e:
              self.log.exception('Error in executing \n')
