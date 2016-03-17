@@ -15,6 +15,9 @@ class vtep_command_manager():
         self.cc1_ip = '10.8.20.52'
         self.cc2_ip = '10.8.20.53'
         self.switch_data = os.getcwd()+ '/../../data/' + 'switch_data.csv'
+        self.ovsdb_host_ip = config.CONF.OVSDB_HOST_CREDS.host_ip
+	self.ovsdb_host_uname = config.CONF.OVSDB_HOST_CREDS.username
+	self.ovsdb_host_pwd = config.CONF.OVSDB_HOST_CREDS.password
 
     def connect_host(self,switch_ip,switch_username,switch_password):
         client = paramiko.SSHClient()
@@ -78,9 +81,9 @@ class vtep_command_manager():
     
     def get_ovsdb_bindings(self):
         '''
-        This method retruns vlan_bindings wrt port name
+        This method retruns vlan_bindings wrt port name and ports list along with switch
         '''
-        client = self.connect_host('10.8.20.112','root','ubuntu')
+        client = self.connect_host(self.ovsdb_host_ip,self.ovsdb_host_uname,self.ovsdb_host_pwd)
         command_vtep = "cd /home/ubuntu;./vtep-ctl list Physical_Port"
 	command_vtep_switches = "cd /home/ubuntu;./vtep-ctl list Physical_Switch"
         stdin, stdout, stderr = client.exec_command(command_vtep)

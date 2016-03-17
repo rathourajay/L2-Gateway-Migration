@@ -96,7 +96,8 @@ class MigrationScript(object):
                         writer.writerow([connection_id, network_id, tenant_id, l2_gateway_id, segmentation_id])
             self.log.info("CSV file generated for connection list")
         except IOError as ex:
-            print "Error in writing csv file:", data_file
+            sys.stdout.write("Error in writing csv file:", data_file)
+            self.log.debug("Error in writing csv file: %s" %(data_file))
             self.log.exception("Error in writing csv file: %s. "
                                "Reason: %s" % (data_file, ex))
             sys.stderr.write(_("Error in writing csv file: %s. "
@@ -136,7 +137,8 @@ class MigrationScript(object):
                 param_dict['seg_id']=seg_id_list
         
         except IOError:
-            print "Error in reading csv file:", conn_file
+            sys.stdout.write("Error in reading csv file:", conn_file)
+            self.log.debug("Error in reading csv file: %s" %(data_file))
             self.log.exception("Error in reading csv file: %s. "
                                "Reason: %s" % (conn_file, ex))
             sys.stderr.write(_("Error in reading csv file: %s. "
@@ -145,29 +147,6 @@ class MigrationScript(object):
         self.log.info("Content extracted from data file %s" % (param_dict))
         return param_dict
 
-
-    def update_l2gwagent_ini(self):
-        with open('l2gw-agent1.ini', 'r') as file:
-            """
-            TODO give correct path of l2gwini file,list ips should be read from conf file, validation check on ip
-            """
-            list_ips = ['ovsdb1:16.95.16.1:6632,ovsdb2:16.95.16.2:6632','ovsdb1:16.95.16.1.22:8989']
-            self.log.info("Updating INI file corresponding to IPS =  %s" % (list_ips))
-            data = file.readlines()
-            cnt = 0
-            for item in data:
-                parm_pat = re.findall(r'\#\s*ovsdb_hosts.\s*\=\s*',item,re.DOTALL)
-                if item.startswith('ovsdb_hosts') or parm_pat:
-                    item = 'ovsdb_hosts ='
-                    item +=','.join(list_ips).replace('\#', '')
-                    break
-                cnt += 1
-        item = item+'\n'
-        data[cnt] = item
-        with open('l2gw-agent1.ini', 'w') as file:
-            file.writelines( data )
-            file.writelines('\n')
-        self.log.info("##INI file updated## ")
 
     def create_failure_file(self,connectn_id, network_id , tenant_id, seg_id, l2_gateway_id):
         failure_file = self.DATA_EXC_FILE
@@ -178,6 +157,7 @@ class MigrationScript(object):
                 writer1.writerow([connectn_id, network_id, tenant_id, l2_gateway_id, seg_id])
         except IOError as ex:
             print "Error in writing failure file:", data_file
+            self.log.debug("Error in writing failure file: %s" %(data_file))
             self.log.exception("Error in writing csv file: %s. "
                                "Reason: %s" % (data_file, ex))
             sys.stderr.write(_("Error in writing csv file: %s. "
@@ -200,9 +180,10 @@ class MigrationScript(object):
                     writer1.writerow([conn_id, net_id, tenant_id, gw_id, seg_id])
         except IOError as ex:
             print "Error in writing failure file:", data_file
+            self.log.debug("Error in writing failure file: %s" %(data_file))
             self.log.exception("Error in writing csv file: %s. "
                                "Reason: %s" % (data_file, ex))
-            sys.stderr.write(_("Error in writing csv file: %s. "
+            sys.stderr.write(("Error in writing csv file: %s. "
                                "Reason: %s\n") % (data_file, ex))
 
 
@@ -212,13 +193,13 @@ class MigrationScript(object):
         to_del_param_dict = {}
         sys.stdout.write("Failed connections exist\n")
         sys.stdout.write("Retrying for failed connections...\n")
+	conn_count = 0
         for i in range(len(param_dict['net_id'])):
             network_id = param_dict['net_id'][i]
             tenant_id = param_dict['tennt_id'][i]
             l2_gateway_id = param_dict['gw_id'][i]
             seg_id = param_dict['seg_id'][i]   
             connectn_id = param_dict['connection_id'][i]  
-            #import pdb;pdb.set_trace()
             for i in range(3):
                 sys.stdout.write(("Retry attempt %s...\n") % (i+1))
                 if not seg_id :
@@ -250,28 +231,30 @@ class MigrationScript(object):
 		to_del_param_dict['l2_gateway_id'] = l2_gateway_id
 		to_del_param_dict['seg_id'] = seg_id
 		to_del_param_list.append(to_del_param_dict)
-	
+	    else:
+	        conn_count += 1
         if to_del_param_list:	
             self.delete_csv_entries(to_del_param_list)
             sys.stdout.write("Migration NOT Successfull after retry!!!\n")
 	else:
 	    os.remove(self.DATA_EXC_FILE)
-            self.log.info("Connection Created successfully\n")
+            self.log.info("Connections Created successfully\n")
 	    sys.stdout.write("Migration Successfull\n")
-
-
+        total_conn = len(param_dict['net_id'])
+        sys.stdout.write("%s connection created successfully out of %s connections\n"%(str(conn_count),str(total_conn)))
+   
 
     def create_connection(self,param_dict,req_url,headers):
         retry_flag = False
 	to_del_param_list = []
         to_del_param_dict = {}
+	conn_count = 0
         for i in range(len(param_dict['net_id'])):
             network_id = param_dict['net_id'][i]
             tenant_id = param_dict['tennt_id'][i]
             l2_gateway_id = param_dict['gw_id'][i]
             seg_id = param_dict['seg_id'][i]   
             connectn_id = param_dict['connection_id'][i] 
-            #import pdb;pdb.set_trace()
             if not seg_id :
                 payload = {"l2_gateway_connection": {"network_id": network_id, "l2_gateway_id": l2_gateway_id}}
                 """
@@ -284,7 +267,6 @@ class MigrationScript(object):
                 creating connection
                 """
                 create_conn = requests.post(req_url, data=json.dumps(payload), headers=headers)
-            #import pdb;pdb.set_trace()            
             if not(create_conn.ok):
                 to_del_param_dict = dict()
                 retry_flag = True
@@ -295,29 +277,16 @@ class MigrationScript(object):
 		to_del_param_dict['seg_id'] = seg_id
 		to_del_param_list.append(to_del_param_dict)
                 #self.create_failure_file(connectn_id, network_id , tenant_id, seg_id, l2_gateway_id )
-        
+            else:
+	        conn_count += 1
+
         if retry_flag == True:
             self.delete_csv_entries(to_del_param_list)
 	    param_flddict = self.read_data_file(self.DATA_EXC_FILE)
             self.create_failed_connection(param_flddict,req_url,headers=headers)
-
-            
-        #self.log.info("Creating connection with command %s" %(create_conn.text))
-        #self.log.info("connection created for %s" % (connectn_id))
-        
-            
-
-    def retry_create_connection(self,param_dict,req_url,headers,create_conn):
-        flag = True
-        for i in range(3):
-            create_conn = self.create_connection(param_dict,req_url,headers)
-            if not create_conn.ok:
-                flag = False
-                continue
-            else:
-	        break
-        if not flag:
-            self.create_failure_file(connectn_id, network_id , tenant_id, seg_id, l2_gateway_id )
+	else:
+           total_conn = len(param_dict['net_id'])
+           sys.stdout.write("%d connection created successfully out of %d connections\n"%(conn_count,total_conn))
 
 
     def get_connections_list(self,req_url,headers):
@@ -334,16 +303,12 @@ class MigrationScript(object):
         param_dict = self.read_data_file(self.DATA_FILE)
         for i in range(len(param_dict['seg_id'])):
             if param_dict['seg_id'][i]!= '':
-                print param_dict['seg_id'][i]  
                 gw_id =  param_dict['gw_id'][i]
 		if l2_gw_id ==	gw_id:
                     return param_dict['seg_id'][i] 
 
 
     def validate_vlan_bindings(self,req_url,headers):
-        """
-        TO DO: raise user define exception in place of else.
-        """
         gw_list = requests.get(req_url, headers=headers)
         l2_gw_list = gw_list.text
         l2_gw_dict = json.loads(l2_gw_list)
@@ -374,11 +339,16 @@ class MigrationScript(object):
                             if str(seg_id) in data['bindings'] and port_name in data['name']:
                                 mapped_port_list.append(port_id)
         unmapped_port_list = [port for port in port_list if port not in mapped_port_list]
-       # print "unmapped ports are:",unmapped_port_list
-        print "mapped ports are:",mapped_port_list
-        #if  unmapped_port_list:
-        #    raise migration_exceptions.NoMappingFound('vlan bindings not created')
-        return unmapped_port_list
+        sw_port_lst = []
+	for port in unmapped_port_list:
+            for sw in sw_list:
+                if port in sw['ports']:
+                    sw_port_dct = dict()
+                    sw_port_dct['switch_name'] = sw['switch_name']
+                    sw_port_dct['ports'] = port
+                    sw_port_lst.append(sw_port_dct)
+        return sw_port_lst
+
 
     def execute_migration(self):
         if not(os.path.isfile(self.DATA_EXC_FILE)): #or os.stat(self.DATA_EXC_FILE).st_size==0:
@@ -398,7 +368,6 @@ class MigrationScript(object):
                 
                 sys.stdout.write("Step 1. Fetching Connection List\n")
                 connection_list = self.get_connections_list(req_url,headers)
-                #import pdb;pdb.set_trace()
                 if not connection_list:
                     sys.stdout.write("No connection available on source #### No migration will happen####\n")
                     self.log.info("No Connection available on source #### No migration will happen####")
@@ -406,8 +375,6 @@ class MigrationScript(object):
                 else:    
                     self.log.info("Connection list %s" % (connection_list))
                     gw_lst_req_url =  "http://%s:9696/v2.0/l2-gateways.json"  % (self.host_ip)
-                #self.validate_vlan_bindings(gw_lst_req_url,headers)
-    
                     sys.stdout.write("Step 2. Populating data file\n")
                     self.populate_data_file(connection_list)
                     self.log.info("##Datafile populated##")
@@ -422,47 +389,50 @@ class MigrationScript(object):
                     self.log.info("##Creating Connection on destination##")
                     sys.stdout.write("Step 4. Creating Connection\n")
                     param_dict = self.read_data_file(self.DATA_FILE)
-                    #import pdb;pdb.set_trace()
                     self.create_connection(param_dict,req_url,headers=headers)
                     if (os.path.isfile(self.DATA_EXC_FILE)): 
                         self.log.info("##Error occurred in migration. Please check failed_switch.csv file for further details##")
                         sys.stdout.write("Migration not completed successfully. Please check logs foe further details\n")
                     else:
-                        sys.stdout.write("Step 5. Connection created succesfully \n")
-                    #self.update_l2gwagent_ini()
-                    
                         gw_lst_req_url =  "http://%s:9696/v2.0/l2-gateways.json"  % (self.host_ip)
                         unmapped_ports = self.validate_vlan_bindings(gw_lst_req_url,headers)
 		        if unmapped_ports:
-		            sys.stdout.write("    Migration not Successfull!!!!!! \n")
-		            print unmapped_ports
+		            sys.stdout.write("Migration not Successfull!!!!!! \n")
+                            self.log.debug("vlan bindings not created for following switches :%s " %(unmapped_ports))
+                            sys.stderr.write("vlan bindings not created for following switches :%s \n" %(unmapped_ports))
+                            raise migration_exceptions.NoMappingFound('vlan bindings not created')
 		        else:	
-                            sys.stdout.write("    Migration Successfull!!!!!! \n")
+                            sys.stdout.write("Migration Successfull!!!!!! \n")
                 
                                
             except migration_exceptions.InvalidIpAddress as e:
                 self.log.exception("Error in IP address"
                                    "Reason: %s" % (e))
+                self.log.debug("Wrong IP address")
                 sys.stderr.write(e._error_string+'\n')
                 sys.exit()
     
             except socket.error as e:
                 sys.stderr.write("IPV4 address validation failed" + '\n')
+                self.log.debug("Wrong IPV4 address")
                 self.log.exception("Error in IPV4 address"
                                    "Reason: %s" % (e))
                 sys.exit()
     
             except (requests.exceptions.HTTPError) as e:
                 print "An HTTPError:", e.message
+                self.log.debug("HTTP ERROR")
                 self.log.exception("An HTTPError:"
                                    "Reason: %s" % (e))
     
             except webob.exc.HTTPError() as e:
                 self.log.exception("webob.exc.HTTPError()"
                                    "Reason: %s" % (e))
+                self.log.debug("webob.exc.HTTPError")
                 raise webob.exc.HTTPError(e)
     
             except migration_exceptions.NoMappingFound as e:
+                self.log.debug("Complete Mapping not created")
                 self.log.exception("Complete Mapping not created"
                                    "Reason: %s" % (e))
                 sys.stderr.write(e._error_string+'\n')
@@ -483,6 +453,3 @@ class MigrationScript(object):
             req_url = "http://%s:9696/v2.0/l2-gateway-connections.json"  % (self.host_ip)
             headers = self.get_headers()
             self.create_failed_connection(param_flddict,req_url,headers=headers)    
-            
-
-                                                                

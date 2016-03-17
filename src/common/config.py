@@ -66,11 +66,49 @@ openstack_credential_opts = [
                help=('tenant name'))
 ]
 
+opt_openstack__credential_group = cfg.OptGroup(
+    name='KEYSTONE_CREDS',
+    title='keystone credentials')
+openstack_credential_opts = [
+    cfg.StrOpt('username',
+               default='admin',
+               help=('Openstack username')),
+    cfg.StrOpt('password',
+               default='admin',
+               help=('password KEYSTONE_CREDS')),
+    cfg.StrOpt('log_file',
+               default='log_file',
+               help=('Log_file path')),
+    cfg.StrOpt('tenant_name',
+               default='tenant',
+               help=('tenant name'))
+]
+
+opt_ovsdb_host__credential_group = cfg.OptGroup(
+    name='OVSDB_HOST_CREDS',
+    title='ovs credentials')
+ovsdb_host_credential_opts = [
+    cfg.StrOpt('username',
+               default='root',
+               help=('ovsdb machine username')),
+    cfg.StrOpt('password',
+               default='ubuntu',
+               help=('ovsdb machine password')),
+    cfg.StrOpt('log_file',
+               default='log_file',
+               help=('Log_file path')),
+    cfg.StrOpt('host_ip',
+               default='10.8.20.112',
+               help=('ovsdb machine ip')),
+]
+
 def register_opts():
     register_opt_group(
         cfg.CONF, opt_mysql_credential_group, mysql_credential_opts)
     register_opt_group(
         cfg.CONF, opt_openstack__credential_group, openstack_credential_opts)
+    register_opt_group(
+        cfg.CONF, opt_ovsdb_host__credential_group, ovsdb_host_credential_opts)
     register_opt_group(cfg.CONF, default_group, DefaultGroup)
     
 

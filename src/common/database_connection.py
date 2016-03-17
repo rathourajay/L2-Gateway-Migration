@@ -36,6 +36,7 @@ class db_connection():
         except MySQLdb.Error as ex:
             self.log.exception("Could not connect to mysql host: %s. "
                                "Reason: %s" % (self.host_ip, ex))
+            log.debug("Could not connect to mysql host: %s " % (self.host_ip))
             sys.stderr.write("Could not connect to mysql host: %s. "
                                "Reason: %s\n" % (self.host_ip, ex))
             raise migration_exceptions.DBError(ex)
@@ -59,6 +60,7 @@ class db_connection():
                 self.delete_connection(con_ptr,item)
         except migration_exceptions.InputOutput as message:
             sys.stderr.write('ERROR in reading file.....\n')
+            log.debug("ERROR in reading file.....")
             self.log.exception('ERROR in reading file.....\n')
             raise migration_exceptions.InputOutput('unable to read file')
 
@@ -74,6 +76,7 @@ class db_connection():
         except MySQLdb.Error as ex:
             self.log.exception("Could not connect to mysql and query fails to execute: %s. "
                                "Reason: %s" % (self.host_ip, ex))
+            log.debug("Could not connect to mysql host: %s " % (self.host_ip))
             sys.stderr.write("Could not connect to mysql host: %s. "
                                "Reason: %s\n" % (self.host_ip, ex))
             raise migration_exceptions.DBError(ex)
