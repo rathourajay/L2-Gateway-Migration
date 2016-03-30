@@ -15,6 +15,8 @@ import logging
 import migration_exceptions
 import sys
 import os
+import MySQLdb
+
 log = logging.getLogger('l2_gateway')
 class db_connection():
 
@@ -34,14 +36,14 @@ class db_connection():
             client.connect(self.host_ip, username=self.host_uname, password=self.host_pwd)
             log.info("Connecting to host with ip %s " % (self.host_ip))
         except MySQLdb.Error as ex:
-            self.log.exception("Could not connect to mysql host: %s. "
+            log.exception("Could not connect to mysql host: %s. "
                                "Reason: %s" % (self.host_ip, ex))
             log.debug("Could not connect to mysql host: %s " % (self.host_ip))
             sys.stderr.write("Could not connect to mysql host: %s. "
                                "Reason: %s\n" % (self.host_ip, ex))
             raise migration_exceptions.DBError(ex)
         except Exception as e:
-             self.log.exception('ERROR in connecting to MYSQL\n')
+             log.exception('ERROR in connecting to MYSQL\n')
         return client
 
     def read_connection_uuid(self):

@@ -86,6 +86,8 @@ class vtep_command_manager():
         client = self.connect_host(self.ovsdb_host_ip,self.ovsdb_host_uname,self.ovsdb_host_pwd)
         command_vtep = "cd /home/ubuntu;./vtep-ctl list Physical_Port"
 	command_vtep_switches = "cd /home/ubuntu;./vtep-ctl list Physical_Switch"
+        #command_vtep = "cd ~;./vtep-ctl list Physical_Port"
+	#command_vtep_switches = "cd ~;./vtep-ctl list Physical_Switch"
         stdin, stdout, stderr = client.exec_command(command_vtep)
         name_list = []
 	port_id_list = []

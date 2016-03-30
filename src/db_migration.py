@@ -115,7 +115,7 @@ class MigrationScript(object):
                 param_dict = {}
                 conn_id_list = []
                 net_id_list = []
-                tennt_id_list = []
+                tenant_id_list = []
                 gw_id_list = []
                 seg_id_list = []
                 for row in reader:
@@ -124,7 +124,7 @@ class MigrationScript(object):
                     else:
                         conn_id_list.append(row[0])
                         net_id_list.append(row[1])
-                        tennt_id_list.append(row[2])
+                        tenant_id_list.append(row[2])
                         gw_id_list.append(row[3])
                         seg_id_list.append(row[4])
                 """
@@ -132,7 +132,7 @@ class MigrationScript(object):
                 """ 
                 param_dict['connection_id'] = conn_id_list
                 param_dict['net_id']=net_id_list
-                param_dict['tennt_id']=tennt_id_list
+                param_dict['tenant_id']=tenant_id_list
                 param_dict['gw_id']=gw_id_list
                 param_dict['seg_id']=seg_id_list
         
@@ -148,24 +148,7 @@ class MigrationScript(object):
         return param_dict
 
 
-    def create_failure_file(self,connectn_id, network_id , tenant_id, seg_id, l2_gateway_id):
-        failure_file = self.DATA_EXC_FILE
-        try: 
-            with open(failure_file, 'a') as fep:
-                writer1 = csv.writer(fep, delimiter='\t')
-                writer1.writerow(["connection_id", "network_id", "tenant_id", "l2_gateway_id", "segmentation_id"])
-                writer1.writerow([connectn_id, network_id, tenant_id, l2_gateway_id, seg_id])
-        except IOError as ex:
-            print "Error in writing failure file:", data_file
-            self.log.debug("Error in writing failure file: %s" %(data_file))
-            self.log.exception("Error in writing csv file: %s. "
-                               "Reason: %s" % (data_file, ex))
-            sys.stderr.write(_("Error in writing csv file: %s. "
-                               "Reason: %s\n") % (data_file, ex))
-
-
-
-    def delete_csv_entries(self,to_del_param):
+    def write_failed_entries(self,to_del_param):
         failure_file = self.DATA_EXC_FILE
         try: 
             with open(failure_file, 'w') as fp:
@@ -187,107 +170,48 @@ class MigrationScript(object):
                                "Reason: %s\n") % (data_file, ex))
 
 
-
-    def create_failed_connection(self,param_dict,req_url,headers):
-	to_del_param_list = []
-        to_del_param_dict = {}
-        sys.stdout.write("Failed connections exist\n")
-        sys.stdout.write("Retrying for failed connections...\n")
-	conn_count = 0
-        for i in range(len(param_dict['net_id'])):
-            network_id = param_dict['net_id'][i]
-            tenant_id = param_dict['tennt_id'][i]
-            l2_gateway_id = param_dict['gw_id'][i]
-            seg_id = param_dict['seg_id'][i]   
-            connectn_id = param_dict['connection_id'][i]  
-            for i in range(3):
-                sys.stdout.write(("Retry attempt %s...\n") % (i+1))
-                if not seg_id :
-                    payload = {"l2_gateway_connection": {"network_id": network_id, "l2_gateway_id": l2_gateway_id}}
-                    """
-                    creating connection
-                    """
-                    self.log.info("Retrying for connection %s" %(connectn_id))
-                    create_conn = requests.post(req_url, data=json.dumps(payload), headers=headers)
-                    if create_conn.ok:
-                        self.log.info("Connection %s  creation successful" %(connectn_id))
-		        break
-                else:
-                    payload = {"l2_gateway_connection": {"network_id": network_id, "segmentation_id": seg_id ,"l2_gateway_id": l2_gateway_id}}
-                    """
-                    creating connection
-                    """
-                    self.log.info("Retrying for connection %s" %(connectn_id))
-                    create_conn = requests.post(req_url, data=json.dumps(payload), headers=headers)
-                    if create_conn.ok:
-                        self.log.info("Connection %s  creation successful" %(connectn_id))
-		        break
-           
-	    if not(create_conn.ok):
-                to_del_param_dict = dict()
-		to_del_param_dict['network_id'] = network_id
-		to_del_param_dict['connectn_id'] = connectn_id
-		to_del_param_dict['tenant_id'] = tenant_id
-		to_del_param_dict['l2_gateway_id'] = l2_gateway_id
-		to_del_param_dict['seg_id'] = seg_id
-		to_del_param_list.append(to_del_param_dict)
-	    else:
-	        conn_count += 1
-        if to_del_param_list:	
-            self.delete_csv_entries(to_del_param_list)
-            sys.stdout.write("Migration NOT Successfull after retry!!!\n")
-	else:
-	    os.remove(self.DATA_EXC_FILE)
-            self.log.info("Connections Created successfully\n")
-	    sys.stdout.write("Migration Successfull\n")
-        total_conn = len(param_dict['net_id'])
-        sys.stdout.write("%s connection created successfully out of %s connections\n"%(str(conn_count),str(total_conn)))
-   
-
-    def create_connection(self,param_dict,req_url,headers):
+    def create_connection(self,param_dict,req_url,file_exist,headers):
         retry_flag = False
-	to_del_param_list = []
+        to_del_param_list = []
         to_del_param_dict = {}
-	conn_count = 0
         for i in range(len(param_dict['net_id'])):
+            flag = False
             network_id = param_dict['net_id'][i]
-            tenant_id = param_dict['tennt_id'][i]
+            tenant_id = param_dict['tenant_id'][i]
             l2_gateway_id = param_dict['gw_id'][i]
-            seg_id = param_dict['seg_id'][i]   
-            connectn_id = param_dict['connection_id'][i] 
-            if not seg_id :
-                payload = {"l2_gateway_connection": {"network_id": network_id, "l2_gateway_id": l2_gateway_id}}
-                """
-                creating connection
-                """
-                create_conn = requests.post(req_url, data=json.dumps(payload), headers=headers)
-            else:
-                payload = {"l2_gateway_connection": {"network_id": network_id, "segmentation_id": seg_id ,"l2_gateway_id": l2_gateway_id}}
-                """
-                creating connection
-                """
-                create_conn = requests.post(req_url, data=json.dumps(payload), headers=headers)
+            seg_id = param_dict['seg_id'][i]
+            connectn_id = param_dict['connection_id'][i]
+            payload = {"l2_gateway_connection": {"network_id": network_id, "l2_gateway_id": l2_gateway_id}}
+            if seg_id:
+                payload["l2_gateway_connection"]["segmentation_id"] = seg_id
+            create_conn = requests.post(req_url, json.dumps(payload), headers=headers)
             if not(create_conn.ok):
-                to_del_param_dict = dict()
-                retry_flag = True
-		to_del_param_dict['network_id'] = network_id
-		to_del_param_dict['connectn_id'] = connectn_id
-		to_del_param_dict['tenant_id'] = tenant_id
-		to_del_param_dict['l2_gateway_id'] = l2_gateway_id
-		to_del_param_dict['seg_id'] = seg_id
-		to_del_param_list.append(to_del_param_dict)
-                #self.create_failure_file(connectn_id, network_id , tenant_id, seg_id, l2_gateway_id )
-            else:
-	        conn_count += 1
+                for i in range(3):
+                    sys.stdout.write(("Retry attempt %s...\n") % (i+1))
+                    self.log.info("Retrying for connection %s" %(connectn_id))
+                    create_conn = requests.post(req_url, data=json.dumps(payload), headers=headers)
+                    if create_conn.ok:
+                        flag = True
+                        self.log.info("Connection %s  creation successful" %(connectn_id))
+                        break
 
+                if not flag:
+                    to_del_param_dict = dict()
+                    retry_flag = True
+                    to_del_param_dict['network_id'] = network_id
+                    to_del_param_dict['connectn_id'] = connectn_id
+                    to_del_param_dict['tenant_id'] = tenant_id
+                    to_del_param_dict['l2_gateway_id'] = l2_gateway_id
+                    to_del_param_dict['seg_id'] = seg_id
+                    to_del_param_list.append(to_del_param_dict)
         if retry_flag == True:
-            self.delete_csv_entries(to_del_param_list)
-	    param_flddict = self.read_data_file(self.DATA_EXC_FILE)
-            self.create_failed_connection(param_flddict,req_url,headers=headers)
-	else:
-           total_conn = len(param_dict['net_id'])
-           sys.stdout.write("%d connection created successfully out of %d connections\n"%(conn_count,total_conn))
-
+            self.write_failed_entries(to_del_param_list)
+            sys.stdout.write("Migration NOT Successfull after retry!!!\n")
+        else:
+            if file_exist:
+                os.remove(self.DATA_EXC_FILE)
+            sys.stdout.write("Connection Created Successfully\n")
+            self.log.info("Connection Created successfully\n")
 
     def get_connections_list(self,req_url,headers):
         """
@@ -298,6 +222,7 @@ class MigrationScript(object):
 
         self.log.debug("Fetched connection List: %s" % (connection_list))
         return connection_list
+
 
     def get_seg_id(self,l2_gw_id):
         param_dict = self.read_data_file(self.DATA_FILE)
@@ -351,6 +276,9 @@ class MigrationScript(object):
 
 
     def execute_migration(self):
+        file_exist = False
+        req_url = "http://%s:9696/v2.0/l2-gateway-connections.json"  % (self.host_ip)
+        headers = self.get_headers()
         if not(os.path.isfile(self.DATA_EXC_FILE)): #or os.stat(self.DATA_EXC_FILE).st_size==0:
             """
             Executing L2GW migration steps
@@ -363,9 +291,6 @@ class MigrationScript(object):
                 ip_pat = re.findall('\d+\.\d+\.\d+\.\d+$',self.host_ip)
                 if not ip_pat:
                     raise migration_exceptions.InvalidIpAddress('IP validation failed')
-                req_url = "http://%s:9696/v2.0/l2-gateway-connections.json"  % (self.host_ip)
-                headers = self.get_headers()
-                
                 sys.stdout.write("Step 1. Fetching Connection List\n")
                 connection_list = self.get_connections_list(req_url,headers)
                 if not connection_list:
@@ -389,10 +314,10 @@ class MigrationScript(object):
                     self.log.info("##Creating Connection on destination##")
                     sys.stdout.write("Step 4. Creating Connection\n")
                     param_dict = self.read_data_file(self.DATA_FILE)
-                    self.create_connection(param_dict,req_url,headers=headers)
+                    self.create_connection(param_dict,req_url,file_exist,headers=headers)
                     if (os.path.isfile(self.DATA_EXC_FILE)): 
                         self.log.info("##Error occurred in migration. Please check failed_switch.csv file for further details##")
-                        sys.stdout.write("Migration not completed successfully. Please check logs foe further details\n")
+                        sys.stdout.write("Migration not completed successfully. Please check logs for further details\n")
                     else:
                         gw_lst_req_url =  "http://%s:9696/v2.0/l2-gateways.json"  % (self.host_ip)
                         unmapped_ports = self.validate_vlan_bindings(gw_lst_req_url,headers)
@@ -449,7 +374,7 @@ class MigrationScript(object):
                 sys.exit()
                 
         else:
+            sys.stdout.write("Failed connection exists \n")
+            file_exist = True
             param_flddict = self.read_data_file(self.DATA_EXC_FILE)
-            req_url = "http://%s:9696/v2.0/l2-gateway-connections.json"  % (self.host_ip)
-            headers = self.get_headers()
-            self.create_failed_connection(param_flddict,req_url,headers=headers)    
+            self.create_connection(param_flddict,req_url,file_exist,headers=headers)
