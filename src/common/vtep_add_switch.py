@@ -126,6 +126,54 @@ class vtep_command_manager():
             sw_dict['ports'] = port
             sw_detail_list.append(sw_dict)
         return list_dicts,sw_detail_list
+
+    def get_ucast_data(self):
+        client = self.connect_host(self.ovsdb_host_ip,self.ovsdb_host_uname,self.ovsdb_host_pwd)
+        command_vtep_ucast = "cd /home/ubuntu;./vtep-ctl list Ucast_Macs_Remote"
+        stdin, stdout, stderr = client.exec_command(command_vtep_ucast)
+        ucast_lst = []
+	name_list = []
+        port_id_list = []
+        binding_list = []
+        for item in stdout.readlines():
+            if '_uuid' in item:
+                port_id_list.append(item)
+            if 'MAC' in item:
+                name_list.append(item)
+            if 'logical_switch' in item:
+                binding_list.append(item)
+
+        list_dicts = []
+        for name,bindings,port_id in zip(name_list,binding_list,port_id_list):
+            dict_name = {}
+            dict_name['mac'] = name
+            dict_name['logical_switch'] = bindings
+            dict_name['uuid'] = port_id
+            list_dicts.append(dict_name)
+	return list_dicts
+
+    def get_ls_data(self):
+        client = self.connect_host(self.ovsdb_host_ip,self.ovsdb_host_uname,self.ovsdb_host_pwd)
+        command_vtep_ls = "cd /home/ubuntu;./vtep-ctl list Logical_Switch"
+        stdin, stdout, stderr = client.exec_command(command_vtep_ls)
+        ucast_lst = []
+        name_list = []
+        port_id_list = []
+        binding_list = []
+        for item in stdout.readlines():
+            if '_uuid' in item:
+                port_id_list.append(item)
+            if 'name' in item:
+                name_list.append(item)
+
+        list_dicts = []
+        for name,port_id in zip(name_list,port_id_list):
+            dict_name = {}
+            dict_name['name'] = name
+            dict_name['uuid'] = port_id
+            list_dicts.append(dict_name)
+        return list_dicts
+
 """
 if __name__=='__main__':
     adi = vtep_command_manager()
