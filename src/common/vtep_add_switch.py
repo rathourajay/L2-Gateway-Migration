@@ -21,6 +21,7 @@ class vtep_command_manager():
 
     def connect_host(self,switch_ip,switch_username,switch_password):
         client = paramiko.SSHClient()
+#	import pdb;pdb.set_trace()
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         client.connect(switch_ip, username=switch_username, password=switch_password)
         log.info("Connecting to Switch with ip %s " % (switch_ip))
@@ -79,11 +80,12 @@ class vtep_command_manager():
             sys.stderr.write('ERROR in reading file.....\n')
         '''
     
-    def get_ovsdb_bindings(self):
+    def get_ovsdb_bindings(self,ovsdb_host_ip,ovsdb_host_uname,ovsdb_host_pwd):
         '''
         This method retruns vlan_bindings wrt port name and ports list along with switch
         '''
-        client = self.connect_host(self.ovsdb_host_ip,self.ovsdb_host_uname,self.ovsdb_host_pwd)
+#	import pdb;pdb.set_trace()
+        client = self.connect_host(ovsdb_host_ip,ovsdb_host_uname,ovsdb_host_pwd)
         command_vtep = "cd /home/ubuntu;./vtep-ctl list Physical_Port"
 	command_vtep_switches = "cd /home/ubuntu;./vtep-ctl list Physical_Switch"
         #command_vtep = "cd ~;./vtep-ctl list Physical_Port"
@@ -127,8 +129,8 @@ class vtep_command_manager():
             sw_detail_list.append(sw_dict)
         return list_dicts,sw_detail_list
 
-    def get_ucast_data(self):
-        client = self.connect_host(self.ovsdb_host_ip,self.ovsdb_host_uname,self.ovsdb_host_pwd)
+    def get_ucast_data(self,ovsdb_host_ip,ovsdb_host_uname,ovsdb_host_pwd):
+        client = self.connect_host(ovsdb_host_ip,ovsdb_host_uname,ovsdb_host_pwd)
         command_vtep_ucast = "cd /home/ubuntu;./vtep-ctl list Ucast_Macs_Remote"
         stdin, stdout, stderr = client.exec_command(command_vtep_ucast)
         ucast_lst = []
@@ -152,8 +154,8 @@ class vtep_command_manager():
             list_dicts.append(dict_name)
 	return list_dicts
 
-    def get_ls_data(self):
-        client = self.connect_host(self.ovsdb_host_ip,self.ovsdb_host_uname,self.ovsdb_host_pwd)
+    def get_ls_data(self,ovsdb_host_ip,ovsdb_host_uname,ovsdb_host_pwd):
+        client = self.connect_host(ovsdb_host_ip,ovsdb_host_uname,ovsdb_host_pwd)
         command_vtep_ls = "cd /home/ubuntu;./vtep-ctl list Logical_Switch"
         stdin, stdout, stderr = client.exec_command(command_vtep_ls)
         ucast_lst = []

@@ -49,13 +49,6 @@ def get_ls_name(ls_id,ls_dict):
 
 
 
-def del_port(switch_name_ovsdb,port_name):
-    vtep_obj = vtep_command_manager()
-    client = vtep_obj.connect_host('10.8.20.112','root','ubuntu')
-    exec_unbind_cmd = 'cd /home/ubuntu;./vtep-ctl del-port %s %s' % (switch_name_ovsdb,port_name)
-    stdin, stdout, stderr = client.exec_command(exec_unbind_cmd)
-#    print "Deleting ports"
-
 def compare(spv,switch_final):
     switch_diff={}
     switch_diff1={}
@@ -66,28 +59,11 @@ def compare(spv,switch_final):
         if switch_final.has_key(switch):
             switch_diff[switch]={}
             switch_diff1[switch]={}
-            #if not spv[switch]:
-            #    sw_port[switch]=switch_final[switch]
-               
             for port in spv[switch]:
                 switch_diff[switch][port]=list(set(switch_final[switch][port]) - set(spv[switch][port]))
 
             for port1 in switch_final[switch]:
-#	        import pdb;pdb.set_trace()
                 switch_diff1[switch][port1]=list(set(spv[switch][port1]) - set(switch_final[switch][port1]))
-
-    '''
-    for ovssw in switch_final:
-	if spv.has_key(ovssw):
-	    switch_diff1[switch]={}
-	        
-            for port1 in switch_final[ovssw]:
-                switch_diff1[ovssw][port1]=list(set(spv[ovssw][port1]) - set(switch_final[ovssw][port1]))
-		
-	    sw_port[switch]=list(set(switch_final[switch]) - set(spv[switch]))
-    '''
-   # print "switch diff1", switch_diff1
- #   import pdb;pdb.set_trace()
     return switch_diff,switch_diff1
             
 def add_ucast_ovsdb(mac,ls_name,ip):
@@ -145,7 +121,7 @@ def compare_ucast_data(ucast_mysql_dict,ucast_ovsdb_data,ls_dict,ls_ovsdb_data):
 	    uuid_to_del.append(uuid_ovsdb)
     print "uuid to add   ",  uuid_to_add
     print "uuid to del   ", uuid_to_del
-    import pdb;pdb.set_trace()
+    #import pdb;pdb.set_trace()
     return uuid_to_add,uuid_to_del,ls_dict,ls_ovsdb_data
 
 
@@ -177,6 +153,7 @@ def switch_dict(switch_details,port_vlan,prt_id_name_dict,ls_key_name_dict,port_
     
     if uuid_to_add:
 	for uuid in uuid_to_add:
+	    import pdb;pdb.set_trace()
 	    for item in ucast_mysql_dict:
 		if uuid in item:
 		    mac = ucast_mysql_dict[item][0]
