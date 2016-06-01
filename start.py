@@ -16,7 +16,7 @@ if __name__ == '__main__':
         x = db_migration.MigrationScript()
         x.execute_migration()
     except Exception as e:
-        sys.stderr.write(e.message)
-        sys.exit()
+        sys.stderr.write("%s" % e.message)
+        raise Exception
         
 

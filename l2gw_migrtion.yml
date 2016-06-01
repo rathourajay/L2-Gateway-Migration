@@ -1,0 +1,9 @@
+- hosts: ubuntu
+  sudo: yes
+
+  tasks:
+  - name: L2GW Migration
+#  - script: /home/ubuntu/L2_Gateway_Migration_Latest/L2-Gateway-Migration/start.py
+    command: /home/ubuntu/L2_Gateway_Migration_Latest/L2-Gateway-Migration/start.py
+#    register: command_result
+#    failed_when: "'Traceback' in command_result.stderr"

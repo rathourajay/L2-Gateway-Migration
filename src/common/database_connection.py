@@ -43,11 +43,13 @@ class db_connection():
                                "Reason: %s\n" % (self.host_ip, ex))
             raise migration_exceptions.DBError(ex)
         except Exception as e:
-             log.exception('ERROR in connecting to MYSQL\n')
+            log.exception('ERROR in connecting to MYSQL\n')
+            raise Exception
         return client
 
     def read_connection_uuid(self):
-        data_file = os.getcwd() + '/data/data_file.csv' 
+        #data_file = os.getcwd() + '/data/data_file.csv' 
+        data_file = '/etc/data_file.csv' 
         con_ptr = self.connect_host()
         log.info("Reading connection UUID from CSV file to be deleted")
         arr = []

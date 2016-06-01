@@ -113,7 +113,7 @@ def register_opts():
     
 
 def get_config():
-    conf_file = os.getcwd() + '/conf/input_data.conf'
+    conf_file = '/etc/input_data.conf'
     cfg.CONF(default_config_files=[conf_file])
     #cfg.CONF(default_config_files=['/home/ubuntu/L2-Gateway-Migration/conf/input_data.conf'])
     register_opts()

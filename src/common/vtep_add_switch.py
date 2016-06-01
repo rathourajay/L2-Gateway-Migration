@@ -11,14 +11,14 @@ class vtep_command_manager():
 
     def __init__(self):
         #self.host_ip = config.CONF.DATABASE_CRED.host_ip
-        self.cmc_ip = '10.8.20.51'
-        self.cc1_ip = '10.8.20.52'
-        self.cc2_ip = '10.8.20.53'
-        self.switch_data = os.getcwd()+ '/../../data/' + 'switch_data.csv'
+#        self.cmc_ip = '10.8.20.51'
+#        self.cc1_ip = '10.8.20.52'
+#        self.cc2_ip = '10.8.20.53'
+   #     self.switch_data = os.getcwd()+ '/../../data/' + 'switch_data.csv'
         self.ovsdb_host_ip = config.CONF.OVSDB_HOST_CREDS.host_ip
 	self.ovsdb_host_uname = config.CONF.OVSDB_HOST_CREDS.username
 	self.ovsdb_host_pwd = config.CONF.OVSDB_HOST_CREDS.password
-
+    
     def connect_host(self,switch_ip,switch_username,switch_password):
         client = paramiko.SSHClient()
 #	import pdb;pdb.set_trace()
@@ -80,12 +80,12 @@ class vtep_command_manager():
             sys.stderr.write('ERROR in reading file.....\n')
         '''
     
-    def get_ovsdb_bindings(self,ovsdb_host_ip,ovsdb_host_uname,ovsdb_host_pwd):
+    def get_ovsdb_bindings(self):
         '''
         This method retruns vlan_bindings wrt port name and ports list along with switch
         '''
 #	import pdb;pdb.set_trace()
-        client = self.connect_host(ovsdb_host_ip,ovsdb_host_uname,ovsdb_host_pwd)
+        client = self.connect_host(self.ovsdb_host_ip, self.ovsdb_host_uname, self.ovsdb_host_pwd)
         command_vtep = "cd /home/ubuntu;./vtep-ctl list Physical_Port"
 	command_vtep_switches = "cd /home/ubuntu;./vtep-ctl list Physical_Switch"
         #command_vtep = "cd ~;./vtep-ctl list Physical_Port"
@@ -128,53 +128,6 @@ class vtep_command_manager():
             sw_dict['ports'] = port
             sw_detail_list.append(sw_dict)
         return list_dicts,sw_detail_list
-
-    def get_ucast_data(self,ovsdb_host_ip,ovsdb_host_uname,ovsdb_host_pwd):
-        client = self.connect_host(ovsdb_host_ip,ovsdb_host_uname,ovsdb_host_pwd)
-        command_vtep_ucast = "cd /home/ubuntu;./vtep-ctl list Ucast_Macs_Remote"
-        stdin, stdout, stderr = client.exec_command(command_vtep_ucast)
-        ucast_lst = []
-	name_list = []
-        port_id_list = []
-        binding_list = []
-        for item in stdout.readlines():
-            if '_uuid' in item:
-                port_id_list.append(item)
-            if 'MAC' in item:
-                name_list.append(item)
-            if 'logical_switch' in item:
-                binding_list.append(item)
-
-        list_dicts = []
-        for name,bindings,port_id in zip(name_list,binding_list,port_id_list):
-            dict_name = {}
-            dict_name['mac'] = name
-            dict_name['logical_switch'] = bindings
-            dict_name['uuid'] = port_id
-            list_dicts.append(dict_name)
-	return list_dicts
-
-    def get_ls_data(self,ovsdb_host_ip,ovsdb_host_uname,ovsdb_host_pwd):
-        client = self.connect_host(ovsdb_host_ip,ovsdb_host_uname,ovsdb_host_pwd)
-        command_vtep_ls = "cd /home/ubuntu;./vtep-ctl list Logical_Switch"
-        stdin, stdout, stderr = client.exec_command(command_vtep_ls)
-        ucast_lst = []
-        name_list = []
-        port_id_list = []
-        binding_list = []
-        for item in stdout.readlines():
-            if '_uuid' in item:
-                port_id_list.append(item)
-            if 'name' in item:
-                name_list.append(item)
-
-        list_dicts = []
-        for name,port_id in zip(name_list,port_id_list):
-            dict_name = {}
-            dict_name['name'] = name
-            dict_name['uuid'] = port_id
-            list_dicts.append(dict_name)
-        return list_dicts
 
 """
 if __name__=='__main__':

@@ -56,3 +56,5 @@ class InputOutput(L2GwMigrationException):
 class NoMappingFound(L2GwMigrationException):
     message = 'Unable to create binding for all ports'
 
+class ValueError(L2GwMigrationException):
+    message = "IP Error"

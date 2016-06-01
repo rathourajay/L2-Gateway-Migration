@@ -51,6 +51,10 @@ def generic_request(method, url, data=None,
     if auth_token:
         token = auth_token['token']
         headers["X-Auth-Token"] = token['id']
+    log.info("%s" %(url))
+    log.info("%s" %(headers))
+    log.info("%s" %(data))
+    log.info("%s" %(nova_cacert))
     resp = method(url, headers=headers, data=data, verify=nova_cacert,
                   stream=stream)
     log.info("In function generic_request")
